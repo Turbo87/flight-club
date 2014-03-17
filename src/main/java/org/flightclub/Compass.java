@@ -8,9 +8,10 @@
 
 package org.flightclub;
 
+import org.flightclub.compat.Graphics;
+
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 
 /**
  * a simple compass

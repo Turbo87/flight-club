@@ -147,7 +147,7 @@ public class ModelCanvas extends Canvas {
         }
 
         if (app.compass != null) {
-            app.compass.draw(graphicsBuffer);
+            app.compass.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
         }
 
         if (app.slider != null) {
