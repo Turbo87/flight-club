@@ -127,7 +127,7 @@ public class ModelCanvas extends Canvas {
             for (int i = 0; i < app.obj3dManager.os[layer].size(); i++) {
                 Object3d o = (Object3d) app.obj3dManager.os[layer].elementAt(i);
                 o.film();
-                o.draw(graphicsBuffer);
+                o.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
             }
         }
 
