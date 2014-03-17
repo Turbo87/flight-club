@@ -8,8 +8,8 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Graphics;
 import org.flightclub.compat.Color;
+import org.flightclub.compat.Graphics;
 
 import java.util.Vector;
 
