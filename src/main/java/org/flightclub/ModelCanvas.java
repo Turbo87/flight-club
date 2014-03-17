@@ -124,8 +124,8 @@ public class ModelCanvas extends Canvas {
         app.obj3dManager.sortObjects(app.cameraMan.getEye());
 
         for (int layer = 0; layer < app.obj3dManager.MAX_LAYERS; layer++) {
-            for (int i = 0; i < app.obj3dManager.os[layer].size(); i++) {
-                Object3d o = (Object3d) app.obj3dManager.os[layer].elementAt(i);
+            for (int i = 0; i < app.obj3dManager.os.get(layer).size(); i++) {
+                Object3d o = (Object3d) app.obj3dManager.os.get(layer).elementAt(i);
                 o.film(app.cameraMan);
                 o.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
             }

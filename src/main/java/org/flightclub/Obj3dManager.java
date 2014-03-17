@@ -20,29 +20,27 @@ public class Obj3dManager {
             1 - default layer (used if none specified when adding an object3d)
     */
     protected final ModelViewer app;
-    final Vector[] os;
+    final Vector<Vector<Object3d>> os;
     static final int MAX_LAYERS = 3;
 
     Obj3dManager(ModelViewer theApp) {
         app = theApp;
-        os = new Vector[MAX_LAYERS];
-        for (int i = 0; i < MAX_LAYERS; i++) {
-            os[i] = new Vector();
-        }
+        os = new Vector<>(MAX_LAYERS);
+        for (int i = 0; i < MAX_LAYERS; i++)
+            os.add(new Vector<Object3d>());
     }
 
     public void addObj(Object3d o, int layer) {
-        os[layer].addElement(o);
+        os.get(layer).addElement(o);
     }
 
     public void removeObj(Object3d o, int layer) {
-        os[layer].removeElement(o);
+        os.get(layer).removeElement(o);
     }
 
     public void removeAll() {
-        for (int i = 0; i < MAX_LAYERS; i++) {
-            os[i].removeAllElements();
-        }
+        for (Vector layer : os)
+            layer.removeAllElements();
     }
 
     //public Object3d obj(int i){return (Object3d) os.elementAt(i);}
@@ -61,9 +59,9 @@ public class Obj3dManager {
 		*/
 
         for (int a = 0; a < MAX_LAYERS; a++) {
-            if (os[a].size() >= 2) {
-                for (int i = 0; i < os[a].size() - 1; i++) {
-                    for (int j = i + 1; j < os[a].size(); j++) {
+            if (os.get(a).size() >= 2) {
+                for (int i = 0; i < os.get(a).size() - 1; i++) {
+                    for (int j = i + 1; j < os.get(a).size(); j++) {
                         sortPair(a, i, j, p);
                     }
                 }
@@ -74,8 +72,8 @@ public class Obj3dManager {
     public void sortPair(int layer, int i, int j, Vector3d p) {
         Vector3d p1, p2;
 
-        Object3d object3d1 = (Object3d) os[layer].elementAt(i);
-        Object3d object3d2 = (Object3d) os[layer].elementAt(j);
+        Object3d object3d1 = os.get(layer).elementAt(i);
+        Object3d object3d2 = os.get(layer).elementAt(j);
 
         if (object3d1.points_.size() == 0 || object3d2.points_.size() == 0) {
             //System.out.println("No points ! i: " + i + ", j: " + j + ", layer: " + layer);
@@ -89,8 +87,8 @@ public class Obj3dManager {
 
         if (p1.x > p2.x) {
             // first point closer than second
-            os[layer].setElementAt(object3d2, i);
-            os[layer].setElementAt(object3d1, j);
+            os.get(layer).setElementAt(object3d2, i);
+            os.get(layer).setElementAt(object3d1, j);
         }
     }
 }
