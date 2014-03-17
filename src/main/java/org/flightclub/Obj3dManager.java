@@ -47,29 +47,20 @@ public class Obj3dManager {
 
     //public int size(){return os.size();}
 
-    public void sortObjects(Vector3d p) {
-		/*
-		for (int i = 1;i < objects.size() - 1;i++)
-		{
-			Object3d o = (Object3d) objects.elementAt(i);
-			o.sort(p);
-		}
-		
-		sort each layer so furthest away obj is first in list
-		*/
-
+    /** sort each layer so furthest away obj is first in list */
+    public void sortObjects() {
         for (int a = 0; a < MAX_LAYERS; a++) {
             if (os.get(a).size() >= 2) {
                 for (int i = 0; i < os.get(a).size() - 1; i++) {
                     for (int j = i + 1; j < os.get(a).size(); j++) {
-                        sortPair(a, i, j, p);
+                        sortPair(a, i, j);
                     }
                 }
             }
         }
     }
 
-    public void sortPair(int layer, int i, int j, Vector3d p) {
+    public void sortPair(int layer, int i, int j) {
         Vector3d p1, p2;
 
         Object3d object3d1 = os.get(layer).elementAt(i);

@@ -121,7 +121,7 @@ public class ModelCanvas extends Canvas {
 
         //TODO optimize - build vector of objs in FOV, need only draw these
         app.cameraMan.setMatrix();
-        app.obj3dManager.sortObjects(app.cameraMan.getEye());
+        app.obj3dManager.sortObjects();
 
         for (int layer = 0; layer < app.obj3dManager.MAX_LAYERS; layer++) {
             for (int i = 0; i < app.obj3dManager.os.get(layer).size(); i++) {
