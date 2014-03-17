@@ -14,7 +14,7 @@ import java.awt.*;
   a glider that sniffs out lift
 */
 
-class Glider extends FlyingBody {
+public class Glider extends FlyingBody {
     boolean landed = true;
     int tryLater = 0;
     boolean demoMode = true;//hack - only glider user should know about this

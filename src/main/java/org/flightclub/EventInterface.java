@@ -15,7 +15,7 @@ import java.awt.event.KeyEvent;
 	to user pressing keys
 */
 
-interface EventInterface {
+public interface EventInterface {
     public void keyPressed(KeyEvent e);
 
     public void keyReleased(KeyEvent e);

@@ -12,7 +12,7 @@ package org.flightclub;
   Manage the motion of flying dots - thermalling, ridge soaring etc.
 */
 
-class MovementManager {
+public class MovementManager {
     final ModelViewer app;
     FlyingDot flyingDot = null;
 

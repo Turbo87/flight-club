@@ -18,7 +18,7 @@ import java.awt.*;
   - ds (horizontal distance moved per tick)
 */
 
-class FlyingDot implements ClockObserver, CameraSubject {
+public class FlyingDot implements ClockObserver, CameraSubject {
     final ModelViewer app;
     Vector3d v;
     Vector3d p = new Vector3d();

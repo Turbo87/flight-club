@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-class Circuit {
+public class Circuit {
     /*
         A list of points to fly round when ridge soaring.
         Usually two points, unless ridge is snakey.

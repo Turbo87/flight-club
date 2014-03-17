@@ -15,7 +15,7 @@ import java.util.Vector;
   default event handler
 */
 
-class EventManager {
+public class EventManager {
     protected final Vector<Object> objs;
     final static int MAX_Q = 20;
     final KeyEvent[] queue = new KeyEvent[MAX_Q];

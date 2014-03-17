@@ -14,7 +14,7 @@ import java.util.Vector;
     a tail of length n may be attached to a flying dot
 */
 
-class Tail extends Object3d {
+public class Tail extends Object3d {
     final int tailLength;
     final Color c;
     private Vector3d[] tail;

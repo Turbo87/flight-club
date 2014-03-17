@@ -11,7 +11,7 @@ package org.flightclub;
 import java.awt.*;
 import java.util.Vector;
 
-class Cloud implements CameraSubject, ClockObserver {
+public class Cloud implements CameraSubject, ClockObserver {
     final ModelViewer app;
     final Object3dWithShadow object3d;
     Vector3d p = new Vector3d();

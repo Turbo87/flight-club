@@ -11,7 +11,7 @@ package org.flightclub;
 import java.awt.*;
 import java.util.Vector;
 
-class GliderShape2 extends Object3dWithShadow {
+public class GliderShape2 extends Object3dWithShadow {
     final Color color;
     final static float height = (float) 0.2;//0.2 for shape 1
 

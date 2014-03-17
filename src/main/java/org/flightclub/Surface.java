@@ -10,7 +10,7 @@ package org.flightclub;
 
 import java.awt.*;
 
-class Surface extends PolyLine {
+public class Surface extends PolyLine {
 
     final int[] xs;
     final int[] ys;

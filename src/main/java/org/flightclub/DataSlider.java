@@ -10,7 +10,7 @@ package org.flightclub;
 
 import java.awt.*;
 
-class DataSlider {
+public class DataSlider {
     /*
         a dot on a line - use for eg vario
         minimal design - cf toshiba scan of fred

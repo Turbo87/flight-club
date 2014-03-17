@@ -10,7 +10,7 @@ package org.flightclub;
 
 import java.awt.*;
 
-class PolyLine {
+public class PolyLine {
     final int numPoints;
     final int[] points;
     int nextIndex = 0;

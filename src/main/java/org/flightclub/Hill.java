@@ -18,7 +18,7 @@ import java.awt.*;
   - taylor approx's of sin wave (cubic polynomial)
 */
 
-class Hill implements CameraSubject {
+public class Hill implements CameraSubject {
     final float x0;
     final float y0; //spine start point
     int orientation = 0;

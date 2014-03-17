@@ -10,7 +10,7 @@ package org.flightclub;
 
 import java.util.Vector;
 
-class ThermalTrigger implements ClockObserver {
+public class ThermalTrigger implements ClockObserver {
     final ModelViewer app;
     Clock clock;
     final int x;

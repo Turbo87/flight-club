@@ -15,7 +15,7 @@ import java.util.Vector;
   NB Thermal triggers create clouds
 */
 
-class Sky {
+public class Sky {
     private final Vector<Cloud> clouds;    //hills in order from south to north
     final ModelViewer app;
     private static float cloudBase;

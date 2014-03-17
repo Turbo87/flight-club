@@ -11,7 +11,7 @@ package org.flightclub;
 import java.awt.*;
 import java.io.DataInputStream;
 
-interface ModelEnv {
+public interface ModelEnv {
     Image getImage(String s);
 
     //Image createImage(int w, int h);

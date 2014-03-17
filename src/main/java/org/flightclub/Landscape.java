@@ -15,7 +15,7 @@ import java.util.Vector;
   Some hills, triggers and a road arranged onto tiles
 */
 
-class Landscape implements CameraSubject {
+public class Landscape implements CameraSubject {
     final Vector[] hills;        //hills in order heading downwind
     final Vector[] triggers;
     static ModelViewer app;

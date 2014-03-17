@@ -13,7 +13,7 @@ import java.awt.*;
 /*
     a jet in the upper atmosphere - leaves a long trail
 */
-class JetTrail extends FlyingDot {
+public class JetTrail extends FlyingDot {
     static final float SPEED = 5;
     static final float ALTITUDE = 6;
     static final float TURN_RADIUS = 16;

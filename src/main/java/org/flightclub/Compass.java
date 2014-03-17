@@ -10,7 +10,7 @@ package org.flightclub;
 
 import java.awt.*;
 
-class Compass {
+public class Compass {
     /*
         a simple compass
     */
