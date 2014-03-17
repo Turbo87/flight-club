@@ -8,7 +8,9 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 
 /**
  * a dot on a line - use for eg vario

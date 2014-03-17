@@ -9,8 +9,16 @@
 package org.flightclub;
 
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 /**
  * canvas manager - draws world, dragging on canvas moves camera

@@ -8,7 +8,9 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;

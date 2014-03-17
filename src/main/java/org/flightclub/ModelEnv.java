@@ -8,7 +8,8 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.io.DataInputStream;
 
 public interface ModelEnv {

@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Color;
 
 /*
   a dot with a position and velocity. also...

@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * a jet in the upper atmosphere - leaves a long trail

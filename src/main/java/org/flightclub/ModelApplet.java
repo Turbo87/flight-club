@@ -9,7 +9,8 @@
 package org.flightclub;
 
 import java.applet.Applet;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedInputStream;

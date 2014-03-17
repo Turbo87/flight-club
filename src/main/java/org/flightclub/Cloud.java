@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Vector;
 
 public class Cloud implements CameraSubject, ClockObserver {

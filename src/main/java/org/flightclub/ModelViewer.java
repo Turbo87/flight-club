@@ -9,7 +9,8 @@
 package org.flightclub;
 
 import java.applet.Applet;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Panel;
 
 public class ModelViewer extends Panel implements ClockObserver {
     ModelCanvas modelCanvas = null;
