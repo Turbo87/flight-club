@@ -87,7 +87,7 @@ public class ModelViewer extends Panel implements ClockObserver {
         } catch (ClassCastException ignored) {
         }
 
-        layout(); //deprecated !! what here ?!
+        doLayout();
         modelCanvas.init();
     }
 
