@@ -11,10 +11,9 @@ package org.flightclub;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-/*
-  default event handler
-*/
-
+/**
+ * default event handler
+ */
 public class EventManager {
     protected final Vector<Object> objs;
     final static int MAX_Q = 20;
@@ -25,10 +24,10 @@ public class EventManager {
         objs = new Vector<>();
     }
 
-    /*
-      add an object to the list of objects to be
-      notified when an event happens
-    */
+    /**
+     * add an object to the list of objects to be
+     * notified when an event happens
+     */
     public void addNotification(Object o) {
         objs.addElement(o);
     }
@@ -37,8 +36,10 @@ public class EventManager {
         objs.removeElement(o);
     }
 
+    /**
+     * add event to queue
+     */
     public boolean handleEvent(KeyEvent e) {
-        //add event to queue
         if (queueNum < MAX_Q) {
             queue[queueNum] = e;
             queueNum++;
@@ -48,8 +49,10 @@ public class EventManager {
         }
     }
 
+    /**
+     * process event at head of the queue
+     */
     public void tick() {
-        //process event at head of the queue
         KeyEvent e = popQueue();
         if (e == null) return;
 
@@ -71,9 +74,10 @@ public class EventManager {
         }
     }
 
+    /**
+     * return event at head of the queue or null if queue is empty
+     */
     KeyEvent popQueue() {
-        //return event at head of the queue or null if
-        //queue is empty
         if (queueNum == 0) return null;
 
         KeyEvent e = queue[0];

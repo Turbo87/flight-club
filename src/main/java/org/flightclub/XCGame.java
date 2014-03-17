@@ -126,10 +126,10 @@ public class XCGame extends ModelViewer implements EventInterface {
 
     }
 
+    /**
+     * how much model time passes each second of game play
+     */
     void toggleFastForward() {
-    /*
-	  how much model time passes each second of game play
-	*/
         fastForward = !fastForward;
         if (fastForward)
             //2.5 minutes per second

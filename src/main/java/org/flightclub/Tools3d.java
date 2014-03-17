@@ -11,10 +11,9 @@ package org.flightclub;
 import java.awt.*;
 import java.util.Vector;
 
-/*
-    static methods for 3d geometry
-*/
-
+/**
+ * static methods for 3d geometry
+ */
 public class Tools3d {
     public static final float INFINITY = 999999;
 
@@ -42,7 +41,7 @@ public class Tools3d {
         return circle;
     }
 
-    //get points for unit square in given plane
+    /** get points for unit square in given plane */
     static Vector square(int face, float bottom, float left, float top, float right, float d) {
         Vector<Vector3d> sq = new Vector<>();
         Vector3d[] ps = new Vector3d[5];
@@ -166,11 +165,11 @@ public class Tools3d {
 
     public static float[][] rotateX(Vector3d v) {
 		/*
-		rotation matix: rotate the given point so that it lies on the x axis
-		1. rotate about z axis
-		2. rotate about y axis
-		3. rortate about x axis (so up stays up)
-		*/
+		 * rotation matix: rotate the given point so that it lies on the x axis
+		 * 1. rotate about z axis
+		 * 2. rotate about y axis
+		 * 3. rotate about x axis (so up stays up)
+		 */
 
         float r, r_;
         float[][] m1 = identity();
@@ -246,11 +245,11 @@ public class Tools3d {
         return m3;
     }
 
+    /**
+     * return false if point falls outside field of
+     *view (FOV), true otherwise
+     */
     public static boolean projectYZ(Vector3d a, Vector3d a_, float d) {
-		/* 
-			return false if point falls outside field of 
-			view (FOV), true otherwise
-		*/
         float tanMax = 25;
 
         a_.x = a.x;

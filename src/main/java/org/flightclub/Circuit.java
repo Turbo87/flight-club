@@ -8,12 +8,12 @@
 
 package org.flightclub;
 
+/**
+ * A list of points to fly round when ridge soaring.
+ * Usually two points, unless ridge is snakey.
+ * NB We use the hill's local coord system
+ */
 public class Circuit {
-    /*
-        A list of points to fly round when ridge soaring.
-        Usually two points, unless ridge is snakey.
-        NB We use the hill's local coord system
-    */
     final Hill hill;
     final Vector3d[] points;
     int numPoints = 0;
@@ -37,9 +37,7 @@ public class Circuit {
     }
 
     void add(Vector3d inP) {
-        /*
-			hills build circuits using their local coords
-		*/
+        // hills build circuits using their local coords
         points[numPoints] = inP;
         numPoints++;
     }
@@ -60,13 +58,13 @@ public class Circuit {
     }
 
     float getLift(Vector3d p) {
-		/*
-			refine this ?
-		*/
+        // refine this ?
+
         if (p.z <= liftUpto)
             return lift;
         else
             return 0;
+
         //when at top of left band want sink rate of zero or one ?
     }
 

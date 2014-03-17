@@ -16,11 +16,16 @@ public class MovementManager {
     final ModelViewer app;
     FlyingDot flyingDot = null;
 
-    private Vector3d targetPoint = null;    //point to fly towards
-    private Vector3d circlePoint = null;    //point to circle around
-    Cloud cloud = null;    //cloud to thermal
-    private Vector3d targetDirection = null;    //direction to fly
-    private Circuit circuit = null;    //list of points to fly round
+    // point to fly towards
+    private Vector3d targetPoint = null;
+    // point to circle around
+    private Vector3d circlePoint = null;
+    // cloud to thermal
+    Cloud cloud = null;
+    // direction to fly
+    private Vector3d targetDirection = null;
+    // list of points to fly round
+    private Circuit circuit = null;
     private Vector3d circuitPoint = null;
 
     private float speedOverHypot;
@@ -61,12 +66,11 @@ public class MovementManager {
         return 0;
     }
 
+    /**
+     * called by flyingdot each tick - turn left (-1)
+     * right (+1) or straight on (0)
+     */
     float nextMove() {
-    /*
-	  called by flyingdot each tick - turn left (-1)
-	  right (+1) or straight on (0)
-	*/
-
         if (wiggleCount > 0) {
             return wiggle();
         }
@@ -89,7 +93,7 @@ public class MovementManager {
             return circleAroundPoint();
         }
 
-        //otherwise fly straight on
+        // otherwise fly straight on
         return 0;
     }
 
@@ -122,8 +126,9 @@ public class MovementManager {
     }
 
     void setNextMove(int dir) {
-        //user pressed key to turn
-        clearControllers(); // clear all controlers
+        // user pressed key to turn
+        // clear all controllers
+        clearControllers();
         nextMoveUser = dir;
         app.cameraMan.cutSetup(flyingDot, flyingDot.isUser);
     }
@@ -158,8 +163,8 @@ public class MovementManager {
         float x = circuitPoint.x;
         float y = circuitPoint.y;
 
-        //hack - the circuit should do this leaning calc!
-        //use fall line to calc change due to height
+        // hack - the circuit should do this leaning calc!
+        // use fall line to calc change due to height
         x += flyingDot.p.z * circuit.fallLine.x;
         y += flyingDot.p.z * circuit.fallLine.y;
 
@@ -167,11 +172,11 @@ public class MovementManager {
     }
 
     private float headTowards(float x, float y) {
-	/*
-	  use cross product to see if we need
-	  to turn left or right. return true if
-	  we are 'at' the point.
-	*/
+        /*
+         * use cross product to see if we need
+         * to turn left or right. return true if
+         * we are 'at' the point.
+         */
         Vector3d u = new Vector3d(x - flyingDot.p.x, y - flyingDot.p.y, 0);
         Vector3d v = new Vector3d(flyingDot.v.x, flyingDot.v.y, 0);
         float d = Tools3d.length(u);
@@ -195,12 +200,12 @@ public class MovementManager {
         float sin1 = flyingDot.ds / flyingDot.my_turn_radius;
 
         if (sin <= sin1 * 2 && sin >= -sin1 * 2) {
-	    /*
-	      maintain ~ current heading (with
-	      a bit of fine tuning to eliminate wobble)
-	      eq1: ds = r * dtheta
-	      eq2: dtheta ~ sin(dtheta) ( for small dtheta )
-	    */
+            /*
+             * maintain ~ current heading (with
+             * a bit of fine tuning to eliminate wobble)
+             * eq1: ds = r * dtheta
+             * eq2: dtheta ~ sin(dtheta) ( for small dtheta )
+             */
 
             if (c.z > 0) sin *= -1;    //left
             //System.out.println("sin: " + sin);
@@ -220,7 +225,6 @@ public class MovementManager {
         }
     }
 
-
     void reachedCircuitPoint() {
         nextMoveUser = circuit.turnDir();    //hack
         circuitPoint = circuit.next(flyingDot);
@@ -232,9 +236,9 @@ public class MovementManager {
     }
 
     private float circleAround(float x, float y) {
-	/*
-	  use cross product of v and r
-	*/
+        /*
+         * use cross product of v and r
+         */
         Vector3d r = new Vector3d(flyingDot.p.x - x, flyingDot.p.y - y, 0);
         float d = Tools3d.length(r);
 
@@ -283,10 +287,9 @@ public class MovementManager {
     }
 
     void workLift() {
-	/*
-	  this replaces togglelift - after hugh's
-	  helpful comments
-	*/
+        /*
+         * this replaces togglelift - after hugh's helpful comments
+         */
 
         if (cloud != null || circuit != null) return;
 
@@ -308,7 +311,7 @@ public class MovementManager {
             return;
         }
 
-        //no cloud or ridge - do a wiggle
+        // no cloud or ridge - do a wiggle
         wiggleCount = wiggleSize * 4 + 1;
     }
 

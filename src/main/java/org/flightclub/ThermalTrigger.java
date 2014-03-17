@@ -16,17 +16,24 @@ public class ThermalTrigger implements ClockObserver {
     final int x;
     final int y;
     float t;
-    int nextCloud;    //0, 1 or 2 - stop clouds overlapping
+
+    /** 0, 1 or 2 - stop clouds overlapping */
+    int nextCloud;
+
     final int cycleLength;
     final int cloudDuration;
     final int cloudStrength;
     int dummyClick = 0;
     final Vector<Cloud> clouds;
-    final int bubbles;//how many thermals per cycle (1 or 2)
 
-    static final float SPREAD = (float) 1.2;    //0.5
-    static final int CYCLE_LENGTH = 20;//30
-    static final int CLOUD_DURATION = 10; //life span of cloud in seconds
+    /** how many thermals per cycle (1 or 2) */
+    final int bubbles;
+
+    static final float SPREAD = (float) 1.2; // 0.5
+    static final int CYCLE_LENGTH = 20; // 30
+
+    /** life span of cloud in seconds */
+    static final int CLOUD_DURATION = 10;
     static final int MAX_WAIT = 7;
 
     public ThermalTrigger(ModelViewer theApp, int inX, int inY) {
@@ -107,7 +114,7 @@ public class ThermalTrigger implements ClockObserver {
     void destroyMe() {
         app.clock.removeObserver(this);
 
-        //hurry up clouds
+        // hurry up clouds
         for (int i = 0; i < clouds.size(); i++) {
             Cloud cloud = clouds.elementAt(i);
             if (cloud.age < cloud.t_nose + cloud.t_mature) {

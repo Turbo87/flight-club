@@ -15,10 +15,16 @@ public class PolyLine {
     final int[] points;
     int nextIndex = 0;
     final Object3d object3d;
-    Color c;    //true color
-    Color c_;    //apparent color
+
+    // true color
+    Color c;
+
+    // apparent color
+    Color c_;
+
     boolean isSolid = false;
     boolean isVisible = false;
+
     Vector3d normal;
 
     public PolyLine(Object3d o, int inNumPoints, Color inColor) {

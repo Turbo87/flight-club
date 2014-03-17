@@ -11,17 +11,17 @@ package org.flightclub;
 import java.awt.*;
 import java.util.Vector;
 
-/*
-  Three new methods added to object3d...
-	
-  1. addWireWithShadow - the wire that casts the shadow
-  2. updateShadow - make the shaow track the object
-  3. drawShadow - call this when drawing the landscape segement
-  that it falls on
-	
-  2001-10-24: change one shadow to a list of shadows (use for new glider shape)
-  2002-02-24: offset shadow to one side, and darker
-*/
+/**
+ * Three new methods added to object3d...
+ *
+ * 1. addWireWithShadow - the wire that casts the shadow
+ * 2. updateShadow - make the shaow track the object
+ * 3. drawShadow - call this when drawing the landscape segement
+ * that it falls on
+ *
+ * 2001-10-24: change one shadow to a list of shadows (use for new glider shape)
+ * 2002-02-24: offset shadow to one side, and darker
+ */
 public class Object3dWithShadow extends Object3d {
     static final int MAX_SHADOWS = 2;
     static final int SHADOW_COLOR = 180;
@@ -108,9 +108,7 @@ public class Object3dWithShadow extends Object3d {
     }
 
     public void draw(Graphics g) {
-	/*
-	  tmp - not doing z order yet
-	*/
+        // tmp - not doing z order yet
         drawShadow(g);
         super.draw(g);
     }

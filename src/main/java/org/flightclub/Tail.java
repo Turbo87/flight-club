@@ -10,10 +10,10 @@ package org.flightclub;
 
 import java.awt.*;
 import java.util.Vector;
-/*
-    a tail of length n may be attached to a flying dot
-*/
 
+/**
+ * a tail of length n may be attached to a flying dot
+ */
 public class Tail extends Object3d {
     final int tailLength;
     final Color c;
@@ -23,10 +23,10 @@ public class Tail extends Object3d {
     int moveCount = 0;
 
     public Tail(ModelViewer theApp, int inTailLength, Color inC) {
-        //only register top level objects with the manager
-        //a tail has a parent who IS registered with the manager
-        // and is responsible for drawing and ticking its tail
-        //...er no
+        // only register top level objects with the manager
+        // a tail has a parent who IS registered with the manager
+        //  and is responsible for drawing and ticking its tail
+        // ...er no
         super(theApp, true);
         tailLength = inTailLength;
         c = inC;
@@ -78,12 +78,12 @@ public class Tail extends Object3d {
         }
     }
 
+    /*
+     * move entire tail to newP (e.g. after glider
+     * has landed and we move it to a new position
+     * to resume play
+     */
     public void reset(Vector3d newP) {
-		/*
-			move entire tail to newP (e.g. after glider 
-			has landed and we move it to a new position
-			to resume play
-		*/
         for (int i = 0; i < tailLength - 1; i++) {
             Tools3d.clone(newP, tail[i]);
         }

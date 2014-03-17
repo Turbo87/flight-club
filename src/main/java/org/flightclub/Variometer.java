@@ -23,12 +23,12 @@ public class Variometer {
         this.init();
     }
 
+    /**
+	 * Calculate the steps at which the beep
+	 * changes. The strongest lift in this game
+	 * is twice the glider's sink rate (under big clouds)
+	 */
     private void init() {
-    /*
-	  Calculate the steps at which the beep
-	  changes. The strongest lift in this game
-	  is twice the glider's sink rate (under big clouds)
-	*/
         float liftMax = -2 * Glider.SINK_RATE;
         steps = new float[NUM_BEEPS];
         for (int i = 0; i < NUM_BEEPS; i++) {
@@ -44,12 +44,12 @@ public class Variometer {
         }
     }
 
+    /**
+     * Beep if we are going up. Which beep depends on
+     * how strong the lift is. Note, we must convert v from
+     * dist per frame to dist per unit time.
+     */
     private void beep() {
-	/*
-	  Beep if we are going up. Which beep depends on 
-	  how strong the lift is. Note, we must convert v from 
-	  dist per frame to dist per unit time.
-	*/
         float lift = flyingDot.v.z / app.timePerFrame;
         if (lift > 0) {
             app.modelEnv.play("beep" + whichStep(lift) + ".au");

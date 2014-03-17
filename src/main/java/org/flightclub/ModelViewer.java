@@ -66,14 +66,14 @@ public class ModelViewer extends Panel implements ClockObserver {
         setLayout(new BorderLayout());
         add("Center", modelCanvas = new ModelCanvas(this));
 
-	/*
-      If running as an applet we must set the size
-	  of this panel. Works fine without this call when
-	  running as a stand alone app. In the later case
-	  the following call makes the canvas too tall so
-	  that the score etc disappeear off the bottom off
-	  the screen.
-	*/
+        /*
+          If running as an applet we must set the size
+          of this panel. Works fine without this call when
+          running as a stand alone app. In the later case
+          the following call makes the canvas too tall so
+          that the score etc disappeear off the bottom off
+          the screen.
+        */
         try {
             Applet a = (Applet) modelEnv;
             setSize(a.getSize().width, a.getSize().height);
@@ -97,12 +97,12 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     protected void createLandscape() {
-        //hack - want camera to be able to 'see' landscape
+        // hack - want camera to be able to 'see' landscape
         landscape = new Landscape(this);
     }
 
     protected void createSky() {
-        //hack - want camera to be able to 'see' landscape
+        // hack - want camera to be able to 'see' landscape
         sky = new Sky(this);
     }
 

@@ -10,17 +10,22 @@ package org.flightclub;
 
 import java.awt.*;
 
+/**
+ * a simple compass
+ */
 public class Compass {
-    /*
-        a simple compass
-    */
     final ModelViewer app;
-    final int[] hxs = {0, 2, -2};    //head of arrow
+
+    // head of arrow
+    final int[] hxs = {0, 2, -2};
     final int[] hys = {5, 2, 2};
-    final int[] txs = {0, 0};    //tail
+
+    // tail
+    final int[] txs = {0, 0};
     final int[] tys = {1, -5};
 
-    final int[] hxs_ = new int[3];    //rotate and translate above points
+    // rotate and translate above points
+    final int[] hxs_ = new int[3];
     final int[] hys_ = new int[3];
     final int[] txs_ = new int[2];
     final int[] tys_ = new int[2];
@@ -28,16 +33,23 @@ public class Compass {
     final int r;
     final int x0;
     final int y0;
-    private float vx = 0;    //vector determines arrow direction - start pointing north
+
+    // vector determines arrow direction - start pointing north
+    private float vx = 0;
     private float vy = 1;
+
     final float[][] m = new float[2][2];
     final Color color = Color.lightGray;
     final Color color2 = Color.gray;
 
-    static final int SIZE_DEFAULT = 20; //default radius of 10
+    // default radius of 10
+    static final int SIZE_DEFAULT = 20;
+
     static final int H_NUM = 3;
     static final int T_NUM = 2;
-    static final int dy = 10; //pixel space for label at bottom
+
+    // pixel space for label at bottom
+    static final int dy = 10;
 
     public Compass(ModelViewer theApp, int inSize, int inX0, int inY0) {
         app = theApp;
@@ -53,9 +65,9 @@ public class Compass {
 
     void init() {
         /*
-			scale arrow head and tail to size
-			also flip y coord (screen +y points down) 
-		*/
+         * scale arrow head and tail to size
+         * also flip y coord (screen +y points down)
+         */
         float s = (float) (r - 2) / 5;
 
         for (int i = 0; i < H_NUM; i++) {
@@ -71,19 +83,17 @@ public class Compass {
     }
 
     void setArrow(float x, float y) {
-		/*
-			+y is north
-			+x is east
-		*/
+        // +y is north
+        // +x is east
         vx = x;
         vy = y;
 
-        //normalize
+        // normalize
         float d = (float) Math.sqrt(x * x + y * y);
         vx = vx / d;
         vy = vy / d;
 
-        //calc arrow points
+        // calc arrow points
         updateArrow();
     }
 
@@ -100,17 +110,16 @@ public class Compass {
 
         g.setColor(color2);
         g.fillPolygon(hxs_, hys_, hxs_.length);
-
     }
 
     void updateArrow() {
-        //rotate
+        // rotate
         m[0][0] = vy;
         m[0][1] = -vx;
         m[1][0] = -m[0][1];
         m[1][1] = m[0][0];
 
-        //transform
+        // transform
         for (int i = 0; i < H_NUM; i++) {
             hxs_[i] = (int) (m[0][0] * hxs[i] + m[0][1] * hys[i] + x0);
             hys_[i] = (int) (m[1][0] * hxs[i] + m[1][1] * hys[i] + y0 - dy - r);

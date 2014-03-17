@@ -15,20 +15,15 @@ public class GliderShape2 extends Object3dWithShadow {
     final Color color;
     final static float height = (float) 0.2;//0.2 for shape 1
 
+    /** default constructor - gray shape */
     public GliderShape2(ModelViewer app, boolean register) {
-        /*
-			default constructor - gray shape
-		*/
-
         super(app, register);
         color = new Color(170, 170, 180); //180
         init();
     }
 
+    /* pass in a color (eg for user glider) */
     public GliderShape2(ModelViewer app, boolean register, Color inC) {
-		/*
-			pass in a color (eg for user glider)
-		*/
         super(app, register);
         color = inC;
         init();
@@ -37,10 +32,14 @@ public class GliderShape2 extends Object3dWithShadow {
     private void init() {
         Vector<Vector3d> wire;
 
-        float y = (float) 0.2;//chord
-        float z = y * (float) 0.3;//nose a bit up
-        float a = (float) 0.15;//anhedral
-        float s = (float) 0.4;//sweep
+        // chord
+        float y = (float) 0.2;
+        // nose a bit up
+        float z = y * (float) 0.3;
+        // anhedral
+        float a = (float) 0.15;
+        // sweep
+        float s = (float) 0.4;
 
         wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
@@ -58,8 +57,8 @@ public class GliderShape2 extends Object3dWithShadow {
         wire.addElement(new Vector3d(0, y, z));
         addWire(wire, color, true, true);
 
-        //crazy bug - shadow cocks up tips !
-        //same points but reverse order for underside
+        // crazy bug - shadow cocks up tips !
+        // same points but reverse order for underside
         wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
         wire.addElement(new Vector3d(-1, y - s, z + a));

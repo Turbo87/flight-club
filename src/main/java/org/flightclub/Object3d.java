@@ -18,7 +18,10 @@ public class Object3d {
     final Vector<Vector3d> points = new Vector<>();
     final Vector<Vector3d> points_ = new Vector<>();
     final Vector<PolyLine> wires = new Vector<>();
-    final Vector<Boolean> inFOVs = new Vector<>(); //list of flags - is point within field of view
+
+    // list of flags - is point within field of view
+    final Vector<Boolean> inFOVs = new Vector<>();
+
     boolean inFOV = false;
 
     // default layer 1
@@ -58,7 +61,7 @@ public class Object3d {
         }
     }
 
-    //use camera to get from 3d to 2d
+    /** use camera to get from 3d to 2d */
     void film() {
         Vector3d v;
         Vector3d v_;
@@ -88,7 +91,7 @@ public class Object3d {
         }
     }
 
-    //rotate 90
+    /** rotate 90 */
     public void flipYZ() {
         float tmp;
         for (int i = 0; i < points.size(); i++) {
@@ -99,7 +102,7 @@ public class Object3d {
         }
     }
 
-    //turn upside down
+    /** turn upside down */
     public void flipZ() {
         for (int i = 0; i < points.size(); i++) {
             Vector3d q = points.elementAt(i);
@@ -107,7 +110,7 @@ public class Object3d {
         }
     }
 
-    //swap left and right
+    /** swap left and right */
     public void flipY() {
         for (int i = 0; i < points.size(); i++) {
             Vector3d q = points.elementAt(i);
@@ -115,7 +118,7 @@ public class Object3d {
         }
     }
 
-    //swap front and back
+    /** swap front and back */
     public void flipX() {
         for (int i = 0; i < points.size(); i++) {
             Vector3d q = points.elementAt(i);
@@ -201,12 +204,12 @@ public class Object3d {
 
     public void addTile(Vector3d[] corners, Color c, boolean isSolid, boolean isConcave) {
         /*
-			special case of the above - we are passed four
-			points and make two triangles to tessalate the 
-			surface defined by these four points - diagonal
-			may join either corners 0 and 2 or 1 and 3; this 
-			makes tile either concave or convex.
-		*/
+         * special case of the above - we are passed four
+         * points and make two triangles to tessalate the
+         * surface defined by these four points - diagonal
+         * may join either corners 0 and 2 or 1 and 3; this
+         * makes tile either concave or convex.
+         */
 
         Vector<Vector3d> wire1 = new Vector<>();
         Vector<Vector3d> wire2 = new Vector<>();
@@ -267,7 +270,7 @@ public class Object3d {
             v = points.elementAt(i);
             v_ = points_.elementAt(i);
 
-            //translate, rotate and project (only if visible)
+            // translate, rotate and project (only if visible)
             Tools3d.subtract(v, f, v_);
             Tools3d.applyTo(m, v_, v_);
             Tools3d.projectYZ(v_, v_, distance);

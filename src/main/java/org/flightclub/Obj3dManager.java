@@ -10,10 +10,9 @@ package org.flightclub;
 
 import java.util.Vector;
 
-/*
-    manager for 3d objects
-*/
-
+/**
+ * manager for 3d objects
+ */
 public class Obj3dManager {
     /*
         13/10/2001 - add layers (cf photoshop)...

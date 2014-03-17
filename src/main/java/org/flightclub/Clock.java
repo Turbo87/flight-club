@@ -10,7 +10,9 @@ package org.flightclub;
 
 import java.util.Vector;
 
-//Clock has a thread and ticks
+/**
+ * Clock has a thread and ticks
+ */
 public class Clock implements Runnable {
     Thread ticker = null;
     final int sleepTime;
@@ -55,7 +57,7 @@ public class Clock implements Runnable {
 
             for (int i = 0; i < observers.size(); i++) {
                 /*
-					hack - when paused still tick the modelviewer so
+                    hack - when paused still tick the modelviewer so
 					we can change our POV and unpause
 				*/
                 if (i == 0 || !paused) {

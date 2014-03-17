@@ -79,15 +79,17 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         moveManager = new MovementManager(app, this);
     }
 
+    /**
+     * update position, velocity and local frame
+     */
     public void tick(Clock c) {
-    /*
-	  update position, velocity and local frame
-	*/
         Tools3d.add(p, v, p);
         p.y += Sky.getWind() * app.timePerFrame;
-        ds = speed * app.timePerFrame; //hack - may have changed game speed ( otherwise ds is constant)
 
-        //if circle point or target point...
+        //hack - may have changed game speed (otherwise ds is constant)
+        ds = speed * app.timePerFrame;
+
+        // if circle point or target point...
         makeTurn(moveManager.nextMove());
 
         //otherwise...
@@ -101,15 +103,14 @@ public class FlyingDot implements ClockObserver, CameraSubject {
     }
 
     protected void sink() {
-        //overrider this method for different flying machines
+        // overrider this method for different flying machines
         v.z = 0;
     }
 
+    /**
+     * Set i, j and k vectors so v is along the y axis - ie do pitch and yaw
+     */
     private void setLocalFrame() {
-	/*
-	  Set i , j and k vectors so v is along
-	  the y axis - ie do pitch and yaw
-	*/
         Tools3d.cross(v, new Vector3d(0, 0, 1), axisX);
         Tools3d.scaleBy(axisX, 1 / Tools3d.length(axisX));
 
@@ -144,12 +145,11 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Tools3d.add(dx, dz, axisX);
     }
 
+    /**
+     * generate an array of unit 'up' vectors for
+     * different angles of bank (v points along the y axis)
+     */
     private void initRoll() {
-	/*
-	  generate an array of unit 'up' vectors for 
-	  different angles of bank (v points along the
-	  y axis)
-	*/
         axisZs = new Vector3d[ROLL_STEPS * 2 + 1];
 
         for (int i = -ROLL_STEPS; i < ROLL_STEPS + 1; i++) {
@@ -182,7 +182,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
     }
 
     public Vector3d getFocus() {
-        //mid height and 'ahead'
+        // mid height and 'ahead'
         return new Vector3d(p.x, p.y + 1, 1);
     }
 
@@ -194,18 +194,18 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         }
     }
 
+    /**
+     * turn to the left or right.
+     * for moving in a circle dv is always normal
+     * to v and dv = v * v/r. take cross product
+     * with unit vertical & scale by v/r.
+     *
+     * @param dir
+     * > 0 turn right, < 0 turn left,
+     * 1 - my turn radius
+     * 2 - halve that etc.
+     */
     void makeTurn(float dir) {
-	/*
-	  turn to the left or right.
-	  for moving in a circle dv is always normal
-	  to v and dv = v * v/r. take cross product 
-	  with unit vertical & scale by v/r.
-			
-	  <dir> 
-	  > 0 turn right, < 0 turn left, 
-	  1 - my turn radius
-	  2 - halve that etc.
-	*/
         Vector3d w = new Vector3d();
         Vector3d x = new Vector3d();
 
@@ -217,12 +217,10 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         roll(dir);
     }
 
+    /**
+     * look at ground clearence both now and at next proposed point
+     */
     void avoidHills() {
-	/*
-	  look at ground clearence both now
-	  and at next proposed point
-	*/
-
         if (moveManager.joinedCircuit()) return;
         if (app.landscape == null) return;
 
@@ -238,10 +236,8 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         if (dh < 0 && h < my_turn_radius) {
             //float ONE_WING = (float) 0.2;
             //float r = (h - ONE_WING) * (ds/dh) * (ds/dh);
-	    /*
-	      turn left or right ? see if moving right
-	      a bit gives a greater h than staight on
-	    */
+
+            // turn left or right ? see if moving right a bit gives a greater h than straight on
             Vector3d w = new Vector3d();
             Tools3d.cross(v, new Vector3d(0, 0, 1), w);
             Tools3d.scaleBy(w, ds / my_turn_radius);

@@ -10,26 +10,40 @@ package org.flightclub;
 
 import java.awt.*;
 
+/**
+ * a dot on a line - use for eg vario
+ * minimal design - cf toshiba scan of fred
+ */
 public class DataSlider {
-    /*
-        a dot on a line - use for eg vario
-        minimal design - cf toshiba scan of fred
-    */
     final ModelViewer app;
-    final int size; //length of slider in pixels
+
+    /** length of slider in pixels */
+    final int size;
+
+    // screen coords of center point of slider
     final int x0;
-    final int y0; //screen coords of center point of slider
-    private float v;    //value to display
-    int v_;//screen coord of v (v_min = 0, v_max = size)
+    final int y0;
+
+    // value to display
+    private float v;
+
+    // screen coords of v (v_min = 0, v_max = size)
+    int v_;
+
     final float v_min;
     final float v_max;
+
     String label = null;
+
     final Color color = Color.lightGray;
     final Color color2 = Color.gray;
 
-    static final int SIZE_DEFAULT = 20; //default radius of 10
+    // default radius of 10
+    static final int SIZE_DEFAULT = 20;
+
+    // pixel space for label at bottom
     static final int dx = 2;
-    static final int dy = 10; //pixel space for label at bottom
+    static final int dy = 10;
 
     public DataSlider(ModelViewer theApp, float inV_min, float inV_max, int inSize, int inX0, int inY0) {
         app = theApp;
@@ -46,16 +60,12 @@ public class DataSlider {
     }
 
     void init() {
-        /*
-			need this ?
-		*/
+        // need this ?
         setValue((v_min + v_max) / 2);
     }
 
     void setValue(float inV) {
-		/*
-			clamp value and convert to 'screen' coords
-		*/
+        // clamp value and convert to 'screen' coords
         v = inV;
         if (v <= v_min) v = v_min;
         if (inV >= v_max) v = v_max;
@@ -79,6 +89,5 @@ public class DataSlider {
 
         g.setColor(color2);
         g.fillOval(x0 - 1, y0 - v_ - dy - 1, 3, 3);
-
     }
 }

@@ -8,10 +8,11 @@
 
 package org.flightclub;
 
-//Unit test the framework
-//Run ModelViewerTestApp from the command line to invoke this
-//extension of the modelviewer
-
+/**
+ * Unit test the framework
+ * Run ModelViewerTestApp from the command line to invoke this
+ * extension of the ModelViewer
+ */
 public class ModelViewerTest extends ModelViewer {
 
     GliderUser glider;

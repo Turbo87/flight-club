@@ -61,11 +61,11 @@ public class Cloud implements CameraSubject, ClockObserver {
         myRnd = (float) (Tools3d.rnd(0, 1));//for camera angle
         p = new Vector3d(x, y, Sky.getCloudBase());
 
-	/*
-      cloud strength measured in multiples of glider (min) sink rate
-	  e.g. 1 > climb at sink rate, 2 > climb at twice sink rate etc
-	  also, stronger clouds are bigger and darker
-	*/
+        /*
+         * cloud strength measured in multiples of glider (min) sink rate
+         * e.g. 1 > climb at sink rate, 2 > climb at twice sink rate etc
+         * also, stronger clouds are bigger and darker
+         */
         liftMax = -(1 + inStrength) * Glider.SINK_RATE;
         int c = CLOUD_COLOR - (inStrength - 1) * CLOUD_COLOR_STEP;
         if (inStrength == 1)
@@ -160,9 +160,8 @@ public class Cloud implements CameraSubject, ClockObserver {
     }
 
     public boolean isUnder(Vector3d inP) {
-	/*
-	  only compute lift if within bounding box
-	*/
+        // only compute lift if within bounding box
+
         //if (age > t_nose + t_mature) return false;
 
         if (inP.x > p.x + LIFT_FN_OUTER) return false;
@@ -189,15 +188,16 @@ public class Cloud implements CameraSubject, ClockObserver {
     }
 
     float getRadius() {
-	/*
-	  cloud radius is a function of it's age.
-	  here's the model...
-			
-	  volume of rising air, dv ~ constant.
-	  decay ~ surface area.
-	  dynamic equilibrium, dv = decay, at maturity.
-	  dv = 0 at old age.
-	*/
+        /*
+         * cloud radius is a function of it's age.
+         * here's the model...
+         *
+         * volume of rising air, dv ~ constant.
+         * decay ~ surface area.
+         * dynamic equilibrium, dv = decay, at maturity.
+         * dv = 0 at old age.
+         */
+
         float fn;
         if (age <= t_nose) {
             fn = (float) Math.sqrt((double) age / t_nose);
@@ -212,9 +212,7 @@ public class Cloud implements CameraSubject, ClockObserver {
     }
 
     float getRadiusBase(float radius) {
-	/*
-	  make base decay quicker than top of cloud
-	*/
+        // make base decay quicker than top of cloud
         if (age > t_mature + t_nose) {
             float fn = (float) Math.sqrt(1 - (double) (age - t_mature - t_nose) / t_tail);
             fn = 2 * (fn - (float) 0.5);
@@ -322,9 +320,8 @@ public class Cloud implements CameraSubject, ClockObserver {
     }
 
     float getLift(Vector3d inP) {
-	/*
-	  lift is a function of r (dist from thermal center)
-	*/
+        // lift is a function of r (dist from thermal center)
+
         float dx = p.x - inP.x;
         float dy = getY(inP.z) - inP.y;
         float r = (float) Math.sqrt(dx * dx + dy * dy);

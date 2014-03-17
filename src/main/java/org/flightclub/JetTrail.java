@@ -10,9 +10,9 @@ package org.flightclub;
 
 import java.awt.*;
 
-/*
-    a jet in the upper atmosphere - leaves a long trail
-*/
+/**
+ * a jet in the upper atmosphere - leaves a long trail
+ */
 public class JetTrail extends FlyingDot {
     static final float SPEED = 5;
     static final float ALTITUDE = 6;

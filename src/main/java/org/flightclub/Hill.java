@@ -10,17 +10,18 @@ package org.flightclub;
 
 import java.awt.*;
 
-/*
-  a spine running // to x axis or y axis (orientation 0 or 1)
-  has a circuit for ridge soaring
-	
-  build surface from maths functions...
-  - taylor approx's of sin wave (cubic polynomial)
-*/
-
+/**
+ * a spine running parallel to x axis or y axis (orientation 0 or 1)
+ * has a circuit for ridge soaring
+ *
+ * build surface from maths functions...
+ * - taylor approx's of sin wave (cubic polynomial)
+ */
 public class Hill implements CameraSubject {
+    //spine start point
     final float x0;
-    final float y0; //spine start point
+    final float y0;
+
     int orientation = 0;
     final int spineLength;
     final float phase;
@@ -29,15 +30,21 @@ public class Hill implements CameraSubject {
     final ModelViewer app;
     final Object3d object3d;
     final Color color;
-    final float tileWidth;//make smaller to increase curvy resolution
+
+    //make smaller to increase curvy resolution
+    final float tileWidth;
+
     int[] zorderedTiles;
     final boolean inForeGround;
     float maxH = 0;
 
     static final int OR_X = 0;
     static final int OR_Y = 1;
-    static final int FACE_SPIKEY = 0;    //width 1 - spiky
-    static final int FACE_CURVY = 1;    //width 2 - curvy
+
+    // width 1 - spiky
+    static final int FACE_SPIKEY = 0;
+    // width 2 - curvy
+    static final int FACE_CURVY = 1;
 
     public Hill(ModelViewer theApp, int inX, int inY, int inOr, int inSpineLength, float inPhase, float inH0, int inFace) {
         app = theApp;
@@ -51,8 +58,8 @@ public class Hill implements CameraSubject {
         object3d = new Object3d(app);
         color = new Color(255, 255, 255);
 
-        //higher resolution/sample rate if
-        //on central tile
+        // higher resolution/sample rate if
+        // on central tile
         if (x0 < Landscape.TILE_WIDTH / 2
                 && x0 > -Landscape.TILE_WIDTH / 2) {
             tileWidth = (float) 0.5;
@@ -65,15 +72,18 @@ public class Hill implements CameraSubject {
         inForeGround = (x0 < Landscape.TILE_WIDTH / 2 && x0 > -Landscape.TILE_WIDTH / 2);
     }
 
+    /**
+     * default hill (curvy spine, curvy face)
+     */
     public Hill(ModelViewer theApp, int inX, int inY) {
-        //default hill (curvy spine, curvy face)
+
         this(theApp, inX, inY, OR_X, 2, 1, (float) 0.5, FACE_CURVY);
     }
 
-    void tileHill() {
     /*
-	  run over hill adding tiles
-	*/
+     * run over hill adding tiles
+     */
+    void tileHill() {
         int numSlices = (int) ((spineLength + 2) / tileWidth);
         int numTiles;
 
@@ -92,10 +102,10 @@ public class Hill implements CameraSubject {
         if (orientation == OR_Y) object3d.reverse();
     }
 
+    /*
+     * add a tile at x0 +i, y0 + j if OR_X else swap i and j
+     */
     void addTile(float i, float j) {
-	/*
-	  add a tile at x0 +i, y0 + j if OR_X else swap i and j
-	*/
         float x1, x2, y1, y2;
         Vector3d[] corners = new Vector3d[4];
 
@@ -128,10 +138,10 @@ public class Hill implements CameraSubject {
         //object3d.addTile(corners, color, false, false);
     }
 
+    /*
+     * soaring circuit - treat x0,y0 as origin
+     */
     Circuit getCircuit() {
-	/*
-	  soaring circuit - treat x0,y0 as origin
-	*/
         Circuit circuit = new Circuit(this, 2);
 
         float frontFace;
@@ -167,7 +177,6 @@ public class Hill implements CameraSubject {
     }
 
     boolean contains(float inX, float inY) {
-
         float frontFace;
         if (face == FACE_CURVY) frontFace = 2;
         else frontFace = 1;
@@ -181,18 +190,17 @@ public class Hill implements CameraSubject {
         }
     }
 
+    /*
+     * return h at point i along spine and j away from spine
+     *
+     * slice perp to spine gives f1...
+     * f1 = 1+j, j < 0 backface
+     * f1 = (1-j) * (1-j), j > 0 and spiky
+     * f1 = sin , j > 0 and curvy
+     * then, scale f1 by f2, h at this point on spine
+     *
+     */
     private float getZ(float i, float j) {
-	/*
-	  return h at point i along spine and j away from spine
-			
-	  slice perp to spine gives f1...
-	  f1 = 1+j, j < 0 backface
-	  f1 = (1-j) * (1-j), j > 0 and spiky
-	  f1 = sin , j > 0 and curvy
-	  then, scale f1 by f2, h at this point on spine
-				
-	*/
-
         float f1 = 1; //tmp
         float f2 = spineHeight(i);
 
@@ -211,11 +219,10 @@ public class Hill implements CameraSubject {
         return h;
     }
 
+    /*
+     * convert to local coords then call getZ
+     */
     public float getHeight(float x, float y) {
-	/*
-	  convert to local coords then
-	  call getZ
-	*/
         float i, j;
         if (orientation == OR_X) {
             i = x - x0;
@@ -227,10 +234,10 @@ public class Hill implements CameraSubject {
         return getZ(i, j);
     }
 
+    /*
+     * spine h a distance i along it
+     */
     float spineHeight(float i) {
-	/*
-	  spine h a distance i along it
-	*/
         if (i < 0 || i > spineLength + 2) {
             return 0;
         }
@@ -251,14 +258,14 @@ public class Hill implements CameraSubject {
         return h0 + sin(i - 1 + phase) - sin(phase);
     }
 
+    /**
+     * cubic approx to a sin wave with
+     * wave length 4, going between 0
+     * and 1
+     *
+     * 24/10 try halving amplitude
+     */
     float sin(float x) {
-	/*
-	  cubic approx to a sin wave with
-	  wave length 4, going between 0 
-	  and 1 
-			
-	  24/10 try halving amplitude
-	*/
         while (x >= 4) {
             x -= 4;
         }
@@ -275,11 +282,11 @@ public class Hill implements CameraSubject {
         return 3 * xx * xx - 2 * xx * xx * xx;
     }
 
+    /*
+     * lift twice sink rate close to hill, falling to zero
+     * as we get further away
+     */
     float getLift(Vector3d p) {
-	/*
-	  lift twice sink rate close to hill, falling to zero
-	  as we get further away
-	*/
         float lmax = -3 * Glider.SINK_RATE;
         float dh = (float) 0.1;
         //if (p.z > maxH + (float) 0.2) return 0;
@@ -303,5 +310,4 @@ public class Hill implements CameraSubject {
     public void destroyMe() {
         object3d.destroyMe();
     }
-
 }

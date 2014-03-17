@@ -10,36 +10,44 @@ package org.flightclub;
 
 import java.awt.*;
 
-/*
-  a glider that sniffs out lift
-*/
-
+/**
+ * a glider that sniffs out lift
+ */
 public class Glider extends FlyingBody {
     boolean landed = true;
     int tryLater = 0;
-    boolean demoMode = true;//hack - only glider user should know about this
+
+    // hack - only glider user should know about this
+    boolean demoMode = true;
+
     float time = 0;
     boolean reachedGoal;
-    int polarIndex = 0;//where on the polar are we
 
-    //4 vars for hack to delay cuts
+    // where on the polar are we
+    int polarIndex = 0;
+
+    // 4 vars for hack to delay cuts
     boolean cutPending = false;
     int cutWhen;
     CameraSubject cutSubject = null;
     int cutCount = 0;
 
-    //hack var for camera position - left or right depending 
+    // hack var for camera position - left or right depending
     int lastEyeX = 1;
     boolean triggerLoading = false;
 
-    final static float SPEED = (float) 1; //units of dist (km) per time (minute)
-    final static float SINK_RATE = (float) (-1.0 / 8);    //i.e. glide angle of 8
+    // units of dist (km) per time (minute)
+    final static float SPEED = (float) 1;
+    // i.e. glide angle of 8
+    final static float SINK_RATE = (float) (-1.0 / 8);
     final static float TURN_RADIUS = (float) 0.3;
-    final static float[][] POLAR = {{1, 1}, {(float) 1.5, (float) 2.1}}; //polar curve
+    // polar curve
+    final static float[][] POLAR = {{1, 1}, {(float) 1.5, (float) 2.1}};
 
+    /**
+     * default constructor - this glider is not being piloted by the user
+     */
     public Glider(ModelViewer app, Vector3d p) {
-        //default constructor - this glider is
-        //not being piloted by the user
         this(app, p, false);
     }
 
@@ -70,12 +78,12 @@ public class Glider extends FlyingBody {
         gotoNextLiftSource();
     }
 
+    /**
+     * fly downwind to next lift source
+     * goto hill if there is one, otherwise goto a cloud
+     * NB inform the cameraman of this event ??
+	 */
     void gotoNextLiftSource() {
-    /*
-	  fly downwind to next lift source
-	  goto hill if there is one, otherwise goto a cloud			
-	  NB inform the cameraman of this event ??
-	*/
         Hill hill = null;
         Cloud cloud = null;
 
@@ -134,20 +142,20 @@ public class Glider extends FlyingBody {
         tail.init(p);
     }
 
+    /**
+     * take glider's sink rate and add any
+     * ridge or thermal lift
+     */
     protected void sink() {
-	/*
-	  take glider's sink rate and add any 
-	  ridge or thermal lift
-	*/
         //float lift = SINK_RATE;
         float lift = POLAR[polarIndex][1] * SINK_RATE;
 		
-	/*
-	  if (true) {
-	  v.z=  0;
-	  return;
-	  }
-	*/
+        /*
+          if (true) {
+          v.z=  0;
+          return;
+          }
+        */
 
         if (app.landscape != null) {
             Hill hill = app.landscape.myHill(p);
@@ -246,27 +254,26 @@ public class Glider extends FlyingBody {
         if (!reachedGoal) reachedGoal = app.landscape.reachedGoal(p);
     }
 
+    /**
+     * return number of ticks till we get there
+     * nb. this assumes stationary target and no wind
+     */
     int whenArrive(float x, float y) {
-	/*
-	  return number of ticks till we get there
-	  nb. this assumes stationary target and
-	  no wind
-	*/
         float d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y);
         d = (float) Math.sqrt(d);
         return (int) (d / ds);
     }
 
     private void cutNow() {
-	/*
-	  this call used to be in gotoliftsource
-	  moved for timing - wait until glider is
-	  close to the hill/thermal so the camera 
-	  does not get ahead of it 
-			
-	  todo - camera decide how to track without
-	  losing site of the glider
-	*/
+        /*
+          this call used to be in gotoliftsource
+          moved for timing - wait until glider is
+          close to the hill/thermal so the camera
+          does not get ahead of it
+
+          todo - camera decide how to track without
+          losing site of the glider
+        */
         app.cameraMan.cutSetup(cutSubject, isUser);
         cutPending = false;
         cutCount = 0;
@@ -285,10 +292,12 @@ public class Glider extends FlyingBody {
     }
 
     void takeOff(Vector3d inP) {
-	/*
-	  hack ? should be in glider user ?
-	*/
+        /*
+          hack ? should be in glider user ?
+        */
+
         //if (!landed) return;
+
         setPolarIndex(0);
         v = new Vector3d(0, ds, 0);
         p = new Vector3d(inP.x, inP.y, inP.z);
@@ -307,14 +316,14 @@ public class Glider extends FlyingBody {
         }
     }
 
+    /*
+     * choose a point on the polar
+     * determines speed and sink rate
+     *
+     * bit of a mess as this class knows about sink rate
+     * and super class manages horizontal speed
+     */
     void setPolarIndex(int i) {
-	/*
-	  choose a point on the polar
-	  determines speed and sink rate
-
-	  bit of a mess as this class knows about sink rate
-	  and super class manages horizontal speed
-	*/
         polarIndex = i;
         super.setSpeed(POLAR[polarIndex][0] * SPEED);
     }

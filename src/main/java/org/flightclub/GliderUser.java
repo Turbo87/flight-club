@@ -11,10 +11,9 @@ package org.flightclub;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-/*
-  a glider that the user may control
-*/
-
+/**
+ * a glider that the user may control
+ */
 public class GliderUser extends Glider implements EventInterface {
     final Variometer vario;
 
@@ -56,7 +55,8 @@ public class GliderUser extends Glider implements EventInterface {
         switch (key) {
             case 122://z
             case 122 - 32:
-                tryLater = 0;    //hack
+                //hack
+                tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.LEFT);
                 break;
@@ -67,7 +67,8 @@ public class GliderUser extends Glider implements EventInterface {
                 moveManager.setNextMove(MovementManager.RIGHT);
                 break;
             case 32://space
-                setPolarIndex(0);//slow down, if i was fast
+                //slow down, if i was fast
+                setPolarIndex(0);
                 moveManager.workLift();
                 break;
             case 97://a

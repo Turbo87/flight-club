@@ -10,13 +10,13 @@ package org.flightclub;
 
 import java.util.Vector;
 
-/*
-  Manages clouds and related met data
-  NB Thermal triggers create clouds
-*/
-
+/**
+ * Manages clouds and related met data
+ * NB Thermal triggers create clouds
+ */
 public class Sky {
-    private final Vector<Cloud> clouds;    //hills in order from south to north
+    // clouds in order from south to north
+    private final Vector<Cloud> clouds;
     final ModelViewer app;
     private static float cloudBase;
 
@@ -31,9 +31,7 @@ public class Sky {
     }
 
     void addCloud(Cloud cloud) {
-    /*
-	  todo - keep sorted list of clouds 
-	*/
+        // TODO keep sorted list of clouds
         clouds.addElement(cloud);
     }
 
@@ -49,11 +47,10 @@ public class Sky {
         cloudBase = BASE_LOW;
     }
 
+    /**
+     * return first cloud downwind of p within glide
+     */
     Cloud nextCloud(Vector3d p) {
-	/*
-	  return first cloud downwind of p within glide
-	*/
-
         int j = -1;
         float dy_min = RANGE * p.z;
 
@@ -74,12 +71,12 @@ public class Sky {
         return null;
     }
 
+    /**
+     * return first cloud upwind of p
+     * useful when gaggle get ahead of user
+     * and reach end of a tile
+     */
     Cloud prevCloud(Vector3d p) {
-	/*
-	  return first cloud upwind of p
-	  useful when gaggle get ahead of user
-	  and reach end of a tile
-	*/
         int j = -1;
         float dy_min = RANGE * p.z;
 
@@ -113,7 +110,7 @@ public class Sky {
     }
 
     static float getWind() {
-        //units of unit distance (km) per unit time (minute)
+        // units of unit distance (km) per unit time (minute)
         return (float) 0.3;
     }
 
