@@ -1,6 +1,5 @@
 //ClockObserver.java
 
-public interface ClockObserver
-{
-	public void tick(Clock c);
+public interface ClockObserver {
+    public void tick(Clock c);
 }

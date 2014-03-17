@@ -17,13 +17,12 @@
 import java.applet.Applet;
 import java.awt.*;
 
-public class ModelViewer extends Panel implements ClockObserver
-{
+public class ModelViewer extends Panel implements ClockObserver {
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
     EventManager eventManager = null;
     CameraMan cameraMan = null;
-    Landscape landscape = null;	//hack
+    Landscape landscape = null;    //hack
     Sky sky = null;
     ModelEnv modelEnv;
     String textMessage = null;
@@ -33,88 +32,88 @@ public class ModelViewer extends Panel implements ClockObserver
     boolean pendingStart = false;
     protected static int frameRate = 25;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
-    protected float timePerFrame = (float) (1.0/25);
-    	
-    ModelViewer(){}
-	
-    void init(ModelEnv theModelEnv)
-    {
-	modelEnv = theModelEnv;
-	createClock();
-	createModelCanvas();
-	createObj3dManager();
-	createEventManager();
-	createCameraMan();
+    protected float timePerFrame = (float) (1.0 / 25);
+
+    ModelViewer() {
     }
 
-    public void start()
-    {
-	if (clock != null) clock.start();
-	else pendingStart = true;
-    }
-	
-    public void stop(){if (clock != null) clock.stop();}
-	
-    protected void createClock()
-    {
-	clock = new Clock(1000/frameRate);
-	clock.addObserver(this);
-	if (pendingStart) start();
-    }
-	
-    public void tick(Clock c)
-    {
-	eventManager.tick();
-	modelCanvas.tick();
-	cameraMan.tick();
-	modelCanvas.repaint(); //TODO
+    void init(ModelEnv theModelEnv) {
+        modelEnv = theModelEnv;
+        createClock();
+        createModelCanvas();
+        createObj3dManager();
+        createEventManager();
+        createCameraMan();
     }
 
-    protected void createModelCanvas()
-    {
-	setLayout(new BorderLayout());
-	add("Center", modelCanvas = new ModelCanvas(this));
+    public void start() {
+        if (clock != null) clock.start();
+        else pendingStart = true;
+    }
+
+    public void stop() {
+        if (clock != null) clock.stop();
+    }
+
+    protected void createClock() {
+        clock = new Clock(1000 / frameRate);
+        clock.addObserver(this);
+        if (pendingStart) start();
+    }
+
+    public void tick(Clock c) {
+        eventManager.tick();
+        modelCanvas.tick();
+        cameraMan.tick();
+        modelCanvas.repaint(); //TODO
+    }
+
+    protected void createModelCanvas() {
+        setLayout(new BorderLayout());
+        add("Center", modelCanvas = new ModelCanvas(this));
 
 	/*
-	  If running as an applet we must set the size
+      If running as an applet we must set the size
 	  of this panel. Works fine without this call when
 	  running as a stand alone app. In the later case
 	  the following call makes the canvas too tall so
 	  that the score etc disappeear off the bottom off
 	  the screen.
 	*/
-	try {
-	    Applet a = (Applet) modelEnv;
-	    setSize(a.getSize().width, a.getSize().height);
-	} catch (Exception e) {;}
+        try {
+            Applet a = (Applet) modelEnv;
+            setSize(a.getSize().width, a.getSize().height);
+        } catch (Exception e) {
+            ;
+        }
 
-	layout(); //deprecated !! what here ?!
-	modelCanvas.init();
+        layout(); //deprecated !! what here ?!
+        modelCanvas.init();
     }
 
     protected void createObj3dManager() {
-	obj3dManager = new Obj3dManager(this);
+        obj3dManager = new Obj3dManager(this);
     }
 
     protected void createCameraMan() {
-	cameraMan = new CameraMan(this);
+        cameraMan = new CameraMan(this);
     }
-	
+
     protected void createEventManager() {
-	eventManager = new EventManager();
+        eventManager = new EventManager();
     }
 
     protected void createLandscape() {
-	//hack - want camera to be able to 'see' landscape
-	landscape = new Landscape(this);
+        //hack - want camera to be able to 'see' landscape
+        landscape = new Landscape(this);
     }
 
     protected void createSky() {
-	//hack - want camera to be able to 'see' landscape
-	sky = new Sky(this);
+        //hack - want camera to be able to 'see' landscape
+        sky = new Sky(this);
     }
-	
+
     int getFrameRate() {
-	return frameRate;
+        return frameRate;
     }
 }

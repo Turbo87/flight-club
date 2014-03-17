@@ -9,54 +9,53 @@ import java.io.DataInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ModelFrame extends Frame implements ModelEnv
-{
+public class ModelFrame extends Frame implements ModelEnv {
     ModelViewer app;
-	
-    public ModelFrame(ModelViewer theApp, String title, int w, int h)
-    {
-	super(title);
-	app = theApp;
-	add(app, "Center");
-	setSize(w,h);
-	show();
-	app.init((ModelEnv) this);
-	app.start();
 
-	this.addWindowListener(new WindowAdapter(){
-		public void windowClosing(WindowEvent e){
-		    System.exit(0);
-		}
-	    });
+    public ModelFrame(ModelViewer theApp, String title, int w, int h) {
+        super(title);
+        app = theApp;
+        add(app, "Center");
+        setSize(w, h);
+        show();
+        app.init((ModelEnv) this);
+        app.start();
 
-	this.addKeyListener(new KeyAdapter() {
-		public void keyPressed(KeyEvent e){
-		    app.eventManager.handleEvent(e);
-		}
-		public void keyReleased(KeyEvent e){
-		    app.eventManager.handleEvent(e);
-		}
-	    });
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        this.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+
+            public void keyReleased(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+        });
     }
-	
+
     public Image getImage(String s) {
-	return Toolkit.getDefaultToolkit().getImage(s);
+        return Toolkit.getDefaultToolkit().getImage(s);
     }
-	
-    public void play(String s){ 
-	//can not play sound from a frame
+
+    public void play(String s) {
+        //can not play sound from a frame
     }
 
     public DataInputStream openFile(String name) {
-	return null;
+        return null;
     }
-	
+
     public URL getCodeBase() {
-	try {
-	    return new URL("");
-	} catch (MalformedURLException e) {
-	    System.out.println("Unable to get code base for model panel");
-	    return null;
-	}
+        try {
+            return new URL("");
+        } catch (MalformedURLException e) {
+            System.out.println("Unable to get code base for model panel");
+            return null;
+        }
     }
 }
