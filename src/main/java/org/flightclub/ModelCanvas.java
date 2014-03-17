@@ -127,7 +127,7 @@ public class ModelCanvas extends Canvas {
             for (int i = 0; i < app.obj3dManager.os[layer].size(); i++) {
                 Object3d o = (Object3d) app.obj3dManager.os[layer].elementAt(i);
                 o.film(app.cameraMan);
-                o.draw(graphicsBuffer);
+                o.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
             }
         }
 
@@ -147,11 +147,11 @@ public class ModelCanvas extends Canvas {
         }
 
         if (app.compass != null) {
-            app.compass.draw(graphicsBuffer);
+            app.compass.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
         }
 
         if (app.slider != null) {
-            app.slider.draw(graphicsBuffer);
+            app.slider.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
         }
 
     }

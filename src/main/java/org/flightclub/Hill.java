@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.Color;
+import org.flightclub.compat.Color;
 
 /**
  * a spine running parallel to x axis or y axis (orientation 0 or 1)
