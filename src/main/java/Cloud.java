@@ -9,7 +9,7 @@
 */
 
 import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 
 class Cloud implements CameraSubject, ClockObserver
 {

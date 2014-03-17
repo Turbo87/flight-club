@@ -9,7 +9,6 @@
 */
 
 import java.awt.*;
-import java.util.*;
 
 /*
   a spine running // to x axis or y axis (orientation 0 or 1)

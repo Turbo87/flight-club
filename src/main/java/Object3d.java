@@ -9,8 +9,7 @@
 */
 
 import java.awt.*;
-import java.util.*;
-import java.io.*;
+import java.util.Vector;
 
 public class Object3d
 {

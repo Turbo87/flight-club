@@ -1,5 +1,5 @@
-import java.io.*;
 import java.awt.*;
+import java.io.DataInputStream;
 
 interface ModelEnv {
 	Image getImage(String s);

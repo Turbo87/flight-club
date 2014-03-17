@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 
 class GliderShape extends Object3dWithShadow
 {

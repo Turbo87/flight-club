@@ -9,7 +9,6 @@
 */
 
 import java.awt.*;
-import java.util.*;
 
 /*
   a dot with a position and velocity. also...

@@ -9,7 +9,7 @@
 */
 
 import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 
 /*
   Some hills, triggers and a road arranged onto tiles

@@ -1,6 +1,3 @@
-import java.awt.*;
-import java.util.*;
-
 class Circuit
 {
 	/*

@@ -1,8 +1,13 @@
 //the frame for stand alone play cf model applet
+
 import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
-import java.io.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.DataInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ModelFrame extends Frame implements ModelEnv
 {

@@ -8,9 +8,6 @@
   Dan Burton , Nov 2001 
 */
 
-import java.awt.*;
-import java.util.*;
-
 /*
   Manage the motion of flying dots - thermalling, ridge soaring etc.
 */

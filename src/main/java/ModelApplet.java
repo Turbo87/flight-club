@@ -1,9 +1,15 @@
 //the applet
+
+import java.applet.Applet;
 import java.awt.*;
-import java.awt.event.*;
-import java.applet.*;
-import java.net.*;
-import java.io.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ModelApplet extends Applet implements ModelEnv
 {

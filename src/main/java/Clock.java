@@ -1,5 +1,6 @@
 //Clock has a thread and ticks
-import java.util.*;
+
+import java.util.Vector;
 
 public class Clock implements Runnable
 {

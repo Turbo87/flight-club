@@ -1,4 +1,3 @@
-import java.awt.*;
 /*
 	JetTrail.java (part of 'Flight Club')
 	
@@ -9,13 +8,11 @@ import java.awt.*;
 	Dan Burton , Nov 2001 
 */
 
-
-import java.util.*;
+import java.awt.*;
 
 /*
 	a jet in the upper atmosphere - leaves a long trail
 */
-
 class JetTrail extends FlyingDot
 {
 	static final float SPEED=5;

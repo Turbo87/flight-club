@@ -8,8 +8,7 @@
   Dan Burton , Nov 2001 
 */
 
-import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 
 /*
   Manages clouds and related met data

@@ -8,8 +8,8 @@
 	Dan Burton , Nov 2001 
 */
 
-import java.util.*;
 import java.awt.*;
+import java.util.Vector;
 
 /*
 	static methods for 3d geometry

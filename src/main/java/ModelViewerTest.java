@@ -1,7 +1,7 @@
 //Unit test the framework
 //Run ModelViewerTestApp from the command line to invoke this
 //extension of the modelviewer
-import java.awt.*;
+
 public class ModelViewerTest extends ModelViewer {
 	
 	GliderUser glider;

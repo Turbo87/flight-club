@@ -8,8 +8,6 @@
 	Dan Burton , Nov 2001 
 */
 
-import java.awt.*;
-
 public class FlyingBody extends FlyingDot
 {
 	private Object3dWithShadow body0;

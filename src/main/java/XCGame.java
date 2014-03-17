@@ -8,10 +8,8 @@
   Dan Burton , Nov 2001 
 */
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.applet.*;
+import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 public class XCGame extends ModelViewer implements EventInterface {
 	

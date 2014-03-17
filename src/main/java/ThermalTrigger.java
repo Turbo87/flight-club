@@ -9,8 +9,7 @@
 */
 
 
-import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 
 class ThermalTrigger implements ClockObserver
 {

@@ -10,7 +10,7 @@
 
 
 import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 /*
   Three new methods added to object3d...
 	

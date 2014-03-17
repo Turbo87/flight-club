@@ -1,5 +1,4 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
 
 /*
 	interface to be implemented by objects (eg actors) that respond 

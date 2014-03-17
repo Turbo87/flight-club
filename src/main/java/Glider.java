@@ -9,7 +9,6 @@
 */
 
 import java.awt.*;
-import java.util.*;
 
 /*
   a glider that sniffs out lift

@@ -13,8 +13,9 @@
 
 
 //the main manager - has factory methods for creating other managers
+
+import java.applet.Applet;
 import java.awt.*;
-import java.applet.*;
 
 public class ModelViewer extends Panel implements ClockObserver
 {

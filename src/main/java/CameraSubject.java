@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /*
 	tell camera where to stick itself
 	24 sep 2001

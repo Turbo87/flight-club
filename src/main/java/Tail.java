@@ -9,7 +9,7 @@
 */
 
 import java.awt.*;
-import java.util.*;
+import java.util.Vector;
 /*
 	a tail of length n may be attached to a flying dot
 */

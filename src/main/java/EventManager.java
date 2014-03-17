@@ -1,6 +1,5 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.KeyEvent;
+import java.util.Vector;
 
 /*
   default event handler
