@@ -293,7 +293,7 @@ class Landscape implements CameraSubject {
         ThermalTrigger trigger;
         int y0 = tile * TILE_WIDTH;
 
-        trigger = new ThermalTrigger(app, 0, y0 + TILE_WIDTH * 1 / 2, 1, 2, 1);
+        trigger = new ThermalTrigger(app, 0, y0 + TILE_WIDTH / 2, 1, 2, 1);
         triggers[tile].addElement(trigger);
     }
 
@@ -304,7 +304,7 @@ class Landscape implements CameraSubject {
         ThermalTrigger trigger;
         int x0 = 0;
 
-        hill = new Hill(app, 2, y0 + TILE_WIDTH * 1 / 2, Hill.OR_X, 3, 3, (float) 1.1, Hill.FACE_CURVY);
+        hill = new Hill(app, 2, y0 + TILE_WIDTH / 2, Hill.OR_X, 3, 3, (float) 1.1, Hill.FACE_CURVY);
         hills[tile].addElement(hill);
 
         //distant hills

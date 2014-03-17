@@ -305,7 +305,7 @@ class Cloud implements CameraSubject, ClockObserver {
         if (myRnd > 0.7) {
             return new Vector3d(p.x + 3 * dx, p.y - 3, (float) 0.1);
         } else if (myRnd > 0.3) {
-            return new Vector3d(p.x + 1 * dx, p.y - 5, (float) 1.5);
+            return new Vector3d(p.x + dx, p.y - 5, (float) 1.5);
         } else {
             return new Vector3d(p.x, p.y - (float) 2.5, (float) 1.2);
         }

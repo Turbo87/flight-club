@@ -52,10 +52,10 @@ class MovementManager {
         if (wiggleCount > wiggleSize * 2) {
             return 2;
         }
-        if (wiggleCount > wiggleSize * 1) {
+        if (wiggleCount > wiggleSize) {
             return 2;
         }
-        if (wiggleCount > wiggleSize * 0) {
+        if (wiggleCount > 0) {
             return -2;
         }
         return 0;
