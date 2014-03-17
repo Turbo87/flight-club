@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'XCGameFrame'
+mainClassName = 'org.flightclub.XCGameFrame'
 
 repositories {
     mavenCentral()
