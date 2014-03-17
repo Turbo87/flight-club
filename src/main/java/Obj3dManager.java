@@ -88,10 +88,8 @@ public class Obj3dManager {
         p1 = (Vector3d) object3d1.points_.elementAt(0);
         p2 = (Vector3d) object3d2.points_.elementAt(0);
 
-        if (p1.x <= p2.x)
-            //second point closer than first
-            return;
-        else {
+        if (p1.x > p2.x) {
+            // first point closer than second
             os[layer].setElementAt(object3d2, i);
             os[layer].setElementAt(object3d1, j);
         }

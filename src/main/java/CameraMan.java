@@ -125,7 +125,6 @@ class CameraMan implements EventInterface {
             cutCount = 0;
             cut2Count = 0;
             cutSetup(app.landscape, true);
-            return;
         }
     }
 
@@ -436,7 +435,6 @@ class CameraMan implements EventInterface {
                 setMode(WATCH_TILE);
                 return;
             default:
-                return;
         }
     }
 

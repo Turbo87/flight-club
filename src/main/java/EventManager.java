@@ -60,7 +60,6 @@ class EventManager {
                 break;
             default:
         }
-        return;
     }
 
     KeyEvent popQueue() {
