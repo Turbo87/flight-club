@@ -63,7 +63,7 @@ public class Object3d {
     }
 
     /** use camera to get from 3d to 2d */
-    void film() {
+    void film(CameraMan camera) {
         Vector3d v;
         Vector3d v_;
 
@@ -74,13 +74,13 @@ public class Object3d {
             v_ = points_.elementAt(i);
 
             //translate, rotate and project (only if visible)
-            Tools3d.subtract(v, app.cameraMan.getFocus(), v_);
-            Tools3d.applyTo(app.cameraMan.getMatrix(), v_, v_);
+            Tools3d.subtract(v, camera.getFocus(), v_);
+            Tools3d.applyTo(camera.getMatrix(), v_, v_);
 
-            boolean rc = Tools3d.projectYZ(v_, v_, app.cameraMan.getDistance());
+            boolean rc = Tools3d.projectYZ(v_, v_, camera.getDistance());
             inFOV = inFOV || rc;
             inFOVs.setElementAt(rc, i);
-            this.app.cameraMan.scaleToScreen(v_);
+            camera.scaleToScreen(v_);
         }
 
     }

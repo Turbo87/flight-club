@@ -126,7 +126,7 @@ public class ModelCanvas extends Canvas {
         for (int layer = 0; layer < app.obj3dManager.MAX_LAYERS; layer++) {
             for (int i = 0; i < app.obj3dManager.os[layer].size(); i++) {
                 Object3d o = (Object3d) app.obj3dManager.os[layer].elementAt(i);
-                o.film();
+                o.film(app.cameraMan);
                 o.draw(graphicsBuffer);
             }
         }
