@@ -160,6 +160,7 @@ public class Hill implements CameraSubject {
         return circuit;
     }
 
+    @Override
     public Vector3d getEye() {
         if (orientation == OR_X) {
             return new Vector3d(x0 + 2 + spineLength, y0 - 2 - spineLength, (float) 0.8);
@@ -168,6 +169,7 @@ public class Hill implements CameraSubject {
         }
     }
 
+    @Override
     public Vector3d getFocus() {
         if (orientation == OR_X) {
             return new Vector3d(x0 + (2 + spineLength) / 2, y0, h0 / 2);

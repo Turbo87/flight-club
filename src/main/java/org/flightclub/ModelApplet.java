@@ -26,16 +26,19 @@ public class ModelApplet extends Applet implements ModelEnv {
         app = theApp;
     }
 
+    @Override
     public void init() {
         this.setBackground(Color.white);
         add(app);
         app.init(this);
 
         this.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
 
+            @Override
             public void keyReleased(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
@@ -43,26 +46,31 @@ public class ModelApplet extends Applet implements ModelEnv {
         this.requestFocus();
     }
 
+    @Override
     public void start() {
         app.start();
     }
 
+    @Override
     public void stop() {
         app.stop();
     }
 
-    public void destroy() {
-    }
+    @Override
+    public void destroy() {}
 
+    @Override
     public Image getImage(String s) {
         URL url = getCodeBase();
         return super.getImage(url, s);
     }
 
+    @Override
     public void play(String s) {
         play(getCodeBase(), s);
     }
 
+    @Override
     public DataInputStream openFile(String name) {
         try {
             URL url = new URL(getCodeBase().toString() + name);

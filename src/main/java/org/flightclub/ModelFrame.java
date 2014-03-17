@@ -37,24 +37,29 @@ public class ModelFrame extends Frame implements ModelEnv {
         });
 
         this.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
 
+            @Override
             public void keyReleased(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
         });
     }
 
+    @Override
     public Image getImage(String s) {
         return Toolkit.getDefaultToolkit().getImage(s);
     }
 
+    @Override
     public void play(String s) {
         //can not play sound from a frame
     }
 
+    @Override
     public DataInputStream openFile(String name) {
         return null;
     }

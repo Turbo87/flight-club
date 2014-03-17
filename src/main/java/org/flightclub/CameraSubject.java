@@ -10,6 +10,5 @@ package org.flightclub;
 
 public interface CameraSubject {
     public Vector3d getEye();
-
     public Vector3d getFocus();
 }

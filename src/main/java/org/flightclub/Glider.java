@@ -136,6 +136,7 @@ public class Glider extends FlyingBody {
         //app.cameraMan.cutSetup(cloud, isUser);
     }
 
+    @Override
     protected void createTail() {
         int tailLength = 40;
         tail = new Tail(app, tailLength, Color.lightGray);
@@ -146,6 +147,7 @@ public class Glider extends FlyingBody {
      * take glider's sink rate and add any
      * ridge or thermal lift
      */
+    @Override
     protected void sink() {
         //float lift = SINK_RATE;
         float lift = POLAR[polarIndex][1] * SINK_RATE;
@@ -222,6 +224,7 @@ public class Glider extends FlyingBody {
         //app.cameraMan.cutSetup(this, isUser);
     }
 
+    @Override
     public void tick(Clock c) {
 
         if (isUser && demoMode) return;
@@ -280,6 +283,7 @@ public class Glider extends FlyingBody {
         cutSubject = null;
     }
 
+    @Override
     public Vector3d getFocus() {
         float z;
         if (p.z < 0.5) z = (float) 0.5;
@@ -287,6 +291,7 @@ public class Glider extends FlyingBody {
         return new Vector3d(p.x, p.y + 1, z);
     }
 
+    @Override
     public Vector3d getEye() {
         return new Vector3d(p.x + (float) 0.2, p.y - 2, p.z + (float) 0.3); //(float)0.8
     }

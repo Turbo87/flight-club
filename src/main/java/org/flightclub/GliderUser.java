@@ -37,6 +37,7 @@ public class GliderUser extends Glider implements EventInterface {
         if (p.y < -Landscape.TILE_WIDTH / 2) moveManager.setTargetPoint(new Vector3d(p.x, 0, 0));
     }
 
+    @Override
     public void tick(Clock c) {
         super.tick(c);
         checkBounds();
@@ -50,6 +51,7 @@ public class GliderUser extends Glider implements EventInterface {
             setPolarIndex(0);
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
@@ -79,6 +81,7 @@ public class GliderUser extends Glider implements EventInterface {
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {

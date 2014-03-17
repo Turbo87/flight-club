@@ -43,12 +43,14 @@ public class ModelCanvas extends Canvas {
 
         //event handlers
         this.addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 x0 = e.getX();
                 y0 = e.getY();
                 dragging = true;
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 dx = 0;
                 dy = 0;
@@ -64,10 +66,12 @@ public class ModelCanvas extends Canvas {
         });
 
         this.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
 
+            @Override
             public void keyReleased(KeyEvent e) {
                 app.eventManager.handleEvent(e);
             }
@@ -87,6 +91,7 @@ public class ModelCanvas extends Canvas {
         }
     }
 
+    @Override
     public void paint(Graphics g) {
         if (imgBuffer == null) return;
 
@@ -94,6 +99,7 @@ public class ModelCanvas extends Canvas {
         g.drawImage(imgBuffer, 0, 0, this);
     }
 
+    @Override
     public void update(Graphics g) {
         paint(g);
     }

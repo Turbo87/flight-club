@@ -24,6 +24,7 @@ public class Surface extends PolyLine {
         ys = new int[numPoints];
     }
 
+    @Override
     public void draw(Graphics g) {
         Vector3d a;
         Vector3d b;

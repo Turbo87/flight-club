@@ -73,6 +73,7 @@ public class ThermalTrigger implements ClockObserver {
         Landscape.crossHair(x, y);
     }
 
+    @Override
     public void tick(Clock c) {
 
         if (t == 0) makeCloud();

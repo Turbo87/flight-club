@@ -31,6 +31,7 @@ public class FlyingBody extends FlyingDot {
         translateBody();
     }
 
+    @Override
     public void tick(Clock c) {
         //update position and velocity
         super.tick(c);

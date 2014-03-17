@@ -397,6 +397,7 @@ public class CameraMan implements EventInterface {
         }
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
 
         //String c = e.getKeyChar();
@@ -439,6 +440,7 @@ public class CameraMan implements EventInterface {
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
     }
 

@@ -82,6 +82,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
     /**
      * update position, velocity and local frame
      */
+    @Override
     public void tick(Clock c) {
         Tools3d.add(p, v, p);
         p.y += Sky.getWind() * app.timePerFrame;
@@ -181,11 +182,13 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         }
     }
 
+    @Override
     public Vector3d getFocus() {
         // mid height and 'ahead'
         return new Vector3d(p.x, p.y + 1, 1);
     }
 
+    @Override
     public Vector3d getEye() {
         if (p.x > 0) {
             return new Vector3d(p.x + 2, p.y - 2, (float) 0.8);

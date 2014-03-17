@@ -34,6 +34,7 @@ public class JetTrail extends FlyingDot {
         v.y = 0;
     }
 
+    @Override
     protected void createTail() {
         int tailLength = 80;
         tail = new Tail(app, tailLength, new Color(200, 200, 200), 0);    //add to layer zero
@@ -56,6 +57,7 @@ public class JetTrail extends FlyingDot {
         }
     }
 
+    @Override
     public void tick(Clock c) {
         super.tick(c);
         checkBounds();

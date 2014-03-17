@@ -107,6 +107,7 @@ public class Object3dWithShadow extends Object3d {
         }
     }
 
+    @Override
     public void draw(Graphics g) {
         // tmp - not doing z order yet
         drawShadow(g);

@@ -10,13 +10,11 @@ package org.flightclub;
 
 import java.awt.event.KeyEvent;
 
-/*
-    interface to be implemented by objects (eg actors) that respond
-	to user pressing keys
-*/
-
+/**
+ * interface to be implemented by objects (eg actors) that respond
+ *to user pressing keys
+ */
 public interface EventInterface {
     public void keyPressed(KeyEvent e);
-
     public void keyReleased(KeyEvent e);
 }

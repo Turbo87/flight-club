@@ -55,6 +55,7 @@ public class ModelViewer extends Panel implements ClockObserver {
         if (pendingStart) start();
     }
 
+    @Override
     public void tick(Clock c) {
         eventManager.tick();
         modelCanvas.tick();

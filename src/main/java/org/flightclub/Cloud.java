@@ -172,6 +172,7 @@ public class Cloud implements CameraSubject, ClockObserver {
         return (getLift(inP) > 0);
     }
 
+    @Override
     public void tick(Clock c) {
         age += app.timePerFrame;
         if (age > t_mature + t_nose + t_tail * 0.5) decaying = true;
@@ -292,10 +293,12 @@ public class Cloud implements CameraSubject, ClockObserver {
         v.y += windSlope * v.z;
     }
 
+    @Override
     public Vector3d getFocus() {
         return new Vector3d(p.x, p.y + 2, (float) 1);
     }
 
+    @Override
     public Vector3d getEye() {
         int dx;
         if (p.x > 0) dx = 1;

@@ -23,6 +23,7 @@ public class XCGame extends ModelViewer implements EventInterface {
     static final int MODE_DEMO = 0;
     static final int MODE_USER = 1;
 
+    @Override
     public void init(ModelEnv a) {
         super.init(a);
         eventManager.addNotification(this);
@@ -116,6 +117,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         }
     }
 
+    @Override
     public void tick(Clock c) {
         super.tick(c);
         if (compass != null) compass.setArrow(gliderUser.v.x, gliderUser.v.y);
@@ -139,6 +141,7 @@ public class XCGame extends ModelViewer implements EventInterface {
             timePerFrame = (float) 0.02;
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
 
         //System.out.println(key);
@@ -168,6 +171,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

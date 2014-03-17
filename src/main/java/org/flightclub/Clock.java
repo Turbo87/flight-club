@@ -50,6 +50,7 @@ public class Clock implements Runnable {
         ticker = null;
     }
 
+    @Override
     public void run() {
         while (ticker != null) {
             currentTick = System.currentTimeMillis();

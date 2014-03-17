@@ -11,10 +11,9 @@ package org.flightclub;
 import java.awt.*;
 import java.util.Vector;
 
-/*
-  Some hills, triggers and a road arranged onto tiles
-*/
-
+/**
+ * Some hills, triggers and a road arranged onto tiles
+ */
 public class Landscape implements CameraSubject {
     // hills in order heading downwind
     final Vector[] hills;
@@ -39,7 +38,7 @@ public class Landscape implements CameraSubject {
         goalLine();
     }
 
-    /*
+    /**
      * load a chunk of landscape mostly thermal triggers, some tiles have hills
      */
     void loadTile(int t) {
@@ -463,6 +462,7 @@ public class Landscape implements CameraSubject {
         return hill.getHeight(x, y);
     }
 
+    @Override
     public Vector3d getFocus() {
         float yCenter = currentTile * TILE_WIDTH + TILE_WIDTH / 2;
         return new Vector3d(0, yCenter, 0);
@@ -471,6 +471,7 @@ public class Landscape implements CameraSubject {
     /**
      * look in from near corner (at cloudbase)
      */
+    @Override
     public Vector3d getEye() {
         float yCenter = currentTile * TILE_WIDTH + TILE_WIDTH / 2;
         return new Vector3d(TILE_WIDTH / 2, yCenter - TILE_WIDTH / 2, 2);

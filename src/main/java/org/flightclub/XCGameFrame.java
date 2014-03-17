@@ -16,5 +16,4 @@ public class XCGameFrame extends ModelFrame {
     public static void main(String s[]) {
         XCGameFrame f = new XCGameFrame();
     }
-
 }
