@@ -4,12 +4,12 @@ class Circuit {
         Usually two points, unless ridge is snakey.
         NB We use the hill's local coord system
     */
-    Hill hill;
-    Vector3d[] points;
+    final Hill hill;
+    final Vector3d[] points;
     int numPoints = 0;
     int next = 0;
-    float lift = (float) 1.5;
-    float liftUpto = (float) 1.5;
+    final float lift = (float) 1.5;
+    final float liftUpto = (float) 1.5;
     Vector3d fallLine;
 
     public Circuit(Hill inHill, int n) {

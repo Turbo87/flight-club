@@ -12,27 +12,30 @@ import java.awt.*;
 import java.util.Vector;
 
 class Cloud implements CameraSubject, ClockObserver {
-    ModelViewer app;
-    Object3dWithShadow object3d;
+    final ModelViewer app;
+    final Object3dWithShadow object3d;
     Vector3d p = new Vector3d();
-    float radius, maxRadius;
-    boolean solid = true;
-    Color color;
-    Vector3d[] corners = new Vector3d[8];
-    boolean inForeGround;
+    float radius;
+    final float maxRadius;
+    final boolean solid = true;
+    final Color color;
+    final Vector3d[] corners = new Vector3d[8];
+    final boolean inForeGround;
     ThermalTrigger trigger = null;
 
     boolean decaying = false;
     float age = 0;
-    int t_nose, t_mature, t_tail;
+    final int t_nose;
+    int t_mature;
+    final int t_tail;
 
-    double theta[] = new double[4];
-    double landa[] = new double[4];
+    final double[] theta = new double[4];
+    final double[] landa = new double[4];
 
-    float liftMax;
-    float myRnd;    //see getEye
+    final float liftMax;
+    final float myRnd;    //see getEye
 
-    float windSlope = (float) 0.5;//0.1 //lean towards +y due to wind (1 equals 45 degrees)
+    final float windSlope = (float) 0.5;//0.1 //lean towards +y due to wind (1 equals 45 degrees)
     float ds;
 
     static final float LIFT_FN_OUTER = 1;

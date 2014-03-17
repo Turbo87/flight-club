@@ -26,8 +26,8 @@ import java.util.Vector;
 public class Object3dWithShadow extends Object3d {
     static final int MAX_SHADOWS = 2;
     static final int SHADOW_COLOR = 180;
-    int[] shadowCasters = new int[MAX_SHADOWS];
-    Surface[] shadows = new Surface[MAX_SHADOWS];
+    final int[] shadowCasters = new int[MAX_SHADOWS];
+    final Surface[] shadows = new Surface[MAX_SHADOWS];
     int numShadows = 0;
 
     Object3dWithShadow(ModelViewer theApp) {

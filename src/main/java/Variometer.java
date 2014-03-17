@@ -9,8 +9,8 @@
 */
 
 public class Variometer {
-    ModelViewer app;
-    private FlyingDot flyingDot;
+    final ModelViewer app;
+    private final FlyingDot flyingDot;
     float[] steps; //different beeps as we go up the steps
     private int frame_count = 0;
 

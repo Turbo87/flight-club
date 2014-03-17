@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ModelFrame extends Frame implements ModelEnv {
-    ModelViewer app;
+    final ModelViewer app;
 
     public ModelFrame(ModelViewer theApp, String title, int w, int h) {
         super(title);

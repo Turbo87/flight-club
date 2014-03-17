@@ -16,8 +16,8 @@ import java.util.Vector;
 */
 
 class Sky {
-    private Vector<Cloud> clouds;    //hills in order from south to north
-    ModelViewer app;
+    private final Vector<Cloud> clouds;    //hills in order from south to north
+    final ModelViewer app;
     private static float cloudBase;
 
     final static float RANGE = 8;    //for next /prev - dist per unit height i.e. glide angle

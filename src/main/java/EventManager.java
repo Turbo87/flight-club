@@ -7,9 +7,9 @@ import java.util.Vector;
 */
 
 class EventManager {
-    protected Vector<Object> objs;
+    protected final Vector<Object> objs;
     final static int MAX_Q = 20;
-    KeyEvent[] queue = new KeyEvent[MAX_Q];
+    final KeyEvent[] queue = new KeyEvent[MAX_Q];
     int queueNum = 0;
 
     public EventManager() {

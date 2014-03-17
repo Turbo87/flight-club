@@ -19,18 +19,19 @@ import java.awt.*;
 */
 
 class Hill implements CameraSubject {
-    float x0, y0; //spine start point
+    final float x0;
+    final float y0; //spine start point
     int orientation = 0;
-    int spineLength;
-    float phase;
-    float h0;
-    int face;
-    ModelViewer app;
-    Object3d object3d;
-    Color color;
-    float tileWidth;//make smaller to increase curvy resolution
+    final int spineLength;
+    final float phase;
+    final float h0;
+    final int face;
+    final ModelViewer app;
+    final Object3d object3d;
+    final Color color;
+    final float tileWidth;//make smaller to increase curvy resolution
     int[] zorderedTiles;
-    boolean inForeGround;
+    final boolean inForeGround;
     float maxH = 0;
 
     static final int OR_X = 0;

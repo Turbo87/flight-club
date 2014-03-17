@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.Vector;
 
 class GliderShape extends Object3dWithShadow {
-    Color color;
+    final Color color;
     final static float height = (float) 0.2;
 
     public GliderShape(ModelViewer app, boolean register) {

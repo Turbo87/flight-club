@@ -19,8 +19,8 @@ import java.awt.event.*;
 */
 
 public class ModelCanvas extends Canvas {
-    public Color backColor = Color.white;
-    public Image backImg = null;
+    public final Color backColor = Color.white;
+    public final Image backImg = null;
     private Image imgBuffer;
     int width, height;
     protected ModelViewer app = null;

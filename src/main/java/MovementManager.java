@@ -13,7 +13,7 @@
 */
 
 class MovementManager {
-    ModelViewer app;
+    final ModelViewer app;
     FlyingDot flyingDot = null;
 
     private Vector3d targetPoint = null;    //point to fly towards
@@ -29,7 +29,7 @@ class MovementManager {
     boolean joinedCircuit = false;
 
     int wiggleCount = 0;
-    int wiggleSize = 5;
+    final int wiggleSize = 5;
 
     static final int LEFT = -1;
     static final int STRAIGHT = 0;

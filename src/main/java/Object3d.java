@@ -15,10 +15,10 @@ public class Object3d {
     protected ModelViewer app = null;
 
     float xMin, yMin, xMax, yMax;
-    Vector<Vector3d> points = new Vector<>();
-    Vector<Vector3d> points_ = new Vector<>();
-    Vector<PolyLine> wires = new Vector<>();
-    Vector<Boolean> inFOVs = new Vector<>(); //list of flags - is point within field of view
+    final Vector<Vector3d> points = new Vector<>();
+    final Vector<Vector3d> points_ = new Vector<>();
+    final Vector<PolyLine> wires = new Vector<>();
+    final Vector<Boolean> inFOVs = new Vector<>(); //list of flags - is point within field of view
     boolean inFOV = false;
     int layer = 1;    //default layer 1
 
@@ -338,10 +338,10 @@ public class Object3d {
 }
 
 class PolyLine {
-    int numPoints;
-    int[] points;
+    final int numPoints;
+    final int[] points;
     int nextIndex = 0;
-    Object3d object3d;
+    final Object3d object3d;
     Color c;    //true color
     Color c_;    //apparent color
     boolean isSolid = false;
@@ -436,8 +436,8 @@ class PolyLine {
 
 class Surface extends PolyLine {
 
-    int[] xs;
-    int[] ys;
+    final int[] xs;
+    final int[] ys;
 
     public Surface(Object3d o, int inNumPoints, Color inC) {
         super(o, inNumPoints, inC);

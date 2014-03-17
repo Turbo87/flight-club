@@ -19,18 +19,18 @@ import java.awt.*;
 */
 
 class FlyingDot implements ClockObserver, CameraSubject {
-    ModelViewer app;
+    final ModelViewer app;
     Vector3d v;
     Vector3d p = new Vector3d();
     float speed;
     float ds;//distance per frame - hack
-    float my_turn_radius;
+    final float my_turn_radius;
 
     boolean isUser = false; //TODO - tidy this hack ! classname operator ?
 
-    Vector3d axisX = new Vector3d();
-    Vector3d axisY = new Vector3d();
-    Vector3d axisZ = new Vector3d();
+    final Vector3d axisX = new Vector3d();
+    final Vector3d axisY = new Vector3d();
+    final Vector3d axisZ = new Vector3d();
 
     Tail tail = null;
     MovementManager moveManager = null;

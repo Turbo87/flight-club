@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ModelApplet extends Applet implements ModelEnv {
-    ModelViewer app;
+    final ModelViewer app;
 
     public ModelApplet(ModelViewer theApp) {
         app = theApp;

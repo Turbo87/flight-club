@@ -12,18 +12,18 @@
 import java.util.Vector;
 
 class ThermalTrigger implements ClockObserver {
-    ModelViewer app;
+    final ModelViewer app;
     Clock clock;
-    int x;
-    int y;
+    final int x;
+    final int y;
     float t;
     int nextCloud;    //0, 1 or 2 - stop clouds overlapping
-    int cycleLength;
-    int cloudDuration;
-    int cloudStrength;
+    final int cycleLength;
+    final int cloudDuration;
+    final int cloudStrength;
     int dummyClick = 0;
-    Vector<Cloud> clouds;
-    int bubbles;//how many thermals per cycle (1 or 2)
+    final Vector<Cloud> clouds;
+    final int bubbles;//how many thermals per cycle (1 or 2)
 
     static final float SPREAD = (float) 1.2;    //0.5
     static final int CYCLE_LENGTH = 20;//30

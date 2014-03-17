@@ -15,15 +15,17 @@ class DataSlider {
         a dot on a line - use for eg vario
         minimal design - cf toshiba scan of fred
     */
-    ModelViewer app;
-    int size; //length of slider in pixels
-    int x0, y0; //screen coords of center point of slider
+    final ModelViewer app;
+    final int size; //length of slider in pixels
+    final int x0;
+    final int y0; //screen coords of center point of slider
     private float v;    //value to display
     int v_;//screen coord of v (v_min = 0, v_max = size)
-    float v_min, v_max;
+    final float v_min;
+    final float v_max;
     String label = null;
-    Color color = Color.lightGray;
-    Color color2 = Color.gray;
+    final Color color = Color.lightGray;
+    final Color color2 = Color.gray;
 
     static final int SIZE_DEFAULT = 20; //default radius of 10
     static final int dx = 2;

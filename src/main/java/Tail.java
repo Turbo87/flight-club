@@ -15,8 +15,8 @@ import java.util.Vector;
 */
 
 class Tail extends Object3d {
-    int tailLength;
-    Color c;
+    final int tailLength;
+    final Color c;
     private Vector3d[] tail;
     int wireEvery = 4;    //default add a wire for every 5 points
     int updateEvery = 1;

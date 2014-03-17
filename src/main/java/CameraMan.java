@@ -18,24 +18,25 @@ import java.awt.event.KeyEvent;
 */
 
 class CameraMan implements EventInterface {
-    ModelViewer app;
-    public Vector3d lightRay;
+    final ModelViewer app;
+    public final Vector3d lightRay;
     public float zoom = 1;
 
     private float distance = 0;
     private float[][] matrix;
 
-    private int screenWidth, screenHeight;
-    private float theScale;
+    private final int screenWidth;
+    private final int screenHeight;
+    private final float theScale;
 
     private Vector3d eye;
     private Vector3d focus;
 
-    private int rBackground = 255;
-    private int gBackground = 255;
-    private int bBackground = 255;
+    private final int rBackground = 255;
+    private final int gBackground = 255;
+    private final int bBackground = 255;
 
-    private float depthOfVision = Landscape.TILE_WIDTH * (float) 2.5; // //64; good for jet trails
+    private final float depthOfVision = Landscape.TILE_WIDTH * (float) 2.5; // //64; good for jet trails
     static final float AMBIENT_LIGHT = (float) 0.3;
 
     CameraSubject cameraSubject; //populate using cutSetup

@@ -30,7 +30,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     DataSlider slider = null;
     Clock clock = null;
     boolean pendingStart = false;
-    protected static int frameRate = 25;
+    protected static final int frameRate = 25;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
     protected float timePerFrame = (float) (1.0 / 25);
 

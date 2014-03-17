@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 */
 
 class GliderUser extends Glider implements EventInterface {
-    Variometer vario;
+    final Variometer vario;
 
     public GliderUser(ModelViewer app, Vector3d p) {
         //set flag so camera will follow my cuts when in mode 1

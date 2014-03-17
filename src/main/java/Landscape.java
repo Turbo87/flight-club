@@ -16,12 +16,12 @@ import java.util.Vector;
 */
 
 class Landscape implements CameraSubject {
-    Vector[] hills;        //hills in order heading downwind
-    Vector[] triggers;
+    final Vector[] hills;        //hills in order heading downwind
+    final Vector[] triggers;
     static ModelViewer app;
     int currentTile;
     int hillCount = 0; //cyle thru' the different hill shapes
-    boolean[] loaded;
+    final boolean[] loaded;
     static final int TILE_WIDTH = 20;
     static final int MAX_TILES = 10;
 

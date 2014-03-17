@@ -14,24 +14,25 @@ class Compass {
     /*
         a simple compass
     */
-    ModelViewer app;
-    int[] hxs = {0, 2, -2};    //head of arrow
-    int[] hys = {5, 2, 2};
-    int[] txs = {0, 0};    //tail
-    int[] tys = {1, -5};
+    final ModelViewer app;
+    final int[] hxs = {0, 2, -2};    //head of arrow
+    final int[] hys = {5, 2, 2};
+    final int[] txs = {0, 0};    //tail
+    final int[] tys = {1, -5};
 
-    int[] hxs_ = new int[3];    //rotate and translate above points
-    int[] hys_ = new int[3];
-    int[] txs_ = new int[2];
-    int[] tys_ = new int[2];
+    final int[] hxs_ = new int[3];    //rotate and translate above points
+    final int[] hys_ = new int[3];
+    final int[] txs_ = new int[2];
+    final int[] tys_ = new int[2];
 
-    int r;
-    int x0, y0;
+    final int r;
+    final int x0;
+    final int y0;
     private float vx = 0;    //vector determines arrow direction - start pointing north
     private float vy = 1;
-    float[][] m = new float[2][2];
-    Color color = Color.lightGray;
-    Color color2 = Color.gray;
+    final float[][] m = new float[2][2];
+    final Color color = Color.lightGray;
+    final Color color2 = Color.gray;
 
     static final int SIZE_DEFAULT = 20; //default radius of 10
     static final int H_NUM = 3;
