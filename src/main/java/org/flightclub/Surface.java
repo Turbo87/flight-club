@@ -1,10 +1,15 @@
+/**
+ This code is covered by the GNU General Public License
+ detailed at http://www.gnu.org/copyleft/gpl.html
+
+ Flight Club docs located at http://www.danb.dircon.co.uk/hg/hg.htm
+ Dan Burton , Nov 2001
+ */
+
 package org.flightclub;
 
 import java.awt.*;
 
-/**
- * Created by turbo on 17.03.14.
- */
 class Surface extends PolyLine {
 
     final int[] xs;

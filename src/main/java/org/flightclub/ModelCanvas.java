@@ -1,23 +1,23 @@
-package org.flightclub;/*
-  ModelCanvas.java (part of 'Flight Club')
-	
-  This code is covered by the GNU General Public License
-  detailed at http://www.gnu.org/copyleft/gpl.html
-	
-  Flight Club docs located at http://www.danb.dircon.co.uk/hg/hg.htm
-  Dan Burton , Nov 2001 
-	
-  This class is based on the framework outlined in a book called 
-  'Java Games Programming' by Niel Bartlett
-*/
+/**
+ This code is covered by the GNU General Public License
+ detailed at http://www.gnu.org/copyleft/gpl.html
+
+ Flight Club docs located at http://www.danb.dircon.co.uk/hg/hg.htm
+ Dan Burton , Nov 2001
+ */
+
+package org.flightclub;
+
 
 import java.awt.*;
 import java.awt.event.*;
 
 /*
-  canvas manager - draws world, dragging on canvas moves camera
-*/
+canvas manager - draws world, dragging on canvas moves camera
 
+  This class is based on the framework outlined in a book called
+  'Java Games Programming' by Niel Bartlett
+*/
 public class ModelCanvas extends Canvas {
     public final Color backColor = Color.white;
     public final Image backImg = null;

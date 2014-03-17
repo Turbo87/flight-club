@@ -1,18 +1,12 @@
-package org.flightclub;/*
-  ModelViewer.java (part of 'Flight Club')
-	
-  This code is covered by the GNU General Public License
-  detailed at http://www.gnu.org/copyleft/gpl.html
-	
-  Flight Club docs located at http://www.danb.dircon.co.uk/hg/hg.htm
-  Dan Burton , Nov 2001 
-	
-  This class is based on the framework outlined in a book called 
-  'Java Games Programming' by Niel Bartlett
-*/
+/**
+ This code is covered by the GNU General Public License
+ detailed at http://www.gnu.org/copyleft/gpl.html
 
+ Flight Club docs located at http://www.danb.dircon.co.uk/hg/hg.htm
+ Dan Burton , Nov 2001
+ */
 
-//the main manager - has factory methods for creating other managers
+package org.flightclub;
 
 import java.applet.Applet;
 import java.awt.*;
