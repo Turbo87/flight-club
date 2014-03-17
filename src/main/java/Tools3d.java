@@ -152,19 +152,19 @@ public class Tools3d {
         return cube;
     }
 
-    static final float[][] identity() {
+    static float[][] identity() {
         return new float[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
     }
 
-    static final float[][] zero() {
+    static float[][] zero() {
         return new float[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     }
 
-    static final float dot(Vector3d a, Vector3d b) {
+    static float dot(Vector3d a, Vector3d b) {
         return (float) a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
-    public static final float[][] rotateX(Vector3d v) {
+    public static float[][] rotateX(Vector3d v) {
 		/*
 		rotation matix: rotate the given point so that it lies on the x axis
 		1. rotate about z axis
@@ -215,7 +215,7 @@ public class Tools3d {
         return m3;
     }
 
-    public static final void applyTo(float[][] m, Vector3d a, Vector3d a_) {
+    public static void applyTo(float[][] m, Vector3d a, Vector3d a_) {
         float[] inV = new float[3];
         float[] outV = {0, 0, 0};
 
@@ -233,7 +233,7 @@ public class Tools3d {
         a_.z = outV[2];
     }
 
-    public static final float[][] applyTo(float[][] m1, float[][] m2) {
+    public static float[][] applyTo(float[][] m1, float[][] m2) {
         float[][] m3 = zero();
 
         for (int i = 0; i < 3; i++) {
@@ -246,7 +246,7 @@ public class Tools3d {
         return m3;
     }
 
-    public static final boolean projectYZ(Vector3d a, Vector3d a_, float d) {
+    public static boolean projectYZ(Vector3d a, Vector3d a_, float d) {
 		/* 
 			return false if point falls outside field of 
 			view (FOV), true otherwise
@@ -270,52 +270,52 @@ public class Tools3d {
         return true;
     }
 
-    public static final void add(Vector3d a, Vector3d b, Vector3d c) {
+    public static void add(Vector3d a, Vector3d b, Vector3d c) {
         c.x = a.x + b.x;
         c.y = a.y + b.y;
         c.z = a.z + b.z;
     }
 
-    public static final void subtract(Vector3d a, Vector3d b, Vector3d c) {
+    public static void subtract(Vector3d a, Vector3d b, Vector3d c) {
         c.x = a.x - b.x;
         c.y = a.y - b.y;
         c.z = a.z - b.z;
     }
 
-    public static final float length(Vector3d v) {
+    public static float length(Vector3d v) {
         return (float) Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
     }
 
-    public static final void scaleBy(Vector3d v, float scale) {
+    public static void scaleBy(Vector3d v, float scale) {
         v.x *= scale;
         v.y *= scale;
         v.z *= scale;
     }
 
-    public static final void clone(Vector3d a, Vector3d b) {
+    public static void clone(Vector3d a, Vector3d b) {
         b.x = a.x;
         b.y = a.y;
         b.z = a.z;
     }
 
-    public static final void cross(Vector3d a, Vector3d b, Vector3d c) {
+    public static void cross(Vector3d a, Vector3d b, Vector3d c) {
         c.x = a.y * b.z - a.z * b.y;
         c.y = -a.x * b.z + a.z * b.x;
         c.z = a.x * b.y - a.y * b.x;
     }
 
-    public static final double rnd(double lower, double upper) {
+    public static double rnd(double lower, double upper) {
         return (double) (Math.random() * (upper - lower) + lower);
     }
 
-    public static final void makeUnit(Vector3d v) {
+    public static void makeUnit(Vector3d v) {
         float scale = 1 / Tools3d.length(v);
         v.x *= scale;
         v.y *= scale;
         v.z *= scale;
     }
 
-    public static final void scaleToLength(Vector3d v, float length) {
+    public static void scaleToLength(Vector3d v, float length) {
         float scale = length / Tools3d.length(v);
         v.x *= scale;
         v.y *= scale;
