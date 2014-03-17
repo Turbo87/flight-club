@@ -95,7 +95,7 @@ class Glider extends FlyingBody {
 
             cutPending = true;
             cutWhen = whenArrive(hill.x0, hill.y0) - app.cameraMan.CUT_LEN * 2; //??2
-            cutSubject = (CameraSubject) hill;
+            cutSubject = hill;
             cutCount = 0;
             //System.out.println("Cut when: " + cutWhen);
             return;
@@ -120,7 +120,7 @@ class Glider extends FlyingBody {
 
         cutPending = true;
         cutWhen = whenArrive(cloud.p.x, cloud.p.y) - app.cameraMan.CUT_LEN * 2;
-        cutSubject = (CameraSubject) cloud;
+        cutSubject = cloud;
         cutCount = 0;
         //System.out.println("Cut when: " + cutWhen);
 

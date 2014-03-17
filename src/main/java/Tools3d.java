@@ -161,7 +161,7 @@ public class Tools3d {
     }
 
     static float dot(Vector3d a, Vector3d b) {
-        return (float) a.x * b.x + a.y * b.y + a.z * b.z;
+        return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
     public static float[][] rotateX(Vector3d v) {
@@ -305,7 +305,7 @@ public class Tools3d {
     }
 
     public static double rnd(double lower, double upper) {
-        return (double) (Math.random() * (upper - lower) + lower);
+        return Math.random() * (upper - lower) + lower;
     }
 
     public static void makeUnit(Vector3d v) {

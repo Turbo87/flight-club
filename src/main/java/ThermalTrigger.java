@@ -85,13 +85,13 @@ class ThermalTrigger implements ClockObserver {
 
         switch (nextCloud) {
             case 0:
-                dy = (float) SPREAD;
+                dy = SPREAD;
                 break;
             case 1:
                 dy = 0;
                 break;
             case 2:
-                dy = (float) -SPREAD;
+                dy = -SPREAD;
                 break;
             default:
                 dy = 0;

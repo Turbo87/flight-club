@@ -141,7 +141,7 @@ class CameraMan implements EventInterface {
         //fri 1 mar 2002 - some under lighting for clouds
         if (inNormal.z < -0.99) dot += 0.3;
 
-        return (float) (dot * (1 - AMBIENT_LIGHT) + AMBIENT_LIGHT);
+        return dot * (1 - AMBIENT_LIGHT) + AMBIENT_LIGHT;
 
 
     }

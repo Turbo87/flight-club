@@ -50,7 +50,7 @@ public class Clock implements Runnable {
 					we can change our POV and unpause
 				*/
                 if (i == 0 || !paused) {
-                    ClockObserver c = (ClockObserver) observers.elementAt(i);
+                    ClockObserver c = observers.elementAt(i);
                     c.tick(this);
                 }
             }

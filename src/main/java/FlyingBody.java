@@ -45,8 +45,8 @@ public class FlyingBody extends FlyingDot {
 
     public void rotateBody() {
         for (int i = 0; i < body0.points.size(); i++) {
-            Vector3d p1 = (Vector3d) body1.points.elementAt(i);
-            Vector3d p0 = (Vector3d) body0.points.elementAt(i);
+            Vector3d p1 = body1.points.elementAt(i);
+            Vector3d p0 = body0.points.elementAt(i);
 
             Vector3d xp1 = new Vector3d();
             Vector3d yp1 = new Vector3d();
@@ -68,7 +68,7 @@ public class FlyingBody extends FlyingDot {
 
     public void translateBody() {
         for (int i = 0; i < body1.points.size(); i++) {
-            Vector3d p1 = (Vector3d) body1.points.elementAt(i);
+            Vector3d p1 = body1.points.elementAt(i);
             Tools3d.add(p1, p, p1);
         }
     }

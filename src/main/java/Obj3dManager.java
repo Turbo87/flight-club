@@ -85,8 +85,8 @@ public class Obj3dManager {
             return;
         }
 
-        p1 = (Vector3d) object3d1.points_.elementAt(0);
-        p2 = (Vector3d) object3d2.points_.elementAt(0);
+        p1 = object3d1.points_.elementAt(0);
+        p2 = object3d2.points_.elementAt(0);
 
         if (p1.x > p2.x) {
             // first point closer than second

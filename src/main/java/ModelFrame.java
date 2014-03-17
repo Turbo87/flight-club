@@ -18,7 +18,7 @@ public class ModelFrame extends Frame implements ModelEnv {
         add(app, "Center");
         setSize(w, h);
         show();
-        app.init((ModelEnv) this);
+        app.init(this);
         app.start();
 
         this.addWindowListener(new WindowAdapter() {

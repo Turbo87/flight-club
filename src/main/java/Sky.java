@@ -58,7 +58,7 @@ class Sky {
         float dy_min = RANGE * p.z;
 
         for (int i = 0; i < clouds.size(); i++) {
-            Cloud cloud = (Cloud) clouds.elementAt(i);
+            Cloud cloud = clouds.elementAt(i);
             //if (cloud.getY(p.z) >= p.y && cloud.age < 10) {
             if (cloud.getY(p.z) >= p.y && !cloud.decaying) {
                 float dy = cloud.getY(p.z) - p.y;
@@ -68,7 +68,7 @@ class Sky {
                 }
             }
         }
-        if (j != -1) return (Cloud) clouds.elementAt(j);
+        if (j != -1) return clouds.elementAt(j);
 
         //System.out.println("Next cloud returning null !");
         return null;
@@ -84,7 +84,7 @@ class Sky {
         float dy_min = RANGE * p.z;
 
         for (int i = clouds.size() - 1; i >= 0; i--) {
-            Cloud cloud = (Cloud) clouds.elementAt(i);
+            Cloud cloud = clouds.elementAt(i);
             if (cloud.getY(p.z) <= p.y && cloud.age < 10) {
                 float dy = p.y - cloud.getY(p.z);
                 if (dy < dy_min) {
@@ -94,7 +94,7 @@ class Sky {
             }
         }
 
-        if (j != -1) return (Cloud) clouds.elementAt(j);
+        if (j != -1) return clouds.elementAt(j);
 
         //System.out.println("Prev cloud returning null");
         return null;
@@ -102,7 +102,7 @@ class Sky {
 
     Cloud myCloud(Vector3d p) {
         for (int i = 0; i < clouds.size(); i++) {
-            Cloud cd = (Cloud) clouds.elementAt(i);
+            Cloud cd = clouds.elementAt(i);
             if (cd.isUnder(p)) return cd;
         }
         return null;

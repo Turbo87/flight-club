@@ -21,7 +21,7 @@ public class ModelApplet extends Applet implements ModelEnv {
     public void init() {
         this.setBackground(Color.white);
         add(app);
-        app.init((ModelEnv) this);
+        app.init(this);
 
         this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {

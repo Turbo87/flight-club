@@ -291,7 +291,7 @@ class Hill implements CameraSubject {
                 return lmax;
             } else if (h < (float) 1 + dh) {
                 float f = (2 + dh - h) / 2;
-                return (float) ((f * f * f) * lmax);
+                return (f * f * f) * lmax;
             } else {
                 return 0;
             }
