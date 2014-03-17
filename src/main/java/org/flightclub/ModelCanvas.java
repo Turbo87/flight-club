@@ -42,8 +42,8 @@ public class ModelCanvas extends Canvas {
     }
 
     void init() {
-        width = getSize().width;
-        height = getSize().height;
+        width = getWidth();
+        height = getHeight();
 
         imgBuffer = app.createImage(width, height);
         graphicsBuffer = imgBuffer.getGraphics();
