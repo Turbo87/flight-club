@@ -20,22 +20,23 @@ public class Object3d {
     final Vector<PolyLine> wires = new Vector<>();
     final Vector<Boolean> inFOVs = new Vector<>(); //list of flags - is point within field of view
     boolean inFOV = false;
-    int layer = 1;    //default layer 1
+
+    // default layer 1
+    int layer;
 
     Object3d(ModelViewer theApp) {
-        app = theApp;
-        registerObject3d();
+        this(theApp, true);
     }
 
     Object3d(ModelViewer theApp, boolean register) {
-        app = theApp;
-        if (register) registerObject3d();
+        this(theApp, register, 1);
     }
 
     Object3d(ModelViewer theApp, boolean register, int inLayer) {
         app = theApp;
         layer = inLayer;
-        if (register) registerObject3d();
+        if (register)
+            registerObject3d();
     }
 
     public void destroyMe() {
