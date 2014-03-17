@@ -11,7 +11,6 @@ package org.flightclub;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -119,41 +118,7 @@ public class ModelCanvas extends Canvas {
         } else
             g.drawImage(backImg, 0, 0, this);
 
-        //TODO optimize - build vector of objs in FOV, need only draw these
-        app.cameraMan.setMatrix();
-        app.obj3dManager.sortObjects();
-
-        for (int layer = 0; layer < app.obj3dManager.MAX_LAYERS; layer++) {
-            for (int i = 0; i < app.obj3dManager.os.get(layer).size(); i++) {
-                Object3d o = (Object3d) app.obj3dManager.os.get(layer).elementAt(i);
-                o.film(app.cameraMan);
-                o.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
-            }
-        }
-
-        //Text
-        if (app.textMessage != null) {
-            Font font = new Font("SansSerif", Font.PLAIN, 10);
-            g.setFont(font);
-            g.setColor(Color.lightGray);
-
-            String s;
-            if (!app.clock.paused) {
-                s = app.textMessage;
-            } else {
-                s = app.textMessage + " [ paused ]";
-            }
-            g.drawString(s, 15, height - 15);
-        }
-
-        if (app.compass != null) {
-            app.compass.draw(new org.flightclub.compat.Graphics(g));
-        }
-
-        if (app.slider != null) {
-            app.slider.draw(new org.flightclub.compat.Graphics(g));
-        }
-
+        app.draw(g, width, height);
     }
 
 }

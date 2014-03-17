@@ -10,6 +10,9 @@ package org.flightclub;
 
 import java.applet.Applet;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Panel;
 
 public class ModelViewer extends Panel implements ClockObserver {
@@ -112,5 +115,42 @@ public class ModelViewer extends Panel implements ClockObserver {
 
     int getFrameRate() {
         return FRAME_RATE;
+    }
+
+    public void draw(Graphics g, int width, int height) {
+        //TODO optimize - build vector of objs in FOV, need only draw these
+        cameraMan.setMatrix();
+
+        obj3dManager.sortObjects();
+        for (int layer = 0; layer < obj3dManager.MAX_LAYERS; layer++) {
+            for (int i = 0; i < obj3dManager.os.get(layer).size(); i++) {
+                Object3d o = obj3dManager.os.get(layer).elementAt(i);
+                o.film(cameraMan);
+                o.draw(new org.flightclub.compat.Graphics(g));
+            }
+        }
+
+        //Text
+        if (textMessage != null) {
+            Font font = new Font("SansSerif", Font.PLAIN, 10);
+            g.setFont(font);
+            g.setColor(Color.lightGray);
+
+            String s;
+            if (!clock.paused) {
+                s = textMessage;
+            } else {
+                s = textMessage + " [ paused ]";
+            }
+            g.drawString(s, 15, height - 15);
+        }
+
+        if (compass != null) {
+            compass.draw(new org.flightclub.compat.Graphics(g));
+        }
+
+        if (slider != null) {
+            slider.draw(new org.flightclub.compat.Graphics(g));
+        }
     }
 }
