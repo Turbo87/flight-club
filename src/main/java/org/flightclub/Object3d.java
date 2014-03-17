@@ -94,10 +94,8 @@ public class Object3d {
 
     /** rotate 90 */
     public void flipYZ() {
-        float tmp;
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
-            tmp = q.y;
+        for (Vector3d q : points) {
+            float tmp = q.y;
             q.y = q.z;
             q.z = tmp;
         }
@@ -105,31 +103,24 @@ public class Object3d {
 
     /** turn upside down */
     public void flipZ() {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
+        for (Vector3d q : points)
             q.z = -q.z;
-        }
     }
 
     /** swap left and right */
     public void flipY() {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
+        for (Vector3d q : points)
             q.y = -q.y;
-        }
     }
 
     /** swap front and back */
     public void flipX() {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
+        for (Vector3d q : points)
             q.x = -q.x;
-        }
     }
 
     public void scaleBy(Vector3d v) {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
+        for (Vector3d q : points) {
             q.x = q.x * v.x;
             q.y = q.y * v.y;
             q.z = q.z * v.z;
@@ -137,17 +128,13 @@ public class Object3d {
     }
 
     public void scaleBy(float s) {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d v = points.elementAt(i);
+        for (Vector3d v : points)
             Tools3d.scaleBy(v, s);
-        }
     }
 
     public void setColor(Color c) {
-        for (int i = 0; i < wires.size(); i++) {
-            PolyLine wire = wires.elementAt(i);
+        for (PolyLine wire : wires)
             wire.c = c;
-        }
     }
 
     protected int addPoint(Vector3d p) {
@@ -249,15 +236,14 @@ public class Object3d {
     }
 
     public static void clone(Object3d from, Object3d to) {
-        for (int i = 0; i < from.wires.size(); i++) {
-            PolyLine fromWire = from.wires.elementAt(i);
+        for (PolyLine fromWire : from.wires) {
+
             Vector<Vector3d> toWire = new Vector<>();
-            for (int j = 0; j < fromWire.points.length; j++) {
-                int k = fromWire.points[j];
+            for (int k : fromWire.points) {
                 Vector3d v = from.points.elementAt(k);
-                Vector3d q = new Vector3d(v.x, v.y, v.z);
-                toWire.addElement(q);
+                toWire.addElement(v.cloneMe());
             }
+
             boolean hasNorm = (fromWire.normal != null);
             to.addWire(toWire, fromWire.c, fromWire.isSolid, hasNorm);
         }
