@@ -153,13 +153,11 @@ public class Tools3d {
     }
 
     static final float[][] identity() {
-        float[][] m = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-        return m;
+        return new float[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
     }
 
     static final float[][] zero() {
-        float[][] m = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        return m;
+        return new float[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     }
 
     static final float dot(Vector3d a, Vector3d b) {
@@ -285,8 +283,7 @@ public class Tools3d {
     }
 
     public static final float length(Vector3d v) {
-        float r = (float) Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-        return r;
+        return (float) Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
     }
 
     public static final void scaleBy(Vector3d v, float scale) {
