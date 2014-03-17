@@ -1,0 +1,78 @@
+How To's 
+========
+Created by Dan Burton <danb@dircon.co.uk>, 28 Jul 2002
+Latest update 7 Mar 2003
+
+* To compile the flight club packages:
+
+> cd ~/xc/src/
+> javac -d ../class flightclub/framework3d/*.java
+> javac -d ../class flightclub/client/*.java
+
+If uploading to the net then include -target 1.1 for compatabilty with old browsers etc.
+
+* To run the game as an application (useful when developing)
+
+> cd ~/xc/class/
+> java flightclub/client/XCFrame
+
+* To create the jar file:
+
+> jar cf XCAlpha.jar flightclub/framework3d/*.class flightclub/client/*.class beep*.au hangglider.txt paraglider.txt sailplane.txt
+
+* To archive the source:
+
+> cd ~/xc/src/
+> tar cfz framework3d.tar.gz flightclub/framework3d/*.java
+> mv framework3d.tar.gz ../bak/
+
+(see ~/xc/src/archive.bat)
+
+* Finding out where the demo applets live:
+
+> cd /usr/local/
+> find -name demo
+
+(on my machine: /usr/local/j2sdk1.4.0/demo/applets/WireFrame)
+
+* The horses mouth - the java *source* files:
+
+> cd /usr/local/j2sdk1.4.0/
+> man unzip
+> unzip -ajC src.zip java/io/FileOutputStream.java -d ~/xc/doc/java
+
+Options...
+      -j - junk paths (flatten dir structure)
+      -C - match file names case insensitively
+      -a - convert text files as necessary for current platform (CR +
+      LF (pc) <-> LF (linux))
+
+* Debugging with jdb:
+
+> cd ~/xc/class/
+> jdb flightclub/test/GliderTypes
+> use ../src
+> stop in flightclub.client.MovingBody.tick
+> run
+
+jdb commands...
+> where	- dumps invocation stack
+> step	- execute current line
+> next	- step one line (OVER calls)
+> step up - continue till current method returns to its caller
+> dump this
+> cont
+> !!	- repeat last command
+> list	- print source around current line :-)
+> clear - lists break points
+> watch flightclub.client.MovingBody.roll
+
+* To generate the api docs:
+
+> cd ~/xc/src/
+> javadoc -d ../apidocs/ -stylesheetfile ~/danb/danb.css -header "<h2>Flight Club</h2>" -footer "Dan Burton &lt;<a href=\"mailto: danb@dircon.co.uk\">danb@dircon.co.uk</a>&gt; | latest update: 28 July 2002;" flightclub.framework3d
+
+(see ~/xc/src/javadoc.bat)
+
+
+
