@@ -443,7 +443,6 @@ class CameraMan implements EventInterface {
     public void keyReleased(KeyEvent e) {
     }
 
-    ;
 }
 
 

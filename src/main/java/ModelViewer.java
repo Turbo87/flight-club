@@ -84,7 +84,6 @@ public class ModelViewer extends Panel implements ClockObserver {
             Applet a = (Applet) modelEnv;
             setSize(a.getSize().width, a.getSize().height);
         } catch (Exception e) {
-            ;
         }
 
         layout(); //deprecated !! what here ?!
