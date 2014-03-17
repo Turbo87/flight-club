@@ -96,14 +96,14 @@ class Landscape implements CameraSubject {
         float HAIR = 1;
 
         Object3d o = new Object3d(app, true, 0);    //layer zero !!
-        Vector wire;
+        Vector<Vector3d> wire;
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(x, y - HAIR, 0));
         wire.addElement(new Vector3d(x, y + HAIR, 0));
         o.addWire(wire, new Color(230, 230, 230), false, false);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(x - HAIR, y, 0));
         wire.addElement(new Vector3d(x + HAIR, y, 0));
         o.addWire(wire, new Color(230, 230, 230), false, false);
@@ -117,12 +117,10 @@ class Landscape implements CameraSubject {
         float ATOM = 2;
 
         Object3d o = new Object3d(app, true, 0);    //layer zero !!
-        Vector wire;
-
-        wire = new Vector();
+        Vector<Vector3d> wire;
 
         for (int i = 0; i < MAX_TILES * TILE_WIDTH; i += ATOM * 1) {
-            wire = new Vector();
+            wire = new Vector<>();
 
             float x1 = (float) Math.sin((double) i * Math.PI / TILE_WIDTH);
             float x2 = (float) Math.sin((double) (i + ATOM) * Math.PI / TILE_WIDTH);
@@ -139,16 +137,16 @@ class Landscape implements CameraSubject {
         float y0 = TILE_WIDTH * MAX_TILES;
 
         Object3d o = new Object3d(app, true, 0);    //layer zero !!
-        Vector wire;
+        Vector<Vector3d> wire;
         float x1 = (float) -TILE_WIDTH / 8;
         float x2 = (float) TILE_WIDTH / 8;
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(x1, y0, 0));
         wire.addElement(new Vector3d(x2, y0, 0));
         o.addWire(wire, new Color(220, 220, 100), false, false);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(x1, 0, 0));
         wire.addElement(new Vector3d(x2, 0, 0));
         o.addWire(wire, new Color(220, 220, 100), false, false);

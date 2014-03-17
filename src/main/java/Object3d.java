@@ -15,10 +15,10 @@ public class Object3d {
     protected ModelViewer app = null;
 
     float xMin, yMin, xMax, yMax;
-    Vector points = new Vector();
-    Vector points_ = new Vector();
-    Vector wires = new Vector();
-    Vector inFOVs = new Vector(); //list of flags - is point within field of view
+    Vector<Vector3d> points = new Vector<>();
+    Vector<Vector3d> points_ = new Vector<>();
+    Vector<PolyLine> wires = new Vector<>();
+    Vector<Boolean> inFOVs = new Vector<>(); //list of flags - is point within field of view
     boolean inFOV = false;
     int layer = 1;    //default layer 1
 
@@ -50,7 +50,7 @@ public class Object3d {
         if (!inFOV) return;
 
         for (int i = 0; i < wires.size(); i++) {
-            PolyLine wire = (PolyLine) wires.elementAt(i);
+            PolyLine wire = wires.elementAt(i);
 
             if (!wire.isBackFace())
                 wire.draw(g);
@@ -65,8 +65,8 @@ public class Object3d {
         inFOV = false; //set true if any points are in FOV
 
         for (int i = 0; i < points.size(); i++) {
-            v = (Vector3d) points.elementAt(i);
-            v_ = (Vector3d) points_.elementAt(i);
+            v = points.elementAt(i);
+            v_ = points_.elementAt(i);
 
             //translate, rotate and project (only if visible)
             Tools3d.subtract(v, app.cameraMan.getFocus(), v_);
@@ -74,8 +74,7 @@ public class Object3d {
 
             boolean rc = Tools3d.projectYZ(v_, v_, app.cameraMan.getDistance());
             inFOV = inFOV || rc;
-            Boolean flag = new Boolean(rc);
-            inFOVs.setElementAt(flag, i);
+            inFOVs.setElementAt(rc, i);
             this.app.cameraMan.scaleToScreen(v_);
         }
 
@@ -83,7 +82,7 @@ public class Object3d {
 
     public void translateBy(Vector3d v) {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             Tools3d.add(q, v, q);
         }
     }
@@ -92,7 +91,7 @@ public class Object3d {
     public void flipYZ() {
         float tmp;
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             tmp = q.y;
             q.y = q.z;
             q.z = tmp;
@@ -102,7 +101,7 @@ public class Object3d {
     //turn upside down
     public void flipZ() {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             q.z = -q.z;
         }
     }
@@ -110,7 +109,7 @@ public class Object3d {
     //swap left and right
     public void flipY() {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             q.y = -q.y;
         }
     }
@@ -118,14 +117,14 @@ public class Object3d {
     //swap front and back
     public void flipX() {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             q.x = -q.x;
         }
     }
 
     public void scaleBy(Vector3d v) {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d q = (Vector3d) points.elementAt(i);
+            Vector3d q = points.elementAt(i);
             q.x = q.x * v.x;
             q.y = q.y * v.y;
             q.z = q.z * v.z;
@@ -134,14 +133,14 @@ public class Object3d {
 
     public void scaleBy(float s) {
         for (int i = 0; i < points.size(); i++) {
-            Vector3d v = (Vector3d) points.elementAt(i);
+            Vector3d v = points.elementAt(i);
             Tools3d.scaleBy(v, s);
         }
     }
 
     public void setColor(Color c) {
         for (int i = 0; i < wires.size(); i++) {
-            PolyLine wire = (PolyLine) wires.elementAt(i);
+            PolyLine wire = wires.elementAt(i);
             wire.c = c;
         }
     }
@@ -152,7 +151,7 @@ public class Object3d {
         boolean found = false;
 
         for (int i = 0; i < points.size(); i++) {
-            q = (Vector3d) points.elementAt(i);
+            q = points.elementAt(i);
             if ((q.x == p.x) && (q.y == p.y) && (q.z == p.z)) {
                 index = i;
                 found = true;
@@ -165,7 +164,7 @@ public class Object3d {
         else {
             points.addElement(p);
             points_.addElement(new Vector3d());
-            inFOVs.addElement(new Boolean(false));
+            inFOVs.addElement(false);
             return points.size() - 1;
         }
     }
@@ -183,15 +182,12 @@ public class Object3d {
     public int addWire(Vector wirePoints, Color c, boolean isSolid, boolean hasNormal) {
         PolyLine wire;
         if (isSolid) {
-            Surface wireTmp = new Surface(this, wirePoints.size(), c);
-            wire = (PolyLine) wireTmp;
+            wire = new Surface(this, wirePoints.size(), c);
         } else
             wire = new PolyLine(this, wirePoints.size(), c);
 
-        int pointIndex = 0;
-
         for (int i = 0; i < wirePoints.size(); i++) {
-            pointIndex = this.addPoint((Vector3d) wirePoints.elementAt(i));
+            int pointIndex = this.addPoint((Vector3d) wirePoints.elementAt(i));
             wire.addPoint(pointIndex);
         }
 
@@ -211,8 +207,8 @@ public class Object3d {
 			makes tile either concave or convex.
 		*/
 
-        Vector wire1 = new Vector();
-        Vector wire2 = new Vector();
+        Vector<Vector3d> wire1 = new Vector<>();
+        Vector<Vector3d> wire2 = new Vector<>();
 
         float h1 = corners[0].z + corners[2].z;
         float h2 = corners[1].z + corners[3].z;
@@ -249,11 +245,11 @@ public class Object3d {
 
     public static void clone(Object3d from, Object3d to) {
         for (int i = 0; i < from.wires.size(); i++) {
-            PolyLine fromWire = (PolyLine) from.wires.elementAt(i);
-            Vector toWire = new Vector();
+            PolyLine fromWire = from.wires.elementAt(i);
+            Vector<Vector3d> toWire = new Vector<>();
             for (int j = 0; j < fromWire.points.length; j++) {
                 int k = fromWire.points[j];
-                Vector3d v = (Vector3d) from.points.elementAt(k);
+                Vector3d v = from.points.elementAt(k);
                 Vector3d q = new Vector3d(v.x, v.y, v.z);
                 toWire.addElement(q);
             }
@@ -267,8 +263,8 @@ public class Object3d {
         Vector3d v_;
 
         for (int i = 0; i < points.size(); i++) {
-            v = (Vector3d) points.elementAt(i);
-            v_ = (Vector3d) points_.elementAt(i);
+            v = points.elementAt(i);
+            v_ = points_.elementAt(i);
 
             //translate, rotate and project (only if visible)
             Tools3d.subtract(v, f, v_);
@@ -330,8 +326,8 @@ public class Object3d {
     void reverse() {
         for (int i = 0; i < wires.size() / 2 - 1; i++) {
             int j = wires.size() - 1 - i;
-            PolyLine wire1 = (PolyLine) wires.elementAt(i);
-            PolyLine wire2 = (PolyLine) wires.elementAt(j);
+            PolyLine wire1 = wires.elementAt(i);
+            PolyLine wire2 = wires.elementAt(j);
 
             wires.setElementAt(wire2, i);
             wires.setElementAt(wire1, j);
@@ -370,7 +366,7 @@ class PolyLine {
 
         setNormal();    //now ???
 
-        Vector3d p = (Vector3d) object3d.points.elementAt(points[0]);
+        Vector3d p = object3d.points.elementAt(points[0]);
         Vector3d ray = new Vector3d();
         Tools3d.subtract(p, object3d.app.cameraMan.getEye(), ray);
 
@@ -383,7 +379,7 @@ class PolyLine {
 
         Vector3d[] ps = new Vector3d[3];
         for (int i = 0; i < 3; i++)
-            ps[i] = (Vector3d) object3d.points.elementAt(points[i]);
+            ps[i] = object3d.points.elementAt(points[i]);
 
         Vector3d e1 = new Vector3d();
         Vector3d e2 = new Vector3d();
@@ -417,15 +413,15 @@ class PolyLine {
         g.setColor(this.getColor());
 
         for (int i = 0; i < numPoints - 1; i++) {
-            a = (Vector3d) object3d.points_.elementAt(points[i]);
-            b = (Vector3d) object3d.points_.elementAt(points[i + 1]);
+            a = object3d.points_.elementAt(points[i]);
+            b = object3d.points_.elementAt(points[i + 1]);
 
-            Boolean inFOV1 = (Boolean) object3d.inFOVs.elementAt(points[i]);
-            Boolean inFOV2 = (Boolean) object3d.inFOVs.elementAt(points[i + 1]);
+            Boolean inFOV1 = object3d.inFOVs.elementAt(points[i]);
+            Boolean inFOV2 = object3d.inFOVs.elementAt(points[i + 1]);
 
             //System.out.println(inFOV1.booleanValue() && inFOV2.booleanValue());
 
-            if (inFOV1.booleanValue() && inFOV2.booleanValue()) {
+            if (inFOV1 && inFOV2) {
                 g.drawLine((int) a.y, (int) a.z, (int) b.y, (int) b.z);
             }
         }
@@ -433,7 +429,7 @@ class PolyLine {
 
     Color getColor() {
         //fogging
-        Vector3d p = (Vector3d) object3d.points_.elementAt(points[0]);
+        Vector3d p = object3d.points_.elementAt(points[0]);
         return object3d.app.cameraMan.foggyColor(p.x, c_);
     }
 }
@@ -462,9 +458,9 @@ class Surface extends PolyLine {
         g.setColor(super.getColor());
 
         for (int i = 0; i < numPoints; i++) {
-            a = (Vector3d) object3d.points_.elementAt(points[i]);
-            Boolean inFOV = (Boolean) object3d.inFOVs.elementAt(points[i]);
-            ok = ok && inFOV.booleanValue();
+            a = object3d.points_.elementAt(points[i]);
+            Boolean inFOV = object3d.inFOVs.elementAt(points[i]);
+            ok = ok && inFOV;
             xs[i] = (int) (a.y);
             ys[i] = (int) (a.z);
         }

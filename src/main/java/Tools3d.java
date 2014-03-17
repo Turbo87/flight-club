@@ -44,7 +44,7 @@ public class Tools3d {
 
     //get points for unit square in given plane
     static Vector square(int face, float bottom, float left, float top, float right, float d) {
-        Vector sq = new Vector();
+        Vector<Vector3d> sq = new Vector<>();
         Vector3d[] ps = new Vector3d[5];
 
         for (int i = 0; i < 5; i++) {

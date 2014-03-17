@@ -13,7 +13,7 @@ import java.util.Vector;
 
 public class XCGame extends ModelViewer implements EventInterface {
 
-    Vector gaggle;
+    Vector<Glider> gaggle;
     GliderUser gliderUser;
     JetTrail jet1;
     JetTrail jet2;
@@ -38,7 +38,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         jet2 = new JetTrail(this, 0, JetTrail.TURN_RADIUS);
         jet2.makeFlyX();
 
-        gaggle = new Vector();
+        gaggle = new Vector<>();
         for (int i = 0; i < 10; i++) {
             Glider glider;
             if (i != 3 && i != 7) {
@@ -70,7 +70,7 @@ public class XCGame extends ModelViewer implements EventInterface {
 
     void launchGaggle() {
         for (int i = 0; i < gaggle.size(); i++) {
-            Glider glider = (Glider) gaggle.elementAt(i);
+            Glider glider = gaggle.elementAt(i);
             glider.takeOff(new Vector3d(4 - i, 4 - i, (float) 1.5));
         }
     }
@@ -88,7 +88,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         landscape.removeAll();
 
         gliderUser.triggerLoading = true;
-        Glider glider = (Glider) gaggle.elementAt(5);
+        Glider glider = gaggle.elementAt(5);
         glider.triggerLoading = false;
 
         launchUser();

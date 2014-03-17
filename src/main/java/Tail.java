@@ -49,7 +49,7 @@ class Tail extends Object3d {
             tail[i] = new Vector3d(p.x, p.y - (float) i / 1000, p.z);
         }
 
-        Vector tailWire = new Vector();
+        Vector<Vector3d> tailWire = new Vector<>();
         int j = 0;
         for (int i = wireEvery; i < tailLength; i++) {
             if (j < 2) tailWire.addElement(tail[i]);
@@ -57,7 +57,7 @@ class Tail extends Object3d {
 
             if (j == wireEvery + 1) {
                 super.addWire(tailWire, c, false);
-                tailWire = new Vector();
+                tailWire = new Vector<>();
                 tailWire.addElement(tail[i]);
                 j = 1;
             }

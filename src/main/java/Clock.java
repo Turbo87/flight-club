@@ -5,7 +5,7 @@ import java.util.Vector;
 public class Clock implements Runnable {
     Thread ticker = null;
     int sleepTime;
-    Vector observers = new Vector();
+    Vector<ClockObserver> observers = new Vector<>();
     public long currentTick = 0;
     public long lastTick = 0;
     public long startTick = 0;

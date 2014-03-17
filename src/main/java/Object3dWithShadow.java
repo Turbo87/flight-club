@@ -48,7 +48,7 @@ public class Object3dWithShadow extends Object3d {
         shadowCasters[numShadows] = super.addWire(wirePoints, c, isSolid, hasNormal);
 
         //create shadow
-        Vector shadowPoints = new Vector();
+        Vector<Vector3d> shadowPoints = new Vector<>();
 
         //reverse point order so shadow faces
         //up ?? assumes shadow caster faces down always ??
@@ -62,7 +62,7 @@ public class Object3dWithShadow extends Object3d {
         shadows[numShadows] = new Surface(this, shadowPoints.size(), color);
 
         for (int i = 0; i < shadowPoints.size(); i++) {
-            int pointIndex = super.addPoint((Vector3d) shadowPoints.elementAt(i));
+            int pointIndex = super.addPoint(shadowPoints.elementAt(i));
             shadows[numShadows].addPoint(pointIndex);
         }
 
@@ -89,8 +89,8 @@ public class Object3dWithShadow extends Object3d {
             Surface surface = (Surface) wires.elementAt(shadowCasters[i]);
 
             for (int j = surface.numPoints - 1; j >= 0; j--) {
-                Vector3d p = (Vector3d) points.elementAt(surface.points[j]);
-                Vector3d q = (Vector3d) points.elementAt(shadows[i].points[surface.numPoints - 1 - j]);//??
+                Vector3d p = points.elementAt(surface.points[j]);
+                Vector3d q = points.elementAt(shadows[i].points[surface.numPoints - 1 - j]);//??
                 Tools3d.clone(p, q);
                 //float doff = p.z/2;
                 //q.x -= doff;
@@ -122,11 +122,11 @@ public class Object3dWithShadow extends Object3d {
         for (int i = 0; i < MAX_SHADOWS; i++) {
             if (from.shadowCasters[i] != -1) {
 
-                PolyLine fromWire = (PolyLine) from.wires.elementAt(from.shadowCasters[i]);
-                Vector toWire = new Vector();
+                PolyLine fromWire = from.wires.elementAt(from.shadowCasters[i]);
+                Vector<Vector3d> toWire = new Vector<>();
                 for (int j = 0; j < fromWire.points.length; j++) {
                     int k = fromWire.points[j];
-                    Vector3d v = (Vector3d) from.points.elementAt(k);
+                    Vector3d v = from.points.elementAt(k);
                     Vector3d q = new Vector3d(v.x, v.y, v.z);
                     toWire.addElement(q);
                 }

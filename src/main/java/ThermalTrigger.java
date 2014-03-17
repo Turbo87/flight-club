@@ -22,7 +22,7 @@ class ThermalTrigger implements ClockObserver {
     int cloudDuration;
     int cloudStrength;
     int dummyClick = 0;
-    Vector clouds;
+    Vector<Cloud> clouds;
     int bubbles;//how many thermals per cycle (1 or 2)
 
     static final float SPREAD = (float) 1.2;    //0.5
@@ -50,7 +50,7 @@ class ThermalTrigger implements ClockObserver {
 
         t = (int) Tools3d.rnd(0, cycleLength - 1);
         nextCloud = (int) Tools3d.rnd(0, 2);
-        clouds = new Vector();
+        clouds = new Vector<>();
 
         //more cloud on center tiles
         if (x < Landscape.TILE_WIDTH / 2
@@ -110,7 +110,7 @@ class ThermalTrigger implements ClockObserver {
 
         //hurry up clouds
         for (int i = 0; i < clouds.size(); i++) {
-            Cloud cloud = (Cloud) clouds.elementAt(i);
+            Cloud cloud = clouds.elementAt(i);
             if (cloud.age < cloud.t_nose + cloud.t_mature) {
                 if (cloud.age > cloud.t_nose)
                     cloud.t_mature = (int) cloud.age - cloud.t_nose;
@@ -129,7 +129,7 @@ class ThermalTrigger implements ClockObserver {
         //hence kill them gradually
         //nb this is wanted for thermalling across tile boundary anyway
         for (int i = 0; i < clouds.size(); i++) {
-            Cloud cloud = (Cloud) clouds.elementAt(i);
+            Cloud cloud = clouds.elementAt(i);
             //cloud.destroyMe();
             //found bug - do not modify contents of a vector while looping thru it!
             cloud.age = cloud.t_nose + cloud.t_mature + cloud.t_tail;

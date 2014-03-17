@@ -35,14 +35,14 @@ class GliderShape2 extends Object3dWithShadow {
     }
 
     private void init() {
-        Vector wire;
+        Vector<Vector3d> wire;
 
         float y = (float) 0.2;//chord
         float z = y * (float) 0.3;//nose a bit up
         float a = (float) 0.15;//anhedral
         float s = (float) 0.4;//sweep
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
         wire.addElement(new Vector3d(1, y - s, z + a));
         wire.addElement(new Vector3d(1, -s, a));
@@ -50,7 +50,7 @@ class GliderShape2 extends Object3dWithShadow {
         wire.addElement(new Vector3d(0, y, z));
         addWire(wire, color, true, true);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
         wire.addElement(new Vector3d(0, 0, 0));
         wire.addElement(new Vector3d(-1, -s, a));
@@ -60,7 +60,7 @@ class GliderShape2 extends Object3dWithShadow {
 
         //crazy bug - shadow cocks up tips !
         //same points but reverse order for underside
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
         wire.addElement(new Vector3d(-1, y - s, z + a));
         wire.addElement(new Vector3d(-1, -s, a));
@@ -68,7 +68,7 @@ class GliderShape2 extends Object3dWithShadow {
         wire.addElement(new Vector3d(0, y, z));
         addWireWithShadow(wire, color, true, true);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, z));
         wire.addElement(new Vector3d(0, 0, 0));
         wire.addElement(new Vector3d(1, -s, a));

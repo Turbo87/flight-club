@@ -7,13 +7,13 @@ import java.util.Vector;
 */
 
 class EventManager {
-    protected Vector objs;
+    protected Vector<Object> objs;
     final static int MAX_Q = 20;
     KeyEvent[] queue = new KeyEvent[MAX_Q];
     int queueNum = 0;
 
     public EventManager() {
-        objs = new Vector();
+        objs = new Vector<>();
     }
 
     /*

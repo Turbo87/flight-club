@@ -16,7 +16,7 @@ import java.util.Vector;
 */
 
 class Sky {
-    private Vector clouds;    //hills in order from south to north
+    private Vector<Cloud> clouds;    //hills in order from south to north
     ModelViewer app;
     private static float cloudBase;
 
@@ -26,7 +26,7 @@ class Sky {
 
     public Sky(ModelViewer theApp) {
         app = theApp;
-        clouds = new Vector();
+        clouds = new Vector<>();
         setLow();
     }
 

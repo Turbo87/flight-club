@@ -97,10 +97,10 @@ class Cloud implements CameraSubject, ClockObserver {
     }
 
     private void buildSurfaces() {
-        Vector wire;
+        Vector<Vector3d> wire;
 
         //front
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(corners[1]);
         wire.addElement(corners[0]);
         wire.addElement(corners[3]);
@@ -109,7 +109,7 @@ class Cloud implements CameraSubject, ClockObserver {
         object3d.addWire(wire, color, solid);
 
         //back
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(corners[4]);
         wire.addElement(corners[5]);
         wire.addElement(corners[6]);
@@ -118,7 +118,7 @@ class Cloud implements CameraSubject, ClockObserver {
         object3d.addWire(wire, color, solid);
 
         //bot
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(corners[0]);
         wire.addElement(corners[4]);
         wire.addElement(corners[7]);
@@ -137,7 +137,7 @@ class Cloud implements CameraSubject, ClockObserver {
         object3d.addTile(topCorners, color, true, false);
 
         //right
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(corners[0]);
         wire.addElement(corners[1]);
         wire.addElement(corners[5]);
@@ -146,7 +146,7 @@ class Cloud implements CameraSubject, ClockObserver {
         object3d.addWire(wire, color, solid);
 
         //left
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(corners[2]);
         wire.addElement(corners[3]);
         wire.addElement(corners[7]);

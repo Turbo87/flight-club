@@ -25,18 +25,18 @@ class GliderShape extends Object3dWithShadow {
     }
 
     private void init() {
-        Vector wire;
+        Vector<Vector3d> wire;
         float z = (float) 0.5;//1
         float y = (float) 0.7;//1
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(1, 0, 0));
         wire.addElement(new Vector3d(0, 0, z));
         wire.addElement(new Vector3d(0, y, 0));
         wire.addElement(new Vector3d(1, 0, 0));
         addWire(wire, color, true);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, y, 0));
         wire.addElement(new Vector3d(0, 0, z));
         wire.addElement(new Vector3d(-1, 0, 0));
@@ -44,14 +44,14 @@ class GliderShape extends Object3dWithShadow {
         addWire(wire, color, true);
 
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(0, 0, z));
         wire.addElement(new Vector3d(1, 0, 0));
         wire.addElement(new Vector3d(-1, 0, 0));
         wire.addElement(new Vector3d(0, 0, z));
         addWire(wire, color, true, true);
 
-        wire = new Vector();
+        wire = new Vector<>();
         wire.addElement(new Vector3d(1, 0, 0));
         wire.addElement(new Vector3d(0, y, 0));
         wire.addElement(new Vector3d(-1, 0, 0));
