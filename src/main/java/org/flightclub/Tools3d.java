@@ -8,7 +8,8 @@
 
 package org.flightclub;
 
-import java.awt.Color;
+import org.flightclub.compat.Color;
+
 import java.util.Vector;
 
 /**
@@ -131,22 +132,22 @@ public class Tools3d {
     static Object3d unitCube(ModelViewer theApp, boolean isSolid) {
         Object3d cube = new Object3d(theApp);
         float d = (float) 0.5;
-        Color c = Color.green;
+        Color c = Color.GREEN;
 
         cube.addWire(unitSquare(XYF, d), c, isSolid);
-        c = Color.red;
+        c = Color.RED;
         cube.addWire(unitSquare(XYB, -d), c, isSolid);
-        c = Color.blue;
+        c = Color.BLUE;
 
         cube.addWire(unitSquare(YZF, d), c, isSolid);
-        c = Color.magenta;
+        c = Color.MAGENTA;
         cube.addWire(unitSquare(YZB, -d), c, isSolid);
-        c = Color.orange;
+        c = Color.ORANGE;
 
         cube.addWire(unitSquare(ZXF, d), c, isSolid);
-        c = Color.pink;
+        c = Color.PINK;
         cube.addWire(unitSquare(ZXB, -d), c, isSolid);
-        c = Color.yellow;
+        c = Color.YELLOW;
 
         return cube;
     }

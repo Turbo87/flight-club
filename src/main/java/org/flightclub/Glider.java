@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.Color;
+import org.flightclub.compat.Color;
 
 /**
  * a glider that sniffs out lift
@@ -58,7 +58,7 @@ public class Glider extends FlyingBody {
         if (!isUser) {
             gliderShape = new GliderShape2(app, false);
         } else {
-            gliderShape = new GliderShape2(app, false, Color.yellow);
+            gliderShape = new GliderShape2(app, false, Color.YELLOW);
         }
 
         this.init(gliderShape, p);
@@ -71,7 +71,7 @@ public class Glider extends FlyingBody {
         //sailplane/rigid
         super(app, SPEED * (float) 1.5, TURN_RADIUS * (float) 1.2, isUser);
 
-        GliderShape2 gliderShape2 = new GliderShape2(app, false, Color.pink);
+        GliderShape2 gliderShape2 = new GliderShape2(app, false, Color.PINK);
 
         this.init(gliderShape2, p);
         bodyHeight = GliderShape2.height;
@@ -139,7 +139,7 @@ public class Glider extends FlyingBody {
     @Override
     protected void createTail() {
         int tailLength = 40;
-        tail = new Tail(app, tailLength, Color.lightGray);
+        tail = new Tail(app, tailLength, Color.LIGHT_GRAY);
         tail.init(p);
     }
 

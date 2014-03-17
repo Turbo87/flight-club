@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import java.awt.Color;
+import org.flightclub.compat.Color;
 
 /*
   a dot with a position and velocity. also...
@@ -65,7 +65,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
 
     protected void createTail() {
         int tailLength = 25;
-        tail = new Tail(app, tailLength, Color.lightGray);
+        tail = new Tail(app, tailLength, Color.LIGHT_GRAY);
         tail.init(p);
     }
 

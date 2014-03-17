@@ -8,7 +8,8 @@
 
 package org.flightclub;
 
-import java.awt.Color;
+import org.flightclub.compat.Color;
+
 import java.util.Vector;
 
 public class GliderShape2 extends Object3dWithShadow {

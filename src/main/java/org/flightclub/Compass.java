@@ -9,8 +9,8 @@
 package org.flightclub;
 
 import org.flightclub.compat.Graphics;
+import org.flightclub.compat.Color;
 
-import java.awt.Color;
 import java.awt.Font;
 
 /**
@@ -42,8 +42,8 @@ public class Compass {
     private float vy = 1;
 
     final float[][] m = new float[2][2];
-    final Color color = Color.lightGray;
-    final Color color2 = Color.gray;
+    final Color color = Color.LIGHT_GRAY;
+    final Color color2 = Color.GRAY;
 
     // default radius of 10
     static final int SIZE_DEFAULT = 20;

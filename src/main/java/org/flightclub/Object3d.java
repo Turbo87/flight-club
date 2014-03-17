@@ -9,8 +9,8 @@
 package org.flightclub;
 
 import org.flightclub.compat.Graphics;
+import org.flightclub.compat.Color;
 
-import java.awt.Color;
 import java.util.Vector;
 
 public class Object3d {

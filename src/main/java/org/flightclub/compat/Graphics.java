@@ -1,6 +1,5 @@
 package org.flightclub.compat;
 
-import java.awt.Color;
 import java.awt.Font;
 
 public class Graphics {
@@ -12,7 +11,7 @@ public class Graphics {
     }
 
     public void setColor(Color color) {
-        g.setColor(color);
+        g.setColor(color.getColor());
     }
 
     public void drawLine(int x1, int y1, int x2, int y2) {

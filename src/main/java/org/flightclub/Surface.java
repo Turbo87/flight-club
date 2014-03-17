@@ -9,8 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Graphics;
-
-import java.awt.Color;
+import org.flightclub.compat.Color;
 
 public class Surface extends PolyLine {
 
