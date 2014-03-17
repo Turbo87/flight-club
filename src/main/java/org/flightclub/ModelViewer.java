@@ -13,6 +13,9 @@ import java.awt.BorderLayout;
 import java.awt.Panel;
 
 public class ModelViewer extends Panel implements ClockObserver {
+
+    protected static final int FRAME_RATE = 25;
+
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
     EventManager eventManager = null;
@@ -25,7 +28,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     DataSlider slider = null;
     Clock clock = null;
     boolean pendingStart = false;
-    protected static final int frameRate = 25;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
     protected float timePerFrame = (float) (1.0 / 25);
 
@@ -51,7 +53,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     protected void createClock() {
-        clock = new Clock(1000 / frameRate);
+        clock = new Clock(1000 / FRAME_RATE);
         clock.addObserver(this);
         if (pendingStart) start();
     }
@@ -109,6 +111,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     int getFrameRate() {
-        return frameRate;
+        return FRAME_RATE;
     }
 }
