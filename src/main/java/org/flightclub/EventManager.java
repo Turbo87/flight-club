@@ -9,6 +9,8 @@
 package org.flightclub;
 
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Vector;
 
 /**
@@ -17,8 +19,7 @@ import java.util.Vector;
 public class EventManager {
     protected final Vector<EventInterface> objs;
     final static int MAX_Q = 20;
-    final KeyEvent[] queue = new KeyEvent[MAX_Q];
-    int queueNum = 0;
+    Queue<KeyEvent> queue = new LinkedList<KeyEvent>();
 
     public EventManager() {
         objs = new Vector<>();
@@ -40,9 +41,8 @@ public class EventManager {
      * add event to queue
      */
     public boolean handleEvent(KeyEvent e) {
-        if (queueNum < MAX_Q) {
-            queue[queueNum] = e;
-            queueNum++;
+        if (queue.size() < MAX_Q) {
+            queue.add(e);
             return true;
         } else {
             return false;
@@ -53,8 +53,9 @@ public class EventManager {
      * process event at head of the queue
      */
     public void tick() {
-        KeyEvent e = popQueue();
-        if (e == null) return;
+        KeyEvent e = queue.poll();
+        if (e == null)
+            return;
 
         for (int i = 0; i < objs.size(); i++) {
             EventInterface ei = objs.elementAt(i);
@@ -72,23 +73,5 @@ public class EventManager {
                 break;
             default:
         }
-    }
-
-    /**
-     * return event at head of the queue or null if queue is empty
-     */
-    KeyEvent popQueue() {
-        if (queueNum == 0) return null;
-
-        KeyEvent e = queue[0];
-
-        //shuffle up one
-        for (int i = 0; i < queueNum - 1; i++) {
-            queue[i] = queue[i + 1];
-        }
-
-        queue[queueNum - 1] = null;
-        queueNum--;
-        return e;
     }
 }
