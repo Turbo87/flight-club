@@ -146,12 +146,7 @@ class MovementManager {
     }
 
     boolean joinedCircuit() {
-
-        if (circuit == null)
-            return false;
-        else
-            //have we gone round first point yet
-            return joinedCircuit;
+        return circuit != null && joinedCircuit;
     }
 
     float headForTarget() {
