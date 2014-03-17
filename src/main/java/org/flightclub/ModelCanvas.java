@@ -103,7 +103,7 @@ public class ModelCanvas extends Canvas {
     public void paint(Graphics g) {
         if (imgBuffer == null) return;
 
-        updateImgBuffer();
+        updateImgBuffer(graphicsBuffer);
         g.drawImage(imgBuffer, 0, 0, this);
     }
 
@@ -112,12 +112,12 @@ public class ModelCanvas extends Canvas {
         paint(g);
     }
 
-    public void updateImgBuffer() {
+    public void updateImgBuffer(Graphics g) {
         if (backImg == null) {
-            graphicsBuffer.setColor(backColor);
-            graphicsBuffer.fillRect(0, 0, width, height);
+            g.setColor(backColor);
+            g.fillRect(0, 0, width, height);
         } else
-            graphicsBuffer.drawImage(backImg, 0, 0, this);
+            g.drawImage(backImg, 0, 0, this);
 
         //TODO optimize - build vector of objs in FOV, need only draw these
         app.cameraMan.setMatrix();
@@ -134,8 +134,8 @@ public class ModelCanvas extends Canvas {
         //Text
         if (app.textMessage != null) {
             Font font = new Font("SansSerif", Font.PLAIN, 10);
-            graphicsBuffer.setFont(font);
-            graphicsBuffer.setColor(Color.lightGray);
+            g.setFont(font);
+            g.setColor(Color.lightGray);
 
             String s;
             if (!app.clock.paused) {
@@ -143,15 +143,15 @@ public class ModelCanvas extends Canvas {
             } else {
                 s = app.textMessage + " [ paused ]";
             }
-            graphicsBuffer.drawString(s, 15, height - 15);
+            g.drawString(s, 15, height - 15);
         }
 
         if (app.compass != null) {
-            app.compass.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
+            app.compass.draw(new org.flightclub.compat.Graphics(g));
         }
 
         if (app.slider != null) {
-            app.slider.draw(new org.flightclub.compat.Graphics(graphicsBuffer));
+            app.slider.draw(new org.flightclub.compat.Graphics(g));
         }
 
     }
