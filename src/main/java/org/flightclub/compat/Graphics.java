@@ -1,7 +1,5 @@
 package org.flightclub.compat;
 
-import java.awt.Font;
-
 public class Graphics {
 
     private final java.awt.Graphics g;
@@ -19,7 +17,7 @@ public class Graphics {
     }
 
     public void setFont(Font font) {
-        g.setFont(font);
+        g.setFont(font.getFont());
     }
 
     public void drawString(String str, int x, int y) {
