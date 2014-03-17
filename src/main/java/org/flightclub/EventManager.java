@@ -15,7 +15,7 @@ import java.util.Vector;
  * default event handler
  */
 public class EventManager {
-    protected final Vector<Object> objs;
+    protected final Vector<EventInterface> objs;
     final static int MAX_Q = 20;
     final KeyEvent[] queue = new KeyEvent[MAX_Q];
     int queueNum = 0;
@@ -28,12 +28,12 @@ public class EventManager {
      * add an object to the list of objects to be
      * notified when an event happens
      */
-    public void addNotification(Object o) {
-        objs.addElement(o);
+    public void addNotification(EventInterface ei) {
+        objs.addElement(ei);
     }
 
-    public void removeNotification(Object o) {
-        objs.removeElement(o);
+    public void removeNotification(EventInterface ei) {
+        objs.removeElement(ei);
     }
 
     /**
@@ -57,7 +57,7 @@ public class EventManager {
         if (e == null) return;
 
         for (int i = 0; i < objs.size(); i++) {
-            EventInterface ei = (EventInterface) objs.elementAt(i);
+            EventInterface ei = objs.elementAt(i);
             callEventHelper(ei, e);
         }
     }
