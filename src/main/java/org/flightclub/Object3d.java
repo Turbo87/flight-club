@@ -242,7 +242,7 @@ public class Object3d {
             Vector<Vector3d> toWire = new Vector<>();
             for (int k : fromWire.points) {
                 Vector3d v = from.points.elementAt(k);
-                toWire.addElement(v.cloneMe());
+                toWire.addElement(new Vector3d(v));
             }
 
             boolean hasNorm = (fromWire.normal != null);
