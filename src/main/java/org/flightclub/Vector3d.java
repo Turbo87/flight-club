@@ -14,21 +14,15 @@ public final class Vector3d {
     public float z;
 
     public Vector3d() {
-        x = 0;
-        y = 0;
-        z = 0;
+        set(0, 0, 0);
     }
 
     public Vector3d(float inX, float inY, float inZ) {
-        x = inX;
-        y = inY;
-        z = inZ;
+        set(inX, inY, inZ);
     }
 
     public Vector3d(double inX, double inY, double inZ) {
-        x = (float) inX;
-        y = (float) inY;
-        z = (float) inZ;
+        set((float) inX, (float) inY, (float) inZ);
     }
 
     public Vector3d(Vector3d other) {
@@ -63,10 +57,15 @@ public final class Vector3d {
         return this;
     }
 
+    public Vector3d set(float x, float y, float z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        return this;
+    }
+
     public Vector3d set(Vector3d other) {
-        x = other.x;
-        y = other.y;
-        z = other.z;
+        set(other.x, other.y, other.z);
         return this;
     }
 
