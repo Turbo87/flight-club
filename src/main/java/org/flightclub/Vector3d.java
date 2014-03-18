@@ -70,9 +70,10 @@ public final class Vector3d {
         return this;
     }
 
-    public void subtract(Vector3d other) {
+    public Vector3d subtract(Vector3d other) {
         x -= other.x;
         y -= other.y;
         z -= other.z;
+        return this;
     }
 }
