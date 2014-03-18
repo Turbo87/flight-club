@@ -227,8 +227,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         if (moveManager.joinedCircuit()) return;
         if (app.landscape == null) return;
 
-        Vector3d p_ = new Vector3d();
-        p_.set(p).add(v);
+        Vector3d p_ = new Vector3d(p).add(v);
 
         float h = p.z - app.landscape.getHeight(p.x, p.y);
         float h_ = p.z - app.landscape.getHeight(p_.x, p_.y);
@@ -244,8 +243,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
             Vector3d w = new Vector3d();
             Tools3d.cross(v, new Vector3d(0, 0, 1), w);
             w.scaleBy(ds / my_turn_radius);
-            Vector3d p__ = new Vector3d();
-            p__.set(p_).add(w);
+            Vector3d p__ = new Vector3d(p_).add(w);
             float h__ = p.z - app.landscape.getHeight(p__.x, p__.y);
             if (h__ >= h_) {
                 makeTurn(1); //turn right
