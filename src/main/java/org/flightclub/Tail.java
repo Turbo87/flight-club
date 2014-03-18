@@ -73,9 +73,9 @@ public class Tail extends Object3d {
             //newP is the current position
             for (int i = 0; i < tailLength - 1; i++) {
                 int j = tailLength - 1 - i;
-                Tools3d.clone(tail[j - 1], tail[j]);
+                tail[j].set(tail[j - 1]);
             }
-            Tools3d.clone(newP, tail[0]);
+            tail[0].set(newP);
         }
     }
 
@@ -86,7 +86,7 @@ public class Tail extends Object3d {
      */
     public void reset(Vector3d newP) {
         for (int i = 0; i < tailLength - 1; i++) {
-            Tools3d.clone(newP, tail[i]);
+            tail[i].set(newP);
         }
     }
 

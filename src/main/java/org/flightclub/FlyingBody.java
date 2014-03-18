@@ -53,9 +53,9 @@ public class FlyingBody extends FlyingDot {
             Vector3d yp1 = new Vector3d();
             Vector3d zp1 = new Vector3d();
 
-            Tools3d.clone(axisX, xp1);
-            Tools3d.clone(axisY, yp1);
-            Tools3d.clone(axisZ, zp1);
+            xp1.set(axisX);
+            yp1.set(axisY);
+            zp1.set(axisZ);
 
             xp1.scaleBy(p0.x);
             yp1.scaleBy(p0.y);

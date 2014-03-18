@@ -120,7 +120,7 @@ public class Tools3d {
                 break;
         }
 
-        Tools3d.clone(ps[0], ps[4]);
+        ps[4].set(ps[0]);
         return sq;
     }
 
@@ -268,12 +268,6 @@ public class Tools3d {
         else a_.z = a.z / scale;
 
         return true;
-    }
-
-    public static void clone(Vector3d a, Vector3d b) {
-        b.x = a.x;
-        b.y = a.y;
-        b.z = a.z;
     }
 
     public static void cross(Vector3d a, Vector3d b, Vector3d c) {

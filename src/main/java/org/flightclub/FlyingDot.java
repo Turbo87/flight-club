@@ -115,7 +115,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Tools3d.cross(v, new Vector3d(0, 0, 1), axisX);
         axisX.scaleBy(1 / axisX.length());
 
-        Tools3d.clone(v, axisY);
+        axisY.set(v);
         axisY.scaleBy(1 / axisY.length());
 
         Tools3d.cross(axisX, axisY, axisZ);
@@ -130,17 +130,17 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Vector3d dx = new Vector3d();
         Vector3d dz = new Vector3d();
 
-        Tools3d.clone(axisX, axisX0);
-        Tools3d.clone(axisZ, axisZ0);
+        axisX0.set(axisX);
+        axisZ0.set(axisZ);
 
-        Tools3d.clone(axisX0, dx);
-        Tools3d.clone(axisZ0, dz);
+        dx.set(axisX0);
+        dz.set(axisZ0);
         dx.scaleBy(up.x);
         dz.scaleBy(up.z);
         axisZ.set(dx).add(dz);
 
-        Tools3d.clone(axisX0, dx);
-        Tools3d.clone(axisZ0, dz);
+        dx.set(axisX0);
+        dz.set(axisZ0);
         dx.scaleBy(up.z);
         dz.scaleBy(-up.x);
         axisX.set(dx).add(dz);

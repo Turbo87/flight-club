@@ -320,7 +320,7 @@ public class CameraMan implements EventInterface {
 	*/
         Vector3d ray = new Vector3d();
         ray.set(eye).subtract(focus);
-        Tools3d.clone(f, focus);
+        focus.set(f);
         eye.set(ray).add(focus);
     }
 

@@ -92,7 +92,7 @@ public class Object3dWithShadow extends Object3d {
             for (int j = surface.numPoints - 1; j >= 0; j--) {
                 Vector3d p = points.elementAt(surface.points[j]);
                 Vector3d q = points.elementAt(shadows[i].points[surface.numPoints - 1 - j]);//??
-                Tools3d.clone(p, q);
+                q.set(p);
                 //float doff = p.z/2;
                 //q.x -= doff;
                 //q.y += 0;;
