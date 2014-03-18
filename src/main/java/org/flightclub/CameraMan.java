@@ -166,11 +166,9 @@ public class CameraMan implements EventInterface {
         if (mode != WATCH_PLAN) {
             Vector3d eNew = cameraSubject.getEye();
             Vector3d fNew = cameraSubject.getFocus();
-            Vector3d de = new Vector3d();
-            Vector3d df = new Vector3d();
 
-            de.set(eNew).subtract(eyeGoto);
-            df.set(fNew).subtract(focusGoto);
+            Vector3d de = eNew.subtracted(eyeGoto);
+            Vector3d df = fNew.subtracted(focusGoto);
 
             eye.add(de);
             focus.add(df);
@@ -218,11 +216,8 @@ public class CameraMan implements EventInterface {
         eyeGoto = cameraSubject.getEye();
         focusGoto = cameraSubject.getFocus();
 
-        deye = new Vector3d();
-        dfocus = new Vector3d();
-
-        deye.set(eyeGoto).subtract(eye);
-        dfocus.set(focusGoto).subtract(focus);
+        deye = eyeGoto.subtracted(eye);
+        dfocus = focusGoto.subtracted(focus);
 
 	/*
 	  eye accelerates from 0 upto velocity
@@ -299,8 +294,7 @@ public class CameraMan implements EventInterface {
         //Vector3d ray = new Vector3d();
         //Tools3d.subtract(eye,focus,ray);
 
-        Vector3d ray = new Vector3d();
-        ray.set(eye).subtract(focus);
+        Vector3d ray = eye.subtracted(focus);
 
         //transform ray
         float[][] m = Tools3d.rotateX(new Vector3d(1, dtheta, 0));
@@ -318,8 +312,7 @@ public class CameraMan implements EventInterface {
 	/*
 	  move focus, maintaining angle of view
 	*/
-        Vector3d ray = new Vector3d();
-        ray.set(eye).subtract(focus);
+        Vector3d ray = eye.subtracted(focus);
         focus.set(f);
         eye.set(ray).add(focus);
     }
@@ -329,8 +322,7 @@ public class CameraMan implements EventInterface {
 	  rotation such that eye is looking
 	  down +x axis at origin
 	*/
-        Vector3d ray = new Vector3d();
-        ray.set(eye).subtract(focus);
+        Vector3d ray = eye.subtracted(focus);
         matrix = Tools3d.rotateX(ray);
         distance = ray.length();
     }

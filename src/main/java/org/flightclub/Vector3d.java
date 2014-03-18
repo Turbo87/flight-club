@@ -76,4 +76,9 @@ public final class Vector3d {
         z -= other.z;
         return this;
     }
+
+    /** Returns a copy of this instance subtracted by the other instance. */
+    public Vector3d subtracted(Vector3d other) {
+        return new Vector3d().set(this).subtract(other);
+    }
 }
