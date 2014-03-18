@@ -31,6 +31,10 @@ public final class Vector3d {
         z = (float) inZ;
     }
 
+    public Vector3d(Vector3d other) {
+        set(other);
+    }
+
     public float length() {
         return (float) Math.hypot(Math.hypot(x, y), z);
     }

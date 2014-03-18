@@ -49,17 +49,9 @@ public class FlyingBody extends FlyingDot {
             Vector3d p1 = body1.points.elementAt(i);
             Vector3d p0 = body0.points.elementAt(i);
 
-            Vector3d xp1 = new Vector3d();
-            Vector3d yp1 = new Vector3d();
-            Vector3d zp1 = new Vector3d();
-
-            xp1.set(axisX);
-            yp1.set(axisY);
-            zp1.set(axisZ);
-
-            xp1.scaleBy(p0.x);
-            yp1.scaleBy(p0.y);
-            zp1.scaleBy(p0.z);
+            Vector3d xp1 = new Vector3d(axisX).scaleBy(p0.x);
+            Vector3d yp1 = new Vector3d(axisY).scaleBy(p0.y);
+            Vector3d zp1 = new Vector3d(axisZ).scaleBy(p0.z);
 
             p1.x = xp1.x + yp1.x + zp1.x;
             p1.y = xp1.y + yp1.y + zp1.y;
