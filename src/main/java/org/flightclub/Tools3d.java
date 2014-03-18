@@ -187,7 +187,7 @@ public class Tools3d {
             m1[1][1] = m1[0][0];
         }
 
-        r = length(v);
+        r = v.length();
         if (r_ != 0) {
             m2[0][0] = r_ / r;
             m2[0][2] = v.z / r;
@@ -282,10 +282,6 @@ public class Tools3d {
         c.z = a.z - b.z;
     }
 
-    public static float length(Vector3d v) {
-        return (float) Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-    }
-
     public static void scaleBy(Vector3d v, float scale) {
         v.x *= scale;
         v.y *= scale;
@@ -309,14 +305,14 @@ public class Tools3d {
     }
 
     public static void makeUnit(Vector3d v) {
-        float scale = 1 / Tools3d.length(v);
+        float scale = 1 / v.length();
         v.x *= scale;
         v.y *= scale;
         v.z *= scale;
     }
 
     public static void scaleToLength(Vector3d v, float length) {
-        float scale = length / Tools3d.length(v);
+        float scale = length / v.length();
         v.x *= scale;
         v.y *= scale;
         v.z *= scale;

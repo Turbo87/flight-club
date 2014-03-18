@@ -333,7 +333,7 @@ public class CameraMan implements EventInterface {
         Vector3d ray = new Vector3d();
         Tools3d.subtract(eye, focus, ray);
         matrix = Tools3d.rotateX(ray);
-        distance = Tools3d.length(ray);
+        distance = ray.length();
     }
 
     public void scaleToScreen(Vector3d v_) {
