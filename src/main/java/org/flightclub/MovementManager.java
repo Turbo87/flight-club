@@ -189,7 +189,7 @@ public class MovementManager {
         }
 
         // are we flying ~ staight towards target ?
-        float dot = Tools3d.dot(u, v) / (flyingDot.ds * d);
+        float dot = u.dot(v) / (flyingDot.ds * d);
         if (dot > 0.99) {
             return 0;
         }
@@ -249,7 +249,7 @@ public class MovementManager {
         Tools3d.cross(r, flyingDot.v, cross);
 
         float dperp = cross.length() / flyingDot.ds;
-        float dot = Tools3d.dot(r, flyingDot.v);
+        float dot = r.dot(flyingDot.v);
 
         if (cross.z >= 0) {
 

@@ -160,10 +160,6 @@ public class Tools3d {
         return new float[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     }
 
-    static float dot(Vector3d a, Vector3d b) {
-        return a.x * b.x + a.y * b.y + a.z * b.z;
-    }
-
     public static float[][] rotateX(Vector3d v) {
 		/*
 		 * rotation matix: rotate the given point so that it lies on the x axis

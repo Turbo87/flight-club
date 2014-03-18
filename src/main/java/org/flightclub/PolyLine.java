@@ -49,7 +49,7 @@ public class PolyLine {
         Vector3d p = object3d.points.elementAt(points[0]);
         Vector3d ray = p.subtracted(object3d.app.cameraMan.getEye());
 
-        return (Tools3d.dot(normal, ray) >= 0);
+        return normal.dot(ray) >= 0;
     }
 
     void setNormal() {

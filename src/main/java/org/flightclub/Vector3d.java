@@ -80,4 +80,8 @@ public final class Vector3d {
     public Vector3d subtracted(Vector3d other) {
         return new Vector3d().set(this).subtract(other);
     }
+
+    public float dot(Vector3d other) {
+        return x * other.x + y * other.y + z * other.z;
+    }
 }

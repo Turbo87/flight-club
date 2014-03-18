@@ -136,7 +136,7 @@ public class CameraMan implements EventInterface {
 	  with this normal - take dot product
 	*/
 
-        float dot = Tools3d.dot(lightRay, inNormal);
+        float dot = lightRay.dot(inNormal);
         dot = (-dot + 1) / 2;
 
         //fri 1 mar 2002 - some under lighting for clouds
