@@ -44,4 +44,12 @@ public final class Vector3d {
     Vector3d cloneMe() {
         return new Vector3d(x, y, z);
     }
+
+    public void scaleToLength(float length) {
+        scaleBy(length / this.length());
+    }
+
+    public void makeUnit() {
+        scaleToLength(1);
+    }
 }

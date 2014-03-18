@@ -297,19 +297,4 @@ public class Tools3d {
     public static double rnd(double lower, double upper) {
         return Math.random() * (upper - lower) + lower;
     }
-
-    public static void makeUnit(Vector3d v) {
-        float scale = 1 / v.length();
-        v.x *= scale;
-        v.y *= scale;
-        v.z *= scale;
-    }
-
-    public static void scaleToLength(Vector3d v, float length) {
-        float scale = length / v.length();
-        v.x *= scale;
-        v.y *= scale;
-        v.z *= scale;
-    }
-
 }

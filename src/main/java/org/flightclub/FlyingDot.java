@@ -216,7 +216,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Tools3d.cross(new Vector3d(0, 0, 1), v, w);
         w.scaleBy(-dir * ds / my_turn_radius);
         Tools3d.add(v, w, v);
-        Tools3d.scaleToLength(v, ds); //ds is in xy only
+        v.scaleToLength(ds); //ds is in xy only
         roll(dir);
     }
 

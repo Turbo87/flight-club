@@ -75,7 +75,7 @@ public class CameraMan implements EventInterface {
 
         lightRay = new Vector3d(1, 1, -3);
         //lightRay = new Vector3d(-2,2,-1);
-        Tools3d.makeUnit(lightRay);
+        lightRay.makeUnit();
     }
 
     void setMode(int inMode) {
