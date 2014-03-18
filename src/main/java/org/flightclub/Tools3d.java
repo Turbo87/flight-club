@@ -37,7 +37,7 @@ public class Tools3d {
             float z = (float) Math.cos(theta) * radius;
 
             circle[i] = new Vector3d(x, 0, z);
-            Tools3d.add(center, circle[i], circle[i]);
+            circle[i].add(center);
         }
         return circle;
     }
@@ -268,12 +268,6 @@ public class Tools3d {
         else a_.z = a.z / scale;
 
         return true;
-    }
-
-    public static void add(Vector3d a, Vector3d b, Vector3d c) {
-        c.x = a.x + b.x;
-        c.y = a.y + b.y;
-        c.z = a.z + b.z;
     }
 
     public static void subtract(Vector3d a, Vector3d b, Vector3d c) {

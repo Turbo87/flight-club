@@ -51,8 +51,22 @@ public final class Vector3d {
         scaleToLength(1);
         return this;
     }
-    
+
+    public Vector3d add(Vector3d other) {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        return this;
+    }
+
     public Vector3d cloneMe() {
         return new Vector3d(x, y, z);
+    }
+
+    public Vector3d set(Vector3d other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+        return this;
     }
 }

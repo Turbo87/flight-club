@@ -84,7 +84,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
      */
     @Override
     public void tick(Clock c) {
-        Tools3d.add(p, v, p);
+        p.add(v);
         p.y += Sky.getWind() * app.timePerFrame;
 
         //hack - may have changed game speed (otherwise ds is constant)
@@ -137,13 +137,13 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Tools3d.clone(axisZ0, dz);
         dx.scaleBy(up.x);
         dz.scaleBy(up.z);
-        Tools3d.add(dx, dz, axisZ);
+        axisZ.set(dx).add(dz);
 
         Tools3d.clone(axisX0, dx);
         Tools3d.clone(axisZ0, dz);
         dx.scaleBy(up.z);
         dz.scaleBy(-up.x);
-        Tools3d.add(dx, dz, axisX);
+        axisX.set(dx).add(dz);
     }
 
     /**
@@ -215,7 +215,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         v.z = 0;    //work in xy plane
         Tools3d.cross(new Vector3d(0, 0, 1), v, w);
         w.scaleBy(-dir * ds / my_turn_radius);
-        Tools3d.add(v, w, v);
+        v.add(w);
         v.scaleToLength(ds); //ds is in xy only
         roll(dir);
     }
@@ -228,7 +228,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         if (app.landscape == null) return;
 
         Vector3d p_ = new Vector3d();
-        Tools3d.add(p, v, p_);
+        p_.set(p).add(v);
 
         float h = p.z - app.landscape.getHeight(p.x, p.y);
         float h_ = p.z - app.landscape.getHeight(p_.x, p_.y);
@@ -245,7 +245,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
             Tools3d.cross(v, new Vector3d(0, 0, 1), w);
             w.scaleBy(ds / my_turn_radius);
             Vector3d p__ = new Vector3d();
-            Tools3d.add(p_, w, p__);
+            p__.set(p_).add(w);
             float h__ = p.z - app.landscape.getHeight(p__.x, p__.y);
             if (h__ >= h_) {
                 makeTurn(1); //turn right

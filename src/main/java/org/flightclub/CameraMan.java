@@ -172,8 +172,8 @@ public class CameraMan implements EventInterface {
             Tools3d.subtract(eNew, eyeGoto, de);
             Tools3d.subtract(fNew, focusGoto, df);
 
-            Tools3d.add(eye, de, eye);
-            Tools3d.add(focus, df, focus);
+            eye.add(de);
+            focus.add(df);
 
             //note subjects new position for next iteration
             eyeGoto = eNew;
@@ -259,8 +259,8 @@ public class CameraMan implements EventInterface {
             //const speed - no need to scale
         }
 
-        Tools3d.add(eye, deye_, eye);
-        Tools3d.add(focus, dfocus_, focus);
+        eye.add(deye_);
+        focus.add(dfocus_);
 
         cutCount--;
     }
@@ -311,7 +311,7 @@ public class CameraMan implements EventInterface {
         if (dz < -20) ray.z -= distance / (app.getFrameRate() * 4);
 
         //reposition eye
-        Tools3d.add(ray, focus, eye);
+        eye.set(ray).add(focus);
         if (eye.z < 0) eye.z = 0;
     }
 
@@ -322,7 +322,7 @@ public class CameraMan implements EventInterface {
         Vector3d ray = new Vector3d();
         Tools3d.subtract(eye, focus, ray);
         Tools3d.clone(f, focus);
-        Tools3d.add(ray, focus, eye);
+        eye.set(ray).add(focus);
     }
 
     void setMatrix() {

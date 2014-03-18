@@ -68,10 +68,8 @@ public class FlyingBody extends FlyingDot {
     }
 
     public void translateBody() {
-        for (int i = 0; i < body1.points.size(); i++) {
-            Vector3d p1 = body1.points.elementAt(i);
-            Tools3d.add(p1, p, p1);
-        }
+        for (Vector3d point : body1.points)
+            point.add(p);
     }
 
     float getBodyHeight() {

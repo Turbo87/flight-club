@@ -89,7 +89,7 @@ public class Object3d {
     public void translateBy(Vector3d v) {
         for (int i = 0; i < points.size(); i++) {
             Vector3d q = points.elementAt(i);
-            Tools3d.add(q, v, q);
+            q.add(v);
         }
     }
 

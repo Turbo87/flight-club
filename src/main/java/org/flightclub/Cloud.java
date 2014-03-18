@@ -232,36 +232,36 @@ public class Cloud implements CameraSubject, ClockObserver {
 
         //front face
         sphToXYZ(radiusBase, theta[0], 0.0, v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[0]);
 
         sphToXYZ(radiusBase, theta[3], 0, v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[3]);
 
         sphToXYZ(radius, theta[3], landa[3], v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[2]);
 
         sphToXYZ(radius, theta[0], landa[0], v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[1]);
 
         //back face
         sphToXYZ(radiusBase, theta[1], 0.0, v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[4]);
 
         sphToXYZ(radius, theta[1], landa[1], v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[5]);
 
         sphToXYZ(radius, theta[2], landa[2], v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[6]);
 
         sphToXYZ(radiusBase, theta[2], 0.0, v);
-        Tools3d.add(v, p, v);
+        v.add(p);
         Tools3d.clone(v, corners[7]);
     }
 
