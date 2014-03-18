@@ -230,8 +230,8 @@ public class CameraMan implements EventInterface {
 	  slows to zero over cutRamp steps. similarly 
 	  for focus.
 	*/
-        Tools3d.scaleBy(deye, (float) 1.0 / (cutCount - CUT_RAMP));
-        Tools3d.scaleBy(dfocus, (float) 1.0 / (cutCount - CUT_RAMP));
+        deye.scaleBy((float) 1.0 / (cutCount - CUT_RAMP));
+        dfocus.scaleBy((float) 1.0 / (cutCount - CUT_RAMP));
     }
 
     void cutStep() {
@@ -247,14 +247,14 @@ public class CameraMan implements EventInterface {
             //accelerating
             s = (float) (CUT_LEN - cutCount) / CUT_RAMP;
             //System.out.println("Cut acc, s: " + s);
-            Tools3d.scaleBy(deye_, s);
-            Tools3d.scaleBy(dfocus_, s);
+            deye_.scaleBy(s);
+            dfocus_.scaleBy(s);
         } else if (cutCount < CUT_RAMP) {
             //decelerating
             s = (float) cutCount / CUT_RAMP;
             //System.out.println("Cut dec, s: " + s);
-            Tools3d.scaleBy(deye_, s);
-            Tools3d.scaleBy(dfocus_, s);
+            deye_.scaleBy(s);
+            dfocus_.scaleBy(s);
         } else {
             //const speed - no need to scale
         }

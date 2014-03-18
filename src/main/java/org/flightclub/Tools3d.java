@@ -282,12 +282,6 @@ public class Tools3d {
         c.z = a.z - b.z;
     }
 
-    public static void scaleBy(Vector3d v, float scale) {
-        v.x *= scale;
-        v.y *= scale;
-        v.z *= scale;
-    }
-
     public static void clone(Vector3d a, Vector3d b) {
         b.x = a.x;
         b.y = a.y;

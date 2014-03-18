@@ -113,10 +113,10 @@ public class FlyingDot implements ClockObserver, CameraSubject {
      */
     private void setLocalFrame() {
         Tools3d.cross(v, new Vector3d(0, 0, 1), axisX);
-        Tools3d.scaleBy(axisX, 1 / axisX.length());
+        axisX.scaleBy(1 / axisX.length());
 
         Tools3d.clone(v, axisY);
-        Tools3d.scaleBy(axisY, 1 / axisY.length());
+        axisY.scaleBy(1 / axisY.length());
 
         Tools3d.cross(axisX, axisY, axisZ);
 
@@ -135,14 +135,14 @@ public class FlyingDot implements ClockObserver, CameraSubject {
 
         Tools3d.clone(axisX0, dx);
         Tools3d.clone(axisZ0, dz);
-        Tools3d.scaleBy(dx, up.x);
-        Tools3d.scaleBy(dz, up.z);
+        dx.scaleBy(up.x);
+        dz.scaleBy(up.z);
         Tools3d.add(dx, dz, axisZ);
 
         Tools3d.clone(axisX0, dx);
         Tools3d.clone(axisZ0, dz);
-        Tools3d.scaleBy(dx, up.z);
-        Tools3d.scaleBy(dz, -up.x);
+        dx.scaleBy(up.z);
+        dz.scaleBy(-up.x);
         Tools3d.add(dx, dz, axisX);
     }
 
@@ -214,7 +214,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
 
         v.z = 0;    //work in xy plane
         Tools3d.cross(new Vector3d(0, 0, 1), v, w);
-        Tools3d.scaleBy(w, -dir * ds / my_turn_radius);
+        w.scaleBy(-dir * ds / my_turn_radius);
         Tools3d.add(v, w, v);
         Tools3d.scaleToLength(v, ds); //ds is in xy only
         roll(dir);
@@ -243,7 +243,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
             // turn left or right ? see if moving right a bit gives a greater h than straight on
             Vector3d w = new Vector3d();
             Tools3d.cross(v, new Vector3d(0, 0, 1), w);
-            Tools3d.scaleBy(w, ds / my_turn_radius);
+            w.scaleBy(ds / my_turn_radius);
             Vector3d p__ = new Vector3d();
             Tools3d.add(p_, w, p__);
             float h__ = p.z - app.landscape.getHeight(p__.x, p__.y);

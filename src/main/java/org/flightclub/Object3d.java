@@ -130,7 +130,7 @@ public class Object3d {
 
     public void scaleBy(float s) {
         for (Vector3d v : points)
-            Tools3d.scaleBy(v, s);
+            v.scaleBy(s);
     }
 
     public void setColor(Color c) {
