@@ -232,37 +232,29 @@ public class Cloud implements CameraSubject, ClockObserver {
 
         //front face
         sphToXYZ(radiusBase, theta[0], 0.0, v);
-        v.add(p);
-        corners[0].set(v);
+        corners[0].set(v).add(p);
 
         sphToXYZ(radiusBase, theta[3], 0, v);
-        v.add(p);
-        corners[3].set(v);
+        corners[3].set(v).add(p);
 
         sphToXYZ(radius, theta[3], landa[3], v);
-        v.add(p);
-        corners[2].set(v);
+        corners[2].set(v).add(p);
 
         sphToXYZ(radius, theta[0], landa[0], v);
-        v.add(p);
-        corners[1].set(v);
+        corners[1].set(v).add(p);
 
         //back face
         sphToXYZ(radiusBase, theta[1], 0.0, v);
-        v.add(p);
-        corners[4].set(v);
+        corners[4].set(v).add(p);
 
         sphToXYZ(radius, theta[1], landa[1], v);
-        v.add(p);
-        corners[5].set(v);
+        corners[5].set(v).add(p);
 
         sphToXYZ(radius, theta[2], landa[2], v);
-        v.add(p);
-        corners[6].set(v);
+        corners[6].set(v).add(p);
 
         sphToXYZ(radiusBase, theta[2], 0.0, v);
-        v.add(p);
-        corners[7].set(v);
+        corners[7].set(v).add(p);
     }
 
     void setSphericals() {
