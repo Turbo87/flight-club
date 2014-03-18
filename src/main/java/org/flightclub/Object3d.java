@@ -75,7 +75,7 @@ public class Object3d {
             v_ = points_.elementAt(i);
 
             //translate, rotate and project (only if visible)
-            Tools3d.subtract(v, camera.getFocus(), v_);
+            v_.set(v).subtract(camera.getFocus());
             Tools3d.applyTo(camera.getMatrix(), v_, v_);
 
             boolean rc = Tools3d.projectYZ(v_, v_, camera.getDistance());
@@ -259,7 +259,7 @@ public class Object3d {
             v_ = points_.elementAt(i);
 
             // translate, rotate and project (only if visible)
-            Tools3d.subtract(v, f, v_);
+            v_.set(v).subtract(f);
             Tools3d.applyTo(m, v_, v_);
             Tools3d.projectYZ(v_, v_, distance);
         }

@@ -169,8 +169,8 @@ public class CameraMan implements EventInterface {
             Vector3d de = new Vector3d();
             Vector3d df = new Vector3d();
 
-            Tools3d.subtract(eNew, eyeGoto, de);
-            Tools3d.subtract(fNew, focusGoto, df);
+            de.set(eNew).subtract(eyeGoto);
+            df.set(fNew).subtract(focusGoto);
 
             eye.add(de);
             focus.add(df);
@@ -221,8 +221,8 @@ public class CameraMan implements EventInterface {
         deye = new Vector3d();
         dfocus = new Vector3d();
 
-        Tools3d.subtract(eyeGoto, eye, deye);
-        Tools3d.subtract(focusGoto, focus, dfocus);
+        deye.set(eyeGoto).subtract(eye);
+        dfocus.set(focusGoto).subtract(focus);
 
 	/*
 	  eye accelerates from 0 upto velocity
@@ -299,9 +299,8 @@ public class CameraMan implements EventInterface {
         //Vector3d ray = new Vector3d();
         //Tools3d.subtract(eye,focus,ray);
 
-        Vector3d ray;
-        ray = new Vector3d();
-        Tools3d.subtract(eye, focus, ray);
+        Vector3d ray = new Vector3d();
+        ray.set(eye).subtract(focus);
 
         //transform ray
         float[][] m = Tools3d.rotateX(new Vector3d(1, dtheta, 0));
@@ -320,7 +319,7 @@ public class CameraMan implements EventInterface {
 	  move focus, maintaining angle of view
 	*/
         Vector3d ray = new Vector3d();
-        Tools3d.subtract(eye, focus, ray);
+        ray.set(eye).subtract(focus);
         Tools3d.clone(f, focus);
         eye.set(ray).add(focus);
     }
@@ -331,7 +330,7 @@ public class CameraMan implements EventInterface {
 	  down +x axis at origin
 	*/
         Vector3d ray = new Vector3d();
-        Tools3d.subtract(eye, focus, ray);
+        ray.set(eye).subtract(focus);
         matrix = Tools3d.rotateX(ray);
         distance = ray.length();
     }

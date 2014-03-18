@@ -48,7 +48,7 @@ public class PolyLine {
 
         Vector3d p = object3d.points.elementAt(points[0]);
         Vector3d ray = new Vector3d();
-        Tools3d.subtract(p, object3d.app.cameraMan.getEye(), ray);
+        ray.set(p).subtract(object3d.app.cameraMan.getEye());
 
         return (Tools3d.dot(normal, ray) >= 0);
     }
@@ -62,9 +62,10 @@ public class PolyLine {
             ps[i] = object3d.points.elementAt(points[i]);
 
         Vector3d e1 = new Vector3d();
+        e1.set(ps[0]).subtract(ps[1]);
+
         Vector3d e2 = new Vector3d();
-        Tools3d.subtract(ps[0], ps[1], e1);
-        Tools3d.subtract(ps[2], ps[1], e2);
+        e2.set(ps[2]).subtract(ps[1]);
 
         Tools3d.cross(e1, e2, normal);
         normal.makeUnit();

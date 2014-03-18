@@ -270,12 +270,6 @@ public class Tools3d {
         return true;
     }
 
-    public static void subtract(Vector3d a, Vector3d b, Vector3d c) {
-        c.x = a.x - b.x;
-        c.y = a.y - b.y;
-        c.z = a.z - b.z;
-    }
-
     public static void clone(Vector3d a, Vector3d b) {
         b.x = a.x;
         b.y = a.y;

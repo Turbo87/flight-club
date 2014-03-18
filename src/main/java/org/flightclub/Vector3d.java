@@ -69,4 +69,10 @@ public final class Vector3d {
         z = other.z;
         return this;
     }
+
+    public void subtract(Vector3d other) {
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+    }
 }
