@@ -35,21 +35,24 @@ public final class Vector3d {
         return (float) Math.hypot(Math.hypot(x, y), z);
     }
 
-    public void scaleBy(float factor) {
+    public Vector3d scaleBy(float factor) {
         x *= factor;
         y *= factor;
         z *= factor;
+        return this;
     }
 
-    Vector3d cloneMe() {
-        return new Vector3d(x, y, z);
-    }
-
-    public void scaleToLength(float length) {
+    public Vector3d scaleToLength(float length) {
         scaleBy(length / this.length());
+        return this;
     }
 
-    public void makeUnit() {
+    public Vector3d makeUnit() {
         scaleToLength(1);
+        return this;
+    }
+    
+    public Vector3d cloneMe() {
+        return new Vector3d(x, y, z);
     }
 }
