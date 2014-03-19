@@ -34,6 +34,7 @@ public class XCGame extends ModelViewer implements EventInterface {
     DataSlider slider = null;
     CameraMan cameraMan = null;
     EventManager eventManager = null;
+    String textMessage = null;
 
     @Override
     public void init(Interface a) {

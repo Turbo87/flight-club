@@ -25,7 +25,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
     Interface envInterface;
-    String textMessage = null;
     Clock clock = null;
     boolean pendingStart = false;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
