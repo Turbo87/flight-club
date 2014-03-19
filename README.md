@@ -59,6 +59,26 @@ This project is now using the [gradle](http://www.gradle.org/) build system. To 
 Use `./gradlew run` to run the game afterwards.
 
 
+## Coding Style
+
+For a general coding style guide, where better to look than the horses
+mouth ? Look for some classes that interest you and study them
+carefully. The author of this document finds Date.java, written by
+James Gosling, a good read.
+
+Code that is not well commented is probably not well thought out.
+
+Here are some conventions used in Flight Club:
+
+    float[] p; // a point whose x, y and z co-ords are (p[0], p[1], p[2])
+    float[] _p; // the previous value of p
+    float[] p_; // the co-ords of p after applying a transformation, T
+    float[] dp; // a small change in p, say p(tN) - p(tN-1) where tN is
+    the time of the Nth frame and p(t) is the path of a particle
+    float[][] ps; // a list of points {{x0, y0, z0}, {x1, y1, z1}, ...}
+    float[] ps; // a flattened list of points {x0, y0, z0, x1, y1, z1, ...}
+
+
 ## Author
 
 Created by Dan Burton <danb@dircon.co.uk>, 22 Aug 2002
