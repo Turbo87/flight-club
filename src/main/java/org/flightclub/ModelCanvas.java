@@ -9,6 +9,8 @@
 package org.flightclub;
 
 
+import org.flightclub.compat.AwtGraphics;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -109,7 +111,7 @@ public class ModelCanvas extends Canvas {
         g.setColor(backColor);
         g.fillRect(0, 0, width, height);
 
-        app.draw(new org.flightclub.compat.Graphics(g), width, height);
+        app.draw(new AwtGraphics(g), width, height);
     }
 
 }
