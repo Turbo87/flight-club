@@ -13,12 +13,6 @@ import java.awt.Image;
 import java.io.DataInputStream;
 
 public interface Interface {
-    Image getImage(String s);
-
-    //Image createImage(int w, int h);
     void play(String s);
-
-    DataInputStream openFile(String s);
-
     Dimension getSize();
 }
