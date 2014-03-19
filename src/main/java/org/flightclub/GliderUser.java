@@ -56,15 +56,15 @@ public class GliderUser extends Glider implements EventInterface {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
-            case 122://z
-            case 122 - 32:
+            case 97://a
+            case 97 - 32:
                 //hack
                 tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.LEFT);
                 break;
-            case 120://x
-            case 120 - 32:
+            case 100://d
+            case 100 - 32:
                 tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.RIGHT);
@@ -74,8 +74,8 @@ public class GliderUser extends Glider implements EventInterface {
                 setPolarIndex(0);
                 moveManager.workLift();
                 break;
-            case 97://a
-            case 97 - 32:
+            case 119://w
+            case 119 - 32:
                 toggleSpeed();
                 break;
             default:
@@ -86,12 +86,12 @@ public class GliderUser extends Glider implements EventInterface {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
-            case 122://z
-            case 122 - 32:
+            case 97://
+            case 97 - 32:
                 moveManager.setNextMove(MovementManager.STRAIGHT);
                 break;
-            case 120://x
-            case 120 - 32:
+            case 100://x
+            case 100 - 32:
                 moveManager.setNextMove(MovementManager.STRAIGHT);
                 break;
             default:
