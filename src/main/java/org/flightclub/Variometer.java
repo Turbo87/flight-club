@@ -24,12 +24,12 @@ public class Variometer {
             STEPS[i] = i * LIFT_MAX / NUM_BEEPS;
     }
 
-    final ModelViewer app;
+    final XCGame app;
     private final FlyingDot flyingDot;
 
     private int frame_count = 0;
 
-    public Variometer(ModelViewer app, FlyingDot flyingDot) {
+    public Variometer(XCGame app, FlyingDot flyingDot) {
         this.flyingDot = flyingDot;
         this.app = app;
     }

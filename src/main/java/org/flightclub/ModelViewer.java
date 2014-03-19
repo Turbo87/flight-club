@@ -23,7 +23,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
 
     ModelCanvas modelCanvas = null;
-    Interface envInterface;
     Clock clock = null;
     boolean pendingStart = false;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
@@ -33,7 +32,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     void init(Interface envInterface) {
-        this.envInterface = envInterface;
         createClock();
         createModelCanvas();
     }
