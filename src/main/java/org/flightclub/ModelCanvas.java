@@ -109,7 +109,7 @@ public class ModelCanvas extends Canvas {
         g.setColor(backColor);
         g.fillRect(0, 0, width, height);
 
-        app.draw(g, width, height);
+        app.draw(new org.flightclub.compat.Graphics(g), width, height);
     }
 
 }

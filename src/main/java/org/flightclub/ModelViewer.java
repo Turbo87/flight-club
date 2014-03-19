@@ -8,11 +8,11 @@
 
 package org.flightclub;
 
-import java.applet.Applet;
+import org.flightclub.compat.Color;
+import org.flightclub.compat.Font;
+import org.flightclub.compat.Graphics;
+
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Panel;
 
 public class ModelViewer extends Panel implements ClockObserver {
@@ -126,7 +126,7 @@ public class ModelViewer extends Panel implements ClockObserver {
             for (int i = 0; i < obj3dManager.os.get(layer).size(); i++) {
                 Object3d o = obj3dManager.os.get(layer).elementAt(i);
                 o.film(cameraMan);
-                o.draw(new org.flightclub.compat.Graphics(g));
+                o.draw(g);
             }
         }
 
@@ -134,7 +134,7 @@ public class ModelViewer extends Panel implements ClockObserver {
         if (textMessage != null) {
             Font font = new Font("SansSerif", Font.PLAIN, 10);
             g.setFont(font);
-            g.setColor(Color.lightGray);
+            g.setColor(Color.LIGHT_GRAY);
 
             String s;
             if (!clock.paused) {
@@ -145,12 +145,10 @@ public class ModelViewer extends Panel implements ClockObserver {
             g.drawString(s, 15, height - 15);
         }
 
-        if (compass != null) {
-            compass.draw(new org.flightclub.compat.Graphics(g));
-        }
+        if (compass != null)
+            compass.draw(g);
 
-        if (slider != null) {
-            slider.draw(new org.flightclub.compat.Graphics(g));
-        }
+        if (slider != null)
+            slider.draw(g);
     }
 }
