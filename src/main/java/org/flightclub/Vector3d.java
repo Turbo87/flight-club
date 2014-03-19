@@ -17,12 +17,12 @@ public final class Vector3d {
         set(0, 0, 0);
     }
 
-    public Vector3d(float inX, float inY, float inZ) {
-        set(inX, inY, inZ);
+    public Vector3d(float x, float y, float z) {
+        set(x, y, z);
     }
 
-    public Vector3d(double inX, double inY, double inZ) {
-        set((float) inX, (float) inY, (float) inZ);
+    public Vector3d(double x, double y, double z) {
+        set((float) x, (float) y, (float) z);
     }
 
     public Vector3d(Vector3d other) {
@@ -85,10 +85,10 @@ public final class Vector3d {
         return x * other.x + y * other.y + z * other.z;
     }
 
-    public Vector3d cross(Vector3d b) {
-        set(y * b.z - z * b.y,
-            -x * b.z + z * b.x,
-            x * b.y - y * b.x);
+    public Vector3d cross(Vector3d other) {
+        set(y * other.z - z * other.y,
+            -x * other.z + z * other.x,
+            x * other.y - y * other.x);
         return this;
     }
 
