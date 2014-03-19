@@ -61,7 +61,7 @@ public final class Vector3d {
 
     /** Returns a copy of this instance subtracted by the other instance. */
     public Vector3d subtracted(Vector3d other) {
-        return new Vector3d().set(this).subtract(other);
+        return new Vector3d(this).subtract(other);
     }
 
     public Vector3d scaleBy(float factor) {
@@ -94,6 +94,6 @@ public final class Vector3d {
 
     /** Returns a copy of this instance cross multiplied with the other instance. */
     public Vector3d crossed(Vector3d other) {
-        return new Vector3d().set(this).cross(other);
+        return new Vector3d(this).cross(other);
     }
 }
