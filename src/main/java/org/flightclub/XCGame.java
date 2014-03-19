@@ -231,4 +231,10 @@ public class XCGame extends ModelViewer implements EventInterface {
 
         if (slider != null)
             slider.draw(g);
-    }}
+    }
+
+    public void rotateCamera(float dtheta, int dz) {
+        cameraMan.rotateEyeAboutFocus(dtheta, dz);
+    }
+}
+

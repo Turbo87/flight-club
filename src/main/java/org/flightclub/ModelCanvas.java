@@ -90,7 +90,7 @@ public class ModelCanvas extends Canvas {
             if (mouseTracker.getDeltaX() < -20)
                 dtheta = unitStep;
 
-            app.cameraMan.rotateEyeAboutFocus(-dtheta, -mouseTracker.getDeltaY());
+            app.rotateCamera(-dtheta, -mouseTracker.getDeltaY());
         }
     }
 
