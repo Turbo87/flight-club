@@ -82,7 +82,7 @@ public class ModelViewer extends Panel implements ClockObserver {
           the screen.
         */
         try {
-            Applet a = (Applet) envInterface;
+            AppletInterface a = (AppletInterface) envInterface;
             setSize(a.getSize().width, a.getSize().height);
         } catch (ClassCastException ignored) {
         }
