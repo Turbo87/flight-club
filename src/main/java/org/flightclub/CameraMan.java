@@ -44,11 +44,14 @@ public class CameraMan implements EventInterface {
     CameraSubject subject1;
     CameraSubject subject2;
 
-    static final int WATCH_1 = 0;
-    static final int WATCH_2 = 1;
-    static final int WATCH_PLAN = 2;
-    static final int WATCH_TILE = 3;
-    int mode = WATCH_1;
+    public enum Mode {
+        SELF,
+        GAGGLE,
+        PLAN,
+        TILE,
+    }
+
+    Mode mode = Mode.SELF;
 
     int cutCount = 0;
     int cut2Count = 0;
@@ -78,27 +81,26 @@ public class CameraMan implements EventInterface {
         lightRay.makeUnit();
     }
 
-    void setMode(int inMode) {
+    void setMode(Mode mode) {
+        this.mode = mode;
 
-        if (inMode == WATCH_1 && subject1 != null) {
-            mode = inMode;
+        if (mode == Mode.SELF && subject1 != null) {
             cutCount = 0;
             cutSetup(subject1, true);
             return;
         }
 
-        if (inMode == WATCH_2 && subject2 != null) {
-            mode = inMode;
+        if (mode == Mode.GAGGLE && subject2 != null) {
             cutCount = 0;
             cut2Count = 0;
             cutSetup(subject2, false);
             return;
         }
 
-        if (inMode == WATCH_PLAN) {
+        if (mode == Mode.PLAN) {
 
             //hack - should extend generic cameraman
-            boolean user = ((XCGame) app).mode == XCGame.Mode.USER;
+            boolean user = (app.mode == XCGame.Mode.USER);
 
             if (subject1 != null && user) {
                 focus = subject1.getFocus();
@@ -117,13 +119,11 @@ public class CameraMan implements EventInterface {
                 eye = new Vector3d(10, Landscape.TILE_WIDTH, PLAN_H);
                 cameraSubject = null;
             }
-            mode = inMode;
             cutCount = 0;
         }
 
 
-        if (inMode == WATCH_TILE && app.landscape != null) {
-            mode = inMode;
+        if (mode == Mode.TILE && app.landscape != null) {
             cutCount = 0;
             cut2Count = 0;
             cutSetup(app.landscape, true);
@@ -163,7 +163,7 @@ public class CameraMan implements EventInterface {
 
     void followSubject() {
         //add in movement of our subject
-        if (mode != WATCH_PLAN) {
+        if (mode != Mode.PLAN) {
             Vector3d eNew = cameraSubject.getEye();
             Vector3d fNew = cameraSubject.getFocus();
 
@@ -194,20 +194,20 @@ public class CameraMan implements EventInterface {
 	  <isUser> 	t: call from user glider
 	  f: one of the gagggle
 	*/
-        if (mode == WATCH_PLAN) return;
+        if (mode == Mode.PLAN) return;
 
-        if (cutCount > 0 && mode == WATCH_2) {
+        if (cutCount > 0 && mode == Mode.GAGGLE) {
             //ignore this call if already doing a cut
             return;
         }
 
-        if (!isUser && mode != WATCH_2) {
+        if (!isUser && mode != Mode.GAGGLE) {
             //filter out all calls from sniffers unless watching gaggle
             return;
         }
 
         //gaggle mode too jumpy
-        if (mode == WATCH_2 && cut2Count > 0) return;
+        if (mode == Mode.GAGGLE && cut2Count > 0) return;
 
         cameraSubject = subject;
         cutCount = CUT_LEN;
@@ -376,11 +376,11 @@ public class CameraMan implements EventInterface {
 	  toggle between watching glider user
 	  and watching the gaggle
 	*/
-        if (mode == WATCH_1) {
-            mode = WATCH_2;
+        if (mode == Mode.SELF) {
+            mode = Mode.GAGGLE;
             if (subject2 != null) cutSetup(subject2, false);
         } else {
-            mode = WATCH_1;
+            mode = Mode.SELF;
             if (subject1 != null) cutSetup(subject1, true);
         }
     }
@@ -413,16 +413,16 @@ public class CameraMan implements EventInterface {
                 return;
 
             case KeyEvent.VK_1:
-                setMode(WATCH_1);
+                setMode(Mode.SELF);
                 return;
             case KeyEvent.VK_2:
-                setMode(WATCH_2);
+                setMode(Mode.GAGGLE);
                 return;
             case KeyEvent.VK_3:
-                setMode(WATCH_PLAN);
+                setMode(Mode.PLAN);
                 return;
             case KeyEvent.VK_4:
-                setMode(WATCH_TILE);
+                setMode(Mode.TILE);
                 return;
             default:
         }

@@ -315,7 +315,7 @@ public class Glider extends FlyingBody {
         gotoNextLiftSource();
 
         if (isUser) {
-            app.cameraMan.setMode(CameraMan.WATCH_1);
+            app.cameraMan.setMode(CameraMan.Mode.SELF);
             time = 0;
             demoMode = false;
         }

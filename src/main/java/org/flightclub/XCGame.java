@@ -79,7 +79,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         cameraMan.setFocus(0, 0, 0);
 
         launchGaggle();
-        cameraMan.setMode(CameraMan.WATCH_2);
+        cameraMan.setMode(CameraMan.Mode.GAGGLE);
         textMessage = "Demo mode";
         mode = Mode.DEMO;
         toggleFastForward();
@@ -115,7 +115,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         cameraMan.setEye(Landscape.TILE_WIDTH / 2, -Landscape.TILE_WIDTH / 4, 6);
         cameraMan.setFocus(0, 0, 0);
 
-        cameraMan.setMode(CameraMan.WATCH_1);
+        cameraMan.setMode(CameraMan.Mode.SELF);
         createInstruments();
 
         jet1.buzzThis = gliderUser;
