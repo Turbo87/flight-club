@@ -24,7 +24,7 @@ public class XCGame extends ModelViewer implements EventInterface {
     static final int MODE_USER = 1;
 
     @Override
-    public void init(ModelEnv a) {
+    public void init(Interface a) {
         super.init(a);
         eventManager.addNotification(this);
 

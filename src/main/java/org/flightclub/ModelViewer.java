@@ -25,7 +25,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     CameraMan cameraMan = null;
     Landscape landscape = null;    //hack
     Sky sky = null;
-    ModelEnv modelEnv;
+    Interface envInterface;
     String textMessage = null;
     Compass compass = null;
     DataSlider slider = null;
@@ -37,8 +37,8 @@ public class ModelViewer extends Panel implements ClockObserver {
     ModelViewer() {
     }
 
-    void init(ModelEnv theModelEnv) {
-        modelEnv = theModelEnv;
+    void init(Interface envInterface) {
+        this.envInterface = envInterface;
         createClock();
         createModelCanvas();
         createObj3dManager();
@@ -82,7 +82,7 @@ public class ModelViewer extends Panel implements ClockObserver {
           the screen.
         */
         try {
-            Applet a = (Applet) modelEnv;
+            Applet a = (Applet) envInterface;
             setSize(a.getSize().width, a.getSize().height);
         } catch (ClassCastException ignored) {
         }

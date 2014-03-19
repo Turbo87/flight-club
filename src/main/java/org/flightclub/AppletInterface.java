@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-class AppletInterface implements ModelEnv {
+class AppletInterface implements Interface {
     private final Applet applet;
 
     public AppletInterface(Applet applet) {

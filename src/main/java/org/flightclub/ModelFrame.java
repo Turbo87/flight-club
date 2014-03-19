@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 //the frame for stand alone play cf model applet
-public class ModelFrame extends Frame implements ModelEnv {
+public class ModelFrame extends Frame implements Interface {
     final ModelViewer app;
 
     public ModelFrame(ModelViewer theApp, String title, int w, int h) {

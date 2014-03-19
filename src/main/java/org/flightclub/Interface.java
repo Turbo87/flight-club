@@ -12,7 +12,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.io.DataInputStream;
 
-public interface ModelEnv {
+public interface Interface {
     Image getImage(String s);
 
     //Image createImage(int w, int h);

@@ -17,7 +17,7 @@ public class ModelViewerTest extends ModelViewer {
 
     GliderUser glider;
 
-    public void init(ModelEnv a) {
+    public void init(Interface a) {
         super.init(a);
 
         glider = new GliderUser(this, new Vector3d(0, 0, 1));
