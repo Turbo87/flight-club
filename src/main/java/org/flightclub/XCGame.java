@@ -69,6 +69,16 @@ public class XCGame extends ModelViewer implements EventInterface {
 
     }
 
+    private void createLandscape() {
+        // hack - want camera to be able to 'see' landscape
+        landscape = new Landscape(this);
+    }
+
+    private void createSky() {
+        // hack - want camera to be able to 'see' landscape
+        sky = new Sky(this);
+    }
+
     void launchGaggle() {
         for (int i = 0; i < gaggle.size(); i++) {
             Glider glider = gaggle.elementAt(i);

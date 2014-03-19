@@ -94,16 +94,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         modelCanvas.init();
     }
 
-    protected void createLandscape() {
-        // hack - want camera to be able to 'see' landscape
-        landscape = new Landscape(this);
-    }
-
-    protected void createSky() {
-        // hack - want camera to be able to 'see' landscape
-        sky = new Sky(this);
-    }
-
     int getFrameRate() {
         return FRAME_RATE;
     }
