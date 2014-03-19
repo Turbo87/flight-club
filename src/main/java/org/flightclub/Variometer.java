@@ -49,16 +49,17 @@ public class Variometer {
      */
     private void beep() {
         float lift = flyingDot.v.z / app.timePerFrame;
-        if (lift > 0) {
-            app.envInterface.play("beep" + whichStep(lift) + ".wav");
-        }
+
+        String filename = filenameForLift(lift);
+        if (filename != null)
+            app.envInterface.play(filename);
     }
 
-    private int whichStep(float lift) {
-        int step = -1;
-        for (int i = 0; i < NUM_BEEPS; i++) {
-            if (lift >= STEPS[i]) step = i;
-        }
-        return step;
+    private String filenameForLift(float lift) {
+        for (int i = NUM_BEEPS - 1; i >= 0; i--)
+            if (lift > STEPS[i])
+                return String.format("beep%d.wav", i);
+
+        return null;
     }
 }
