@@ -98,7 +98,7 @@ public class CameraMan implements EventInterface {
         if (inMode == WATCH_PLAN) {
 
             //hack - should extend generic cameraman
-            boolean user = ((XCGame) app).mode == XCGame.MODE_USER;
+            boolean user = ((XCGame) app).mode == XCGame.Mode.USER;
 
             if (subject1 != null && user) {
                 focus = subject1.getFocus();

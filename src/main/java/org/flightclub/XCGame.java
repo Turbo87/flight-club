@@ -13,15 +13,17 @@ import java.util.Vector;
 
 public class XCGame extends ModelViewer implements EventInterface {
 
+    public enum Mode {
+        DEMO,
+        USER,
+    }
+
     Vector<Glider> gaggle;
     GliderUser gliderUser;
     JetTrail jet1;
     JetTrail jet2;
-    int mode;
+    Mode mode;
     boolean fastForward = true;
-
-    static final int MODE_DEMO = 0;
-    static final int MODE_USER = 1;
 
     @Override
     public void init(Interface a) {
@@ -64,7 +66,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         launchGaggle();
         cameraMan.setMode(CameraMan.WATCH_2);
         textMessage = "Demo mode";
-        mode = MODE_DEMO;
+        mode = Mode.DEMO;
         toggleFastForward();
 
     }
@@ -95,7 +97,7 @@ public class XCGame extends ModelViewer implements EventInterface {
     }
 
     void startPlay() {
-        mode = MODE_USER;
+        mode = Mode.USER;
         landscape.removeAll();
 
         gliderUser.triggerLoading = true;
