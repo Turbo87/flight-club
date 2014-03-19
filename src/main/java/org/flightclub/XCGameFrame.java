@@ -8,12 +8,8 @@
 
 package org.flightclub;
 
-public class XCGameFrame extends ModelFrame {
-    public XCGameFrame() {
-        super(new XCGame(), "Flight Club", 640, 490);
-    }
-
+public class XCGameFrame {
     public static void main(String s[]) {
-        XCGameFrame f = new XCGameFrame();
+        new ModelFrame(new XCGame(), "Flight Club", 640, 490);
     }
 }
