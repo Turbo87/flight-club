@@ -57,12 +57,14 @@ public class GliderUser extends Glider implements EventInterface {
         int key = e.getKeyCode();
         switch (key) {
             case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 //hack
                 tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.LEFT);
                 break;
             case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.RIGHT);
@@ -73,6 +75,7 @@ public class GliderUser extends Glider implements EventInterface {
                 moveManager.workLift();
                 break;
             case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
                 toggleSpeed();
                 break;
             default:
@@ -84,9 +87,9 @@ public class GliderUser extends Glider implements EventInterface {
         int key = e.getKeyCode();
         switch (key) {
             case KeyEvent.VK_A:
-                moveManager.setNextMove(MovementManager.STRAIGHT);
-                break;
+            case KeyEvent.VK_LEFT:
             case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 moveManager.setNextMove(MovementManager.STRAIGHT);
                 break;
             default:
