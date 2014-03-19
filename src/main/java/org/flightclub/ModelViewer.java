@@ -60,8 +60,4 @@ public class ModelViewer extends Panel implements ClockObserver {
         doLayout();
         modelCanvas.init();
     }
-
-    int getFrameRate() {
-        return FRAME_RATE;
-    }
 }

@@ -296,8 +296,8 @@ public class CameraMan implements EventInterface {
         float[][] m = Tools3d.rotateX(new Vector3d(1, dtheta, 0));
         Tools3d.applyTo(m, ray, ray);
 
-        if (dz > 20) ray.z += distance / (app.getFrameRate() * 4);
-        if (dz < -20) ray.z -= distance / (app.getFrameRate() * 4);
+        if (dz > 20) ray.z += distance / (XCGame.FRAME_RATE * 4);
+        if (dz < -20) ray.z -= distance / (XCGame.FRAME_RATE * 4);
 
         //reposition eye
         eye.set(ray).add(focus);

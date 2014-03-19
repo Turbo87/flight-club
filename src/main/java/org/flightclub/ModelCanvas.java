@@ -82,7 +82,7 @@ public class ModelCanvas extends Canvas {
         if (mouseTracker.isDragging()) {
             //float dtheta = (float) dx/width;
             float dtheta = 0;
-            float unitStep = (float) Math.PI / (app.getFrameRate() * 8);//4 seconds to 90 - sloow!
+            float unitStep = (float) Math.PI / (XCGame.FRAME_RATE * 8);//4 seconds to 90 - sloow!
 
             if (mouseTracker.getDeltaX() > 20)
                 dtheta = -unitStep;
