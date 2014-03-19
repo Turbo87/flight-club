@@ -52,7 +52,7 @@ public class Variometer {
     private void beep() {
         float lift = flyingDot.v.z / app.timePerFrame;
         if (lift > 0) {
-            app.envInterface.play("beep" + whichStep(lift) + ".au");
+            app.envInterface.play("beep" + whichStep(lift) + ".wav");
         }
     }
 
