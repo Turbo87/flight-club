@@ -155,26 +155,26 @@ public class XCGame extends ModelViewer implements EventInterface {
         //System.out.println(key);
         int key = e.getKeyCode();
         switch (key) {
-            case 112:
-            case 112 - 32:
+            case KeyEvent.VK_P:
                 togglePause();
                 break;
-            case 121://y - start play
-            case 121 - 32:
+
+            case KeyEvent.VK_Y:
                 startPlay();
                 break;
-            case 113://q - game speed
-            case 113 - 32:
+
+            case KeyEvent.VK_Q:
                 toggleFastForward();
                 break;
-            case 104://h - base high
-            case 104 - 32:
+
+            case KeyEvent.VK_H:
                 sky.setHigh();
                 break;
-            case 108://l - base low
-            case 108 - 32:
+
+            case KeyEvent.VK_L:
                 sky.setLow();
                 break;
+
             default:
         }
     }

@@ -412,16 +412,16 @@ public class CameraMan implements EventInterface {
                 focus.y -= dx;
                 return;
 
-            case 49: //1
+            case KeyEvent.VK_1:
                 setMode(WATCH_1);
                 return;
-            case 50: //2
+            case KeyEvent.VK_2:
                 setMode(WATCH_2);
                 return;
-            case 51: //3
+            case KeyEvent.VK_3:
                 setMode(WATCH_PLAN);
                 return;
-            case 52: //4
+            case KeyEvent.VK_4:
                 setMode(WATCH_TILE);
                 return;
             default:
