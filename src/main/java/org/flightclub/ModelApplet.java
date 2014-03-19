@@ -23,6 +23,7 @@ public class ModelApplet extends Applet {
     @Override
     public void init() {
         this.setBackground(Color.white);
+        app.setSize(getSize());
         add(app);
         app.init(new AppletInterface(this));
 

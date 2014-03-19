@@ -63,20 +63,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         setLayout(new BorderLayout());
         add("Center", modelCanvas = new ModelCanvas((XCGame) this));
 
-        /*
-          If running as an applet we must set the size
-          of this panel. Works fine without this call when
-          running as a stand alone app. In the later case
-          the following call makes the canvas too tall so
-          that the score etc disappeear off the bottom off
-          the screen.
-        */
-        try {
-            AppletInterface a = (AppletInterface) envInterface;
-            setSize(a.getSize().width, a.getSize().height);
-        } catch (ClassCastException ignored) {
-        }
-
         doLayout();
         modelCanvas.init();
     }
