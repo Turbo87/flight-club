@@ -30,6 +30,8 @@ public class XCGame extends ModelViewer implements EventInterface {
     boolean fastForward = true;
     Landscape landscape = null;
     Sky sky = null;
+    Compass compass = null;
+    DataSlider slider = null;
 
     @Override
     public void init(Interface a) {

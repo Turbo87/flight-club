@@ -28,8 +28,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     CameraMan cameraMan = null;
     Interface envInterface;
     String textMessage = null;
-    Compass compass = null;
-    DataSlider slider = null;
     Clock clock = null;
     boolean pendingStart = false;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
