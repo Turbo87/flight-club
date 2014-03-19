@@ -16,6 +16,7 @@ public class Variometer {
 
     static final int FRAMES_PER_BEEP = 5;
     static final int NUM_BEEPS = 4; //how many different sounds
+    public static final float LIFT_MAX = -2 * Glider.SINK_RATE;
 
     public Variometer(ModelViewer app, FlyingDot flyingDot) {
         this.flyingDot = flyingDot;
@@ -29,10 +30,9 @@ public class Variometer {
 	 * is twice the glider's sink rate (under big clouds)
 	 */
     private void init() {
-        float liftMax = -2 * Glider.SINK_RATE;
         steps = new float[NUM_BEEPS];
         for (int i = 0; i < NUM_BEEPS; i++) {
-            steps[i] = i * liftMax / NUM_BEEPS;
+            steps[i] = i * LIFT_MAX / NUM_BEEPS;
         }
     }
 
