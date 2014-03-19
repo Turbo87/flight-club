@@ -17,13 +17,9 @@ import java.util.Vector;
  * default event handler
  */
 public class EventManager {
-    protected final Vector<EventInterface> objs;
+    protected final Vector<EventInterface> objs = new Vector<>();
     final static int MAX_Q = 20;
     Queue<KeyEvent> queue = new LinkedList<KeyEvent>();
-
-    public EventManager() {
-        objs = new Vector<>();
-    }
 
     /**
      * add an object to the list of objects to be
