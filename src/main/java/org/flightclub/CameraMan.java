@@ -261,15 +261,11 @@ public class CameraMan implements EventInterface {
     }
 
     public void setEye(float x, float y, float z) {
-        eye.x = x;
-        eye.y = y;
-        eye.z = z;
+        eye.set(x, y, z);
     }
 
     public void setFocus(float x, float y, float z) {
-        focus.x = x;
-        focus.y = y;
-        focus.z = z;
+        focus.set(x, y, z);
     }
 
     public float getDistance() {
