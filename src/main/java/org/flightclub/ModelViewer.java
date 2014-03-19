@@ -23,7 +23,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
 
     ModelCanvas modelCanvas = null;
-    Obj3dManager obj3dManager = null;
     Interface envInterface;
     Clock clock = null;
     boolean pendingStart = false;
@@ -37,7 +36,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         this.envInterface = envInterface;
         createClock();
         createModelCanvas();
-        obj3dManager = new Obj3dManager();
     }
 
     public void start() {

@@ -35,12 +35,14 @@ public class XCGame extends ModelViewer implements EventInterface {
     CameraMan cameraMan = null;
     EventManager eventManager = null;
     String textMessage = null;
+    Obj3dManager obj3dManager = null;
 
     @Override
     public void init(Interface a) {
         super.init(a);
 
         eventManager = new EventManager();
+        obj3dManager = new Obj3dManager();
         cameraMan = new CameraMan(this);
 
         eventManager.addNotification(this);
