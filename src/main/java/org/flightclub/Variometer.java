@@ -9,31 +9,29 @@
 package org.flightclub;
 
 public class Variometer {
+    public static final float LIFT_MAX = -2 * Glider.SINK_RATE;
+
+    //how many different sounds
+    private static final int NUM_BEEPS = 4;
+    private static final int FRAMES_PER_BEEP = 5;
+
+    //different beeps as we go up the steps
+    private static final float[] STEPS = new float[NUM_BEEPS];
+    static {
+        // Calculate the steps at which the beep changes. The strongest lift
+        // in this game is twice the glider's sink rate (under big clouds)
+        for (int i = 0; i < NUM_BEEPS; i++)
+            STEPS[i] = i * LIFT_MAX / NUM_BEEPS;
+    }
+
     final ModelViewer app;
     private final FlyingDot flyingDot;
-    float[] steps; //different beeps as we go up the steps
-    private int frame_count = 0;
 
-    static final int FRAMES_PER_BEEP = 5;
-    static final int NUM_BEEPS = 4; //how many different sounds
-    public static final float LIFT_MAX = -2 * Glider.SINK_RATE;
+    private int frame_count = 0;
 
     public Variometer(ModelViewer app, FlyingDot flyingDot) {
         this.flyingDot = flyingDot;
         this.app = app;
-        this.init();
-    }
-
-    /**
-	 * Calculate the steps at which the beep
-	 * changes. The strongest lift in this game
-	 * is twice the glider's sink rate (under big clouds)
-	 */
-    private void init() {
-        steps = new float[NUM_BEEPS];
-        for (int i = 0; i < NUM_BEEPS; i++) {
-            steps[i] = i * LIFT_MAX / NUM_BEEPS;
-        }
     }
 
     public void tick() {
@@ -59,7 +57,7 @@ public class Variometer {
     private int whichStep(float lift) {
         int step = -1;
         for (int i = 0; i < NUM_BEEPS; i++) {
-            if (lift >= steps[i]) step = i;
+            if (lift >= STEPS[i]) step = i;
         }
         return step;
     }
