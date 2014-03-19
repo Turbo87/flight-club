@@ -17,21 +17,18 @@ import java.util.Vector;
  */
 public class Landscape implements CameraSubject {
     // hills in order heading downwind
-    final Vector[] hills;
-    final Vector[] triggers;
+    final Tile[] tiles;
     static XCGame app;
     int currentTile;
     // cycle through the different hill shapes
-    int hillCount = 0;
-    final boolean[] loaded;
     static final int TILE_WIDTH = 20;
     static final int MAX_TILES = 10;
 
     public Landscape(XCGame theApp) {
         app = theApp;
-        hills = new Vector[MAX_TILES];
-        triggers = new Vector[MAX_TILES];
-        loaded = new boolean[MAX_TILES];
+        tiles = new Tile[MAX_TILES];
+        for (int t = 0; t < MAX_TILES; t++)
+            tiles[t] = new Tile();
 
         currentTile = 0;
         loadTile(currentTile);
@@ -39,14 +36,21 @@ public class Landscape implements CameraSubject {
         goalLine();
     }
 
+    public static class Tile {
+        boolean loaded = false;
+        Vector<Hill> hills = new Vector<>();
+        Vector<ThermalTrigger> triggers = new Vector<>();
+    }
+
     /**
      * load a chunk of landscape mostly thermal triggers, some tiles have hills
      */
     void loadTile(int t) {
-        if (loaded[t]) return;
+        if (tiles[t].loaded)
+            return;
 
-        hills[t] = new Vector();
-        triggers[t] = new Vector();
+        tiles[t].hills.clear();
+        tiles[t].triggers.clear();
 
         if (t == 0) {
             loadFlatLand(t);
@@ -73,7 +77,7 @@ public class Landscape implements CameraSubject {
             loadFlatLand(t);
         }
 
-        loaded[t] = true;
+        tiles[t].loaded = true;
     }
 
     void addFrame(int tile, int x) {
@@ -161,13 +165,13 @@ public class Landscape implements CameraSubject {
         int x0 = 0;
 
         trigger = new ThermalTrigger(app, x0, y0 + 3, 2);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0, y0 + 15, 2);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0, y0 + TILE_WIDTH + 2, 1, (float) 0.2, (float) 0.5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
     }
 
     /**
@@ -180,22 +184,22 @@ public class Landscape implements CameraSubject {
         int x0 = 0;
 
         trigger = new ThermalTrigger(app, x0, y0 + 3, 2);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0, y0 + 15, 1, 1, (float) 0.5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 + 5, y0 + 5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 + 5, y0 + 13, 2, (float) 0.5, (float) 0.5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 - 5, y0 + 5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 - 5, y0 + 13);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         loadBackTriggers(tile);
     }
@@ -210,10 +214,10 @@ public class Landscape implements CameraSubject {
         int dx = TILE_WIDTH / 2 + 3;
 
         trigger = new ThermalTrigger(app, x0 - dx, y0 + 3, 2);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 + dx, y0 + 15, 2);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
     }
 
     void loadHill_1(int tile) {
@@ -226,21 +230,21 @@ public class Landscape implements CameraSubject {
         addFrame(tile, 0);
 
         hill = new Hill(app, 2, y0 + TILE_WIDTH / 4, Hill.OR_X, 2, (float) 0.3, (float) 0.5, Hill.FACE_CURVY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //distant hills
         hill = new Hill(app, -TILE_WIDTH / 2 - 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //triggers
         trigger = new ThermalTrigger(app, x0, y0 + 15, 1, 1, (float) 0.5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, 5, y0 + 5, 1, (float) 0.1, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         loadBackTriggers(tile);
     }
@@ -253,21 +257,21 @@ public class Landscape implements CameraSubject {
         int x0 = 0;
 
         hill = new Hill(app, -TILE_WIDTH / 4, y0 + TILE_WIDTH / 2, Hill.OR_X, 4, 2, (float) 1, Hill.FACE_CURVY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //background
         hill = new Hill(app, TILE_WIDTH / 2 + 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         hill = new Hill(app, -TILE_WIDTH / 2 - 6, y0 + TILE_WIDTH * 3 / 4 - 3, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //triggers
         trigger = new ThermalTrigger(app, x0, y0 + 10, 1, (float) 0.2, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 - 4, y0 + 10, 1, (float) 0.2, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         loadBackTriggers(tile);
     }
@@ -281,7 +285,7 @@ public class Landscape implements CameraSubject {
 
         //trigger with half the cycle length and 3 times the cloud duration
         trigger = new ThermalTrigger(app, -4, y0 + TILE_WIDTH / 4, 2, (float) 0.3, 3);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
     }
 
     /*
@@ -293,7 +297,7 @@ public class Landscape implements CameraSubject {
         int y0 = tile * TILE_WIDTH;
 
         trigger = new ThermalTrigger(app, 0, y0 + TILE_WIDTH / 2, 1, 2, 1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
     }
 
     void loadMountain_1(int tile) {
@@ -304,21 +308,21 @@ public class Landscape implements CameraSubject {
         int x0 = 0;
 
         hill = new Hill(app, 2, y0 + TILE_WIDTH / 2, Hill.OR_X, 3, 3, (float) 1.1, Hill.FACE_CURVY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //distant hills
         hill = new Hill(app, -TILE_WIDTH / 2, y0, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //triggers
         trigger = new ThermalTrigger(app, x0, y0 + 15, 1, 1, (float) 0.5);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 + 4, y0 + 10, 1, (float) 0.1, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         loadBackTriggers(tile);
 
@@ -332,21 +336,21 @@ public class Landscape implements CameraSubject {
         int x0 = 0;
 
         hill = new Hill(app, -7, y0 + TILE_WIDTH / 2, Hill.OR_X, 4, 2, (float) 1.5, Hill.FACE_CURVY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //distant hills
         hill = new Hill(app, -TILE_WIDTH / 2, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 4, 1, (float) 1, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         hill = new Hill(app, +TILE_WIDTH / 2 + 2, y0, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
-        hills[tile].addElement(hill);
+        tiles[tile].hills.addElement(hill);
 
         //triggers
         trigger = new ThermalTrigger(app, x0 - 6, y0 + 10, 1, (float) 0.2, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
 
         trigger = new ThermalTrigger(app, x0 - 2, y0 + 10, 1, (float) 0.2, (float) 0.1);
-        triggers[tile].addElement(trigger);
+        tiles[tile].triggers.addElement(trigger);
     }
 
     /*
@@ -371,21 +375,21 @@ public class Landscape implements CameraSubject {
 
     void removeTile(int tileNum, boolean really) {
 
-        if (!loaded[tileNum]) return;
+        if (!tiles[tileNum].loaded) return;
 
-        for (int i = 0; i < hills[tileNum].size(); i++) {
-            Hill hill = (Hill) hills[tileNum].elementAt(i);
+        for (int i = 0; i < tiles[tileNum].hills.size(); i++) {
+            Hill hill = tiles[tileNum].hills.elementAt(i);
             hill.destroyMe();
         }
 
-        for (int i = 0; i < triggers[tileNum].size(); i++) {
-            ThermalTrigger trigger = (ThermalTrigger) triggers[tileNum].elementAt(i);
+        for (int i = 0; i < tiles[tileNum].triggers.size(); i++) {
+            ThermalTrigger trigger = tiles[tileNum].triggers.elementAt(i);
             trigger.destroyMe(really);
         }
 
-        hills[tileNum] = null;
-        triggers[tileNum] = null;
-        loaded[tileNum] = false;
+        tiles[tileNum].hills.clear();
+        tiles[tileNum].triggers.clear();
+        tiles[tileNum].loaded = false;
     }
 
     void removeAll() {
@@ -401,9 +405,8 @@ public class Landscape implements CameraSubject {
      * each call adds a different hill shape
      */
     void addHill(int tileNum, int x, int y) {
-        Hill hill;
-        hill = new Hill(app, x, y);
-        hills[tileNum].addElement(hill);
+        Hill hill = new Hill(app, x, y);
+        tiles[tileNum].hills.addElement(hill);
     }
 
     /**
@@ -411,11 +414,11 @@ public class Landscape implements CameraSubject {
      */
     Hill nextHill(Vector3d p) {
         int tile = getTile(p);
-        if (!loaded[tile]) return null;
+        if (!tiles[tile].loaded) return null;
         float RANGE = 8;
 
-        for (int i = 0; i < hills[tile].size(); i++) {
-            Hill hill = (Hill) hills[tile].elementAt(i);
+        for (int i = 0; i < tiles[tile].hills.size(); i++) {
+            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
             if (hill.y0 >= p.y &&
                     hill.y0 - p.y < RANGE * p.z && hill.inForeGround) return hill;
         }
@@ -424,9 +427,9 @@ public class Landscape implements CameraSubject {
         tile++;
         if (tile > MAX_TILES - 1) return null;
 
-        if (!loaded[tile]) return null;
-        for (int i = 0; i < hills[tile].size(); i++) {
-            Hill hill = (Hill) hills[tile].elementAt(i);
+        if (!tiles[tile].loaded) return null;
+        for (int i = 0; i < tiles[tile].hills.size(); i++) {
+            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
             if (hill.y0 >= p.y &&
                     hill.y0 - p.y < RANGE * p.z && hill.inForeGround) return hill;
         }
@@ -448,10 +451,10 @@ public class Landscape implements CameraSubject {
      */
     Hill myHill(Vector3d p) {
         int tile = getTile(p);
-        if (!loaded[tile]) return null;
+        if (!tiles[tile].loaded) return null;
 
-        for (int i = 0; i < hills[tile].size(); i++) {
-            Hill hill = (Hill) hills[tile].elementAt(i);
+        for (int i = 0; i < tiles[tile].hills.size(); i++) {
+            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
             if (hill.contains(p.x, p.y)) return hill;
         }
         return null;
