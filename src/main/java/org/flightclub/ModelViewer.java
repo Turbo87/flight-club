@@ -24,7 +24,6 @@ public class ModelViewer extends Panel implements ClockObserver {
 
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
-    EventManager eventManager = null;
     Interface envInterface;
     String textMessage = null;
     Clock clock = null;
@@ -40,7 +39,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         createClock();
         createModelCanvas();
         obj3dManager = new Obj3dManager();
-        eventManager = new EventManager();
     }
 
     public void start() {
@@ -60,7 +58,6 @@ public class ModelViewer extends Panel implements ClockObserver {
 
     @Override
     public void tick(Clock c) {
-        eventManager.tick();
         modelCanvas.tick();
         modelCanvas.repaint(); //TODO
     }

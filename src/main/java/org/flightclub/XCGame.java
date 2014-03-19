@@ -33,11 +33,13 @@ public class XCGame extends ModelViewer implements EventInterface {
     Compass compass = null;
     DataSlider slider = null;
     CameraMan cameraMan = null;
+    EventManager eventManager = null;
 
     @Override
     public void init(Interface a) {
         super.init(a);
 
+        eventManager = new EventManager();
         cameraMan = new CameraMan(this);
 
         eventManager.addNotification(this);
@@ -133,8 +135,7 @@ public class XCGame extends ModelViewer implements EventInterface {
 
     @Override
     public void tick(Clock c) {
-        super.tick(c);
-
+        eventManager.tick();
         cameraMan.tick();
 
         if (compass != null) compass.setArrow(gliderUser.v.x, gliderUser.v.y);
@@ -143,6 +144,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         //convert v from dist per frame  to dist per unit time
         if (slider != null) slider.setValue(gliderUser.v.z / timePerFrame);
 
+        super.tick(c);
     }
 
     /**

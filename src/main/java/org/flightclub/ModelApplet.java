@@ -14,9 +14,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class ModelApplet extends Applet {
-    final ModelViewer app;
+    final XCGame app;
 
-    public ModelApplet(ModelViewer theApp) {
+    public ModelApplet(XCGame theApp) {
         app = theApp;
     }
 

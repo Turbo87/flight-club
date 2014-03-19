@@ -16,9 +16,9 @@ import java.awt.event.WindowEvent;
 
 //the frame for stand alone play cf model applet
 public class ModelFrame extends Frame {
-    final ModelViewer app;
+    final XCGame app;
 
-    public ModelFrame(ModelViewer theApp, String title, int w, int h) {
+    public ModelFrame(XCGame theApp, String title, int w, int h) {
         super(title);
         app = theApp;
         add(app, "Center");
