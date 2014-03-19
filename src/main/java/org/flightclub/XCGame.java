@@ -8,6 +8,10 @@
 
 package org.flightclub;
 
+import org.flightclub.compat.Color;
+import org.flightclub.compat.Font;
+import org.flightclub.compat.Graphics;
+
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
@@ -178,4 +182,38 @@ public class XCGame extends ModelViewer implements EventInterface {
     @Override
     public void keyReleased(KeyEvent e) {
     }
-}
+
+    public void draw(Graphics g, int width, int height) {
+        //TODO optimize - build vector of objs in FOV, need only draw these
+        cameraMan.setMatrix();
+
+        obj3dManager.sortObjects();
+        for (int layer = 0; layer < obj3dManager.MAX_LAYERS; layer++) {
+            for (int i = 0; i < obj3dManager.os.get(layer).size(); i++) {
+                Object3d o = obj3dManager.os.get(layer).elementAt(i);
+                o.film(cameraMan);
+                o.draw(g);
+            }
+        }
+
+        //Text
+        if (textMessage != null) {
+            Font font = new Font("SansSerif", Font.PLAIN, 10);
+            g.setFont(font);
+            g.setColor(Color.LIGHT_GRAY);
+
+            String s;
+            if (!clock.paused) {
+                s = textMessage;
+            } else {
+                s = textMessage + " [ paused ]";
+            }
+            g.drawString(s, 15, height - 15);
+        }
+
+        if (compass != null)
+            compass.draw(g);
+
+        if (slider != null)
+            slider.draw(g);
+    }}

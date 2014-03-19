@@ -31,11 +31,11 @@ public class ModelCanvas extends Canvas {
     public final Color backColor = Color.white;
     private Image imgBuffer;
     int width, height;
-    protected ModelViewer app = null;
+    protected XCGame app = null;
     private Graphics graphicsBuffer;
     private MouseTracker mouseTracker = new MouseTracker();
 
-    public ModelCanvas(ModelViewer theApp) {
+    public ModelCanvas(XCGame theApp) {
         app = theApp;
     }
 
