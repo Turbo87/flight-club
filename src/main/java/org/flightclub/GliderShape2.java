@@ -13,13 +13,15 @@ import org.flightclub.compat.Color;
 import java.util.Vector;
 
 public class GliderShape2 extends Object3dWithShadow {
+    public static final Color DEFAULT_COLOR = new Color(170, 170, 180);
+
     final Color color;
     final static float height = (float) 0.2;//0.2 for shape 1
 
     /** default constructor - gray shape */
     public GliderShape2(XCGame app, boolean register) {
         super(app, register);
-        color = new Color(170, 170, 180); //180
+        color = DEFAULT_COLOR;
         init();
     }
 
