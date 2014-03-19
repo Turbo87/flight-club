@@ -135,10 +135,10 @@ public class XCGame extends ModelViewer implements EventInterface {
         fastForward = !fastForward;
         if (fastForward)
             //2.5 minutes per second
-            timePerFrame = (float) 0.1;
+            timePerFrame = TIME_PER_FRAME_FAST;
         else
             //0.5 minutes per second
-            timePerFrame = (float) 0.02;
+            timePerFrame = TIME_PER_FRAME_DEFAULT;
     }
 
     @Override

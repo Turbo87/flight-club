@@ -19,6 +19,9 @@ public class ModelViewer extends Panel implements ClockObserver {
 
     protected static final int FRAME_RATE = 25;
 
+    public static final float TIME_PER_FRAME_DEFAULT = (float) (1.0 / FRAME_RATE) / 2;
+    public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
+
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
     EventManager eventManager = null;
@@ -32,7 +35,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     Clock clock = null;
     boolean pendingStart = false;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
-    protected float timePerFrame = (float) (1.0 / 25);
+    protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
 
     ModelViewer() {
     }
