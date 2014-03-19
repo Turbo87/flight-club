@@ -42,7 +42,7 @@ public class ModelViewer extends Panel implements ClockObserver {
         this.envInterface = envInterface;
         createClock();
         createModelCanvas();
-        obj3dManager = new Obj3dManager(this);
+        obj3dManager = new Obj3dManager();
         eventManager = new EventManager();
         cameraMan = new CameraMan((XCGame) this);
     }

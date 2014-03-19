@@ -19,12 +19,10 @@ public class Obj3dManager {
             0 - at the back
             1 - default layer (used if none specified when adding an object3d)
     */
-    protected final ModelViewer app;
     final Vector<Vector<Object3d>> os;
     static final int MAX_LAYERS = 3;
 
-    Obj3dManager(ModelViewer theApp) {
-        app = theApp;
+    public Obj3dManager() {
         os = new Vector<>(MAX_LAYERS);
         for (int i = 0; i < MAX_LAYERS; i++)
             os.add(new Vector<Object3d>());
