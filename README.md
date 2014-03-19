@@ -50,6 +50,15 @@ Try pressing `<p>` to pause the action and then switch between the different poi
 Dragging the mouse whilst the action is paused gives a cool 'bullet time' effect.
 
 
+## Build Instructions
+
+This project is now using the [gradle](http://www.gradle.org/) build system. To build the project run the following command from the command line:
+
+    $ ./gradlew build
+
+Use `./gradlew run` to run the game afterwards.
+
+
 ## Author
 
 Created by Dan Burton <danb@dircon.co.uk>, 22 Aug 2002
