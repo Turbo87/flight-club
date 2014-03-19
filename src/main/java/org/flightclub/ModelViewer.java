@@ -26,8 +26,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     Obj3dManager obj3dManager = null;
     EventManager eventManager = null;
     CameraMan cameraMan = null;
-    Landscape landscape = null;    //hack
-    Sky sky = null;
     Interface envInterface;
     String textMessage = null;
     Compass compass = null;

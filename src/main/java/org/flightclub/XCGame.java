@@ -24,6 +24,8 @@ public class XCGame extends ModelViewer implements EventInterface {
     JetTrail jet2;
     Mode mode;
     boolean fastForward = true;
+    Landscape landscape = null;
+    Sky sky = null;
 
     @Override
     public void init(Interface a) {
