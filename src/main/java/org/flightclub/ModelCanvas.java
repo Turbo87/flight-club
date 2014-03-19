@@ -31,11 +31,8 @@ public class ModelCanvas extends Canvas {
     private Image imgBuffer;
     int width, height;
     protected ModelViewer app = null;
-    boolean dragging = false;
     private Graphics graphicsBuffer;
-
-    private int x0 = 0, y0 = 0;
-    private int dx = 0, dy = 0;
+    private MouseTracker mouseTracker = new MouseTracker();
 
     public ModelCanvas(ModelViewer theApp) {
         app = theApp;
@@ -52,23 +49,18 @@ public class ModelCanvas extends Canvas {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                x0 = e.getX();
-                y0 = e.getY();
-                dragging = true;
+                mouseTracker.pressed(e.getX(), e.getY());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                dx = 0;
-                dy = 0;
-                dragging = false;
+                mouseTracker.released();
             }
         });
 
         this.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
-                dx = e.getX() - x0;
-                dy = e.getY() - y0;
+                mouseTracker.dragged(e.getX(), e.getY());
             }
         });
 
@@ -86,15 +78,18 @@ public class ModelCanvas extends Canvas {
     }
 
     void tick() {
-        if (dragging) {
+        if (mouseTracker.isDragging()) {
             //float dtheta = (float) dx/width;
             float dtheta = 0;
             float unitStep = (float) Math.PI / (app.getFrameRate() * 8);//4 seconds to 90 - sloow!
 
-            if (dx > 20) dtheta = -unitStep;
-            if (dx < -20) dtheta = unitStep;
+            if (mouseTracker.getDeltaX() > 20)
+                dtheta = -unitStep;
 
-            app.cameraMan.rotateEyeAboutFocus(-dtheta, -dy);
+            if (mouseTracker.getDeltaX() < -20)
+                dtheta = unitStep;
+
+            app.cameraMan.rotateEyeAboutFocus(-dtheta, -mouseTracker.getDeltaY());
         }
     }
 
