@@ -266,12 +266,6 @@ public class Tools3d {
         return true;
     }
 
-    public static void cross(Vector3d a, Vector3d b, Vector3d c) {
-        c.x = a.y * b.z - a.z * b.y;
-        c.y = -a.x * b.z + a.z * b.x;
-        c.z = a.x * b.y - a.y * b.x;
-    }
-
     public static double rnd(double lower, double upper) {
         return Math.random() * (upper - lower) + lower;
     }

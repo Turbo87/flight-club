@@ -112,12 +112,9 @@ public class FlyingDot implements ClockObserver, CameraSubject {
      * Set i, j and k vectors so v is along the y axis - ie do pitch and yaw
      */
     private void setLocalFrame() {
-        Tools3d.cross(v, new Vector3d(0, 0, 1), axisX);
-        axisX.scaleBy(1 / axisX.length());
-
+        axisX.set(v).cross(new Vector3d(0, 0, 1)).scaleBy(1 / axisX.length());
         axisY.set(v).scaleBy(1 / axisY.length());
-
-        Tools3d.cross(axisX, axisY, axisZ);
+        axisZ.set(axisX).cross(axisY);
 
         //now apply roll, if any
         if (roll == 0)
@@ -206,10 +203,8 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         Vector3d x = new Vector3d();
 
         v.z = 0;    //work in xy plane
-        Tools3d.cross(new Vector3d(0, 0, 1), v, w);
-        w.scaleBy(-dir * ds / my_turn_radius);
-        v.add(w);
-        v.scaleToLength(ds); //ds is in xy only
+        w = new Vector3d(0, 0, 1).cross(v).scaleBy(-dir * ds / my_turn_radius);
+        v.add(w).scaleToLength(ds); //ds is in xy only
         roll(dir);
     }
 
@@ -233,9 +228,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
             //float r = (h - ONE_WING) * (ds/dh) * (ds/dh);
 
             // turn left or right ? see if moving right a bit gives a greater h than straight on
-            Vector3d w = new Vector3d();
-            Tools3d.cross(v, new Vector3d(0, 0, 1), w);
-            w.scaleBy(ds / my_turn_radius);
+            Vector3d w = v.crossed(new Vector3d(0, 0, 1)).scaleBy(ds / my_turn_radius);
             Vector3d p__ = new Vector3d(p_).add(w);
             float h__ = p.z - app.landscape.getHeight(p__.x, p__.y);
             if (h__ >= h_) {

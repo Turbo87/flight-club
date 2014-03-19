@@ -194,8 +194,7 @@ public class MovementManager {
             return 0;
         }
 
-        Vector3d c = new Vector3d();
-        Tools3d.cross(v, u, c);
+        Vector3d c = v.crossed(u);
         float sin = c.length() / (flyingDot.ds * d);
         float sin1 = flyingDot.ds / flyingDot.my_turn_radius;
 
@@ -245,8 +244,7 @@ public class MovementManager {
         //are we close ?
         if (d > flyingDot.my_turn_radius * 3) return headTowards(x, y);
 
-        Vector3d cross = new Vector3d();
-        Tools3d.cross(r, flyingDot.v, cross);
+        Vector3d cross = r.crossed(flyingDot.v);
 
         float dperp = cross.length() / flyingDot.ds;
         float dot = r.dot(flyingDot.v);

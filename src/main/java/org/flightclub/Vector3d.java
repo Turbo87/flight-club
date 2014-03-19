@@ -84,4 +84,16 @@ public final class Vector3d {
     public float dot(Vector3d other) {
         return x * other.x + y * other.y + z * other.z;
     }
+
+    public Vector3d cross(Vector3d b) {
+        set(y * b.z - z * b.y,
+            -x * b.z + z * b.x,
+            x * b.y - y * b.x);
+        return this;
+    }
+
+    /** Returns a copy of this instance cross multiplied with the other instance. */
+    public Vector3d crossed(Vector3d other) {
+        return new Vector3d().set(this).cross(other);
+    }
 }

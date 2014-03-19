@@ -63,8 +63,7 @@ public class PolyLine {
         Vector3d e1 = ps[0].subtracted(ps[1]);
         Vector3d e2 = ps[2].subtracted(ps[1]);
 
-        Tools3d.cross(e1, e2, normal);
-        normal.makeUnit();
+        normal.set(e1).cross(e2).makeUnit();
 
         calcLight();
     }
