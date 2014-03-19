@@ -45,7 +45,7 @@ public class XCGame extends ModelViewer implements EventInterface {
         obj3dManager = new Obj3dManager();
         cameraMan = new CameraMan(this);
 
-        eventManager.addNotification(this);
+        eventManager.subscribe(this);
 
         sky = new Sky(this);
         landscape = new Landscape(this);

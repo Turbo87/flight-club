@@ -17,28 +17,28 @@ import java.util.Vector;
  * default event handler
  */
 public class EventManager {
-    protected final Vector<EventInterface> objs = new Vector<>();
+    protected final Vector<EventInterface> subscribers = new Vector<>();
     final static int MAX_Q = 20;
-    Queue<KeyEvent> queue = new LinkedList<KeyEvent>();
+    Queue<KeyEvent> eventQueue = new LinkedList<KeyEvent>();
 
     /**
      * add an object to the list of objects to be
      * notified when an event happens
      */
-    public void addNotification(EventInterface ei) {
-        objs.addElement(ei);
+    public void subscribe(EventInterface ei) {
+        subscribers.add(ei);
     }
 
-    public void removeNotification(EventInterface ei) {
-        objs.removeElement(ei);
+    public void unsubscribe(EventInterface ei) {
+        subscribers.remove(ei);
     }
 
     /**
      * add event to queue
      */
     public boolean handleEvent(KeyEvent e) {
-        if (queue.size() < MAX_Q) {
-            queue.add(e);
+        if (eventQueue.size() < MAX_Q) {
+            eventQueue.add(e);
             return true;
         } else {
             return false;
@@ -49,12 +49,12 @@ public class EventManager {
      * process event at head of the queue
      */
     public void tick() {
-        KeyEvent e = queue.poll();
+        KeyEvent e = eventQueue.poll();
         if (e == null)
             return;
 
-        for (int i = 0; i < objs.size(); i++) {
-            EventInterface ei = objs.elementAt(i);
+        for (int i = 0; i < subscribers.size(); i++) {
+            EventInterface ei = subscribers.elementAt(i);
             callEventHelper(ei, e);
         }
     }

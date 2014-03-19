@@ -22,7 +22,7 @@ public class GliderUser extends Glider implements EventInterface {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
         super(app, p, true);
-        app.eventManager.addNotification(this);
+        app.eventManager.subscribe(this);
         vario = new Variometer(app, this);
     }
 

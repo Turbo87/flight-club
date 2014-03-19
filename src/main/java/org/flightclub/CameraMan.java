@@ -62,7 +62,7 @@ public class CameraMan implements EventInterface {
 
     CameraMan(XCGame theApp) {
         app = theApp;
-        app.eventManager.addNotification(this);
+        app.eventManager.subscribe(this);
 
         //get the canvas size
         screenWidth = app.modelCanvas.getSize().width;
