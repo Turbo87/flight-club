@@ -25,7 +25,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     ModelCanvas modelCanvas = null;
     Obj3dManager obj3dManager = null;
     EventManager eventManager = null;
-    CameraMan cameraMan = null;
     Interface envInterface;
     String textMessage = null;
     Clock clock = null;
@@ -42,7 +41,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         createModelCanvas();
         obj3dManager = new Obj3dManager();
         eventManager = new EventManager();
-        cameraMan = new CameraMan((XCGame) this);
     }
 
     public void start() {
@@ -64,7 +62,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     public void tick(Clock c) {
         eventManager.tick();
         modelCanvas.tick();
-        cameraMan.tick();
         modelCanvas.repaint(); //TODO
     }
 

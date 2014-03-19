@@ -32,10 +32,14 @@ public class XCGame extends ModelViewer implements EventInterface {
     Sky sky = null;
     Compass compass = null;
     DataSlider slider = null;
+    CameraMan cameraMan = null;
 
     @Override
     public void init(Interface a) {
         super.init(a);
+
+        cameraMan = new CameraMan(this);
+
         eventManager.addNotification(this);
 
         sky = new Sky(this);
@@ -130,6 +134,9 @@ public class XCGame extends ModelViewer implements EventInterface {
     @Override
     public void tick(Clock c) {
         super.tick(c);
+
+        cameraMan.tick();
+
         if (compass != null) compass.setArrow(gliderUser.v.x, gliderUser.v.y);
         //if (slider!=null) slider.setValue(gliderUser.v.z * 150);
 
