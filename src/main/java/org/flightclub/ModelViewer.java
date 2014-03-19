@@ -44,9 +44,9 @@ public class ModelViewer extends Panel implements ClockObserver {
         this.envInterface = envInterface;
         createClock();
         createModelCanvas();
-        createObj3dManager();
-        createEventManager();
-        createCameraMan();
+        obj3dManager = new Obj3dManager(this);
+        eventManager = new EventManager();
+        cameraMan = new CameraMan(this);
     }
 
     public void start() {
@@ -92,18 +92,6 @@ public class ModelViewer extends Panel implements ClockObserver {
 
         doLayout();
         modelCanvas.init();
-    }
-
-    protected void createObj3dManager() {
-        obj3dManager = new Obj3dManager(this);
-    }
-
-    protected void createCameraMan() {
-        cameraMan = new CameraMan(this);
-    }
-
-    protected void createEventManager() {
-        eventManager = new EventManager();
     }
 
     protected void createLandscape() {
