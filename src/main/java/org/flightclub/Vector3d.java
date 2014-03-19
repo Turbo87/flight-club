@@ -33,6 +33,37 @@ public final class Vector3d {
         return (float) Math.hypot(Math.hypot(x, y), z);
     }
 
+    public Vector3d set(float x, float y, float z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        return this;
+    }
+
+    public Vector3d set(Vector3d other) {
+        set(other.x, other.y, other.z);
+        return this;
+    }
+
+    public Vector3d add(Vector3d other) {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        return this;
+    }
+
+    public Vector3d subtract(Vector3d other) {
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+        return this;
+    }
+
+    /** Returns a copy of this instance subtracted by the other instance. */
+    public Vector3d subtracted(Vector3d other) {
+        return new Vector3d().set(this).subtract(other);
+    }
+
     public Vector3d scaleBy(float factor) {
         x *= factor;
         y *= factor;
@@ -48,37 +79,6 @@ public final class Vector3d {
     public Vector3d makeUnit() {
         scaleToLength(1);
         return this;
-    }
-
-    public Vector3d add(Vector3d other) {
-        x += other.x;
-        y += other.y;
-        z += other.z;
-        return this;
-    }
-
-    public Vector3d set(float x, float y, float z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        return this;
-    }
-
-    public Vector3d set(Vector3d other) {
-        set(other.x, other.y, other.z);
-        return this;
-    }
-
-    public Vector3d subtract(Vector3d other) {
-        x -= other.x;
-        y -= other.y;
-        z -= other.z;
-        return this;
-    }
-
-    /** Returns a copy of this instance subtracted by the other instance. */
-    public Vector3d subtracted(Vector3d other) {
-        return new Vector3d().set(this).subtract(other);
     }
 
     public float dot(Vector3d other) {
