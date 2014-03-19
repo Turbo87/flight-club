@@ -27,7 +27,6 @@ import java.awt.event.MouseMotionAdapter;
  */
 public class ModelCanvas extends Canvas {
     public final Color backColor = Color.white;
-    public final Image backImg = null;
     private Image imgBuffer;
     int width, height;
     protected ModelViewer app = null;
@@ -107,11 +106,8 @@ public class ModelCanvas extends Canvas {
     }
 
     public void updateImgBuffer(Graphics g) {
-        if (backImg == null) {
-            g.setColor(backColor);
-            g.fillRect(0, 0, width, height);
-        } else
-            g.drawImage(backImg, 0, 0, this);
+        g.setColor(backColor);
+        g.fillRect(0, 0, width, height);
 
         app.draw(g, width, height);
     }
