@@ -9,18 +9,13 @@
 package org.flightclub;
 
 import java.awt.Frame;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.DataInputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 //the frame for stand alone play cf model applet
-public class ModelFrame extends Frame implements Interface {
+public class ModelFrame extends Frame {
     final ModelViewer app;
 
     public ModelFrame(ModelViewer theApp, String title, int w, int h) {
@@ -29,7 +24,7 @@ public class ModelFrame extends Frame implements Interface {
         add(app, "Center");
         setSize(w, h);
         show();
-        app.init(this);
+        app.init(new FrameInterface(this));
         app.start();
 
         this.addWindowListener(new WindowAdapter() {
@@ -51,27 +46,4 @@ public class ModelFrame extends Frame implements Interface {
         });
     }
 
-    @Override
-    public Image getImage(String s) {
-        return Toolkit.getDefaultToolkit().getImage(s);
-    }
-
-    @Override
-    public void play(String s) {
-        //can not play sound from a frame
-    }
-
-    @Override
-    public DataInputStream openFile(String name) {
-        return null;
-    }
-
-    public URL getCodeBase() {
-        try {
-            return new URL("");
-        } catch (MalformedURLException e) {
-            System.out.println("Unable to get code base for model panel");
-            return null;
-        }
-    }
 }
