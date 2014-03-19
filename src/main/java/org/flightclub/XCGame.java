@@ -30,8 +30,8 @@ public class XCGame extends ModelViewer implements EventInterface {
         super.init(a);
         eventManager.addNotification(this);
 
-        createSky();
-        createLandscape();
+        sky = new Sky(this);
+        landscape = new Landscape(this);
 
         gliderUser = new GliderUser(this, new Vector3d(0, 0, 0));
         gliderUser.landed();
@@ -69,16 +69,6 @@ public class XCGame extends ModelViewer implements EventInterface {
         mode = Mode.DEMO;
         toggleFastForward();
 
-    }
-
-    private void createLandscape() {
-        // hack - want camera to be able to 'see' landscape
-        landscape = new Landscape(this);
-    }
-
-    private void createSky() {
-        // hack - want camera to be able to 'see' landscape
-        sky = new Sky(this);
     }
 
     void launchGaggle() {
