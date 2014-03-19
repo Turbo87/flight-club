@@ -23,7 +23,7 @@ public class Tail extends Object3d {
     int updateEvery = 1;
     int moveCount = 0;
 
-    public Tail(ModelViewer theApp, int inTailLength, Color inC) {
+    public Tail(XCGame theApp, int inTailLength, Color inC) {
         // only register top level objects with the manager
         // a tail has a parent who IS registered with the manager
         //  and is responsible for drawing and ticking its tail
@@ -33,7 +33,7 @@ public class Tail extends Object3d {
         c = inC;
     }
 
-    public Tail(ModelViewer theApp, int inTailLength, Color inC, int layer) {
+    public Tail(XCGame theApp, int inTailLength, Color inC, int layer) {
 		/*
 			as aboove but add to a specific layer
 			eg zero for long jet tails, roads...

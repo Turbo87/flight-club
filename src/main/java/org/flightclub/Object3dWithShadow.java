@@ -31,12 +31,12 @@ public class Object3dWithShadow extends Object3d {
     final Surface[] shadows = new Surface[MAX_SHADOWS];
     int numShadows = 0;
 
-    Object3dWithShadow(ModelViewer theApp) {
+    Object3dWithShadow(XCGame theApp) {
         super(theApp);
         initShadow();
     }
 
-    Object3dWithShadow(ModelViewer theApp, boolean register) {
+    Object3dWithShadow(XCGame theApp, boolean register) {
         super(theApp, register);
         initShadow();
     }

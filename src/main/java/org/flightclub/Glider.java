@@ -47,11 +47,11 @@ public class Glider extends FlyingBody {
     /**
      * default constructor - this glider is not being piloted by the user
      */
-    public Glider(ModelViewer app, Vector3d p) {
+    public Glider(XCGame app, Vector3d p) {
         this(app, p, false);
     }
 
-    public Glider(ModelViewer app, Vector3d p, boolean isUser) {
+    public Glider(XCGame app, Vector3d p, boolean isUser) {
         super(app, SPEED, TURN_RADIUS, isUser);
 
         GliderShape2 gliderShape;
@@ -66,7 +66,7 @@ public class Glider extends FlyingBody {
         gotoNextLiftSource();
     }
 
-    public Glider(ModelViewer app, Vector3d p, boolean isUser, boolean isRigid) {
+    public Glider(XCGame app, Vector3d p, boolean isUser, boolean isRigid) {
         //hack to get a couple of faster pink machines
         //sailplane/rigid
         super(app, SPEED * (float) 1.5, TURN_RADIUS * (float) 1.2, isUser);

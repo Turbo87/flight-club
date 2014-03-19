@@ -19,7 +19,7 @@ public class Landscape implements CameraSubject {
     // hills in order heading downwind
     final Vector[] hills;
     final Vector[] triggers;
-    static ModelViewer app;
+    static XCGame app;
     int currentTile;
     // cycle through the different hill shapes
     int hillCount = 0;
@@ -27,7 +27,7 @@ public class Landscape implements CameraSubject {
     static final int TILE_WIDTH = 20;
     static final int MAX_TILES = 10;
 
-    public Landscape(ModelViewer theApp) {
+    public Landscape(XCGame theApp) {
         app = theApp;
         hills = new Vector[MAX_TILES];
         triggers = new Vector[MAX_TILES];

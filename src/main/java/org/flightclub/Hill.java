@@ -27,7 +27,7 @@ public class Hill implements CameraSubject {
     final float phase;
     final float h0;
     final int face;
-    final ModelViewer app;
+    final XCGame app;
     final Object3d object3d;
     final Color color;
 
@@ -46,7 +46,7 @@ public class Hill implements CameraSubject {
     // width 2 - curvy
     static final int FACE_CURVY = 1;
 
-    public Hill(ModelViewer theApp, int inX, int inY, int inOr, int inSpineLength, float inPhase, float inH0, int inFace) {
+    public Hill(XCGame theApp, int inX, int inY, int inOr, int inSpineLength, float inPhase, float inH0, int inFace) {
         app = theApp;
         x0 = inX;
         y0 = inY;
@@ -75,7 +75,7 @@ public class Hill implements CameraSubject {
     /**
      * default hill (curvy spine, curvy face)
      */
-    public Hill(ModelViewer theApp, int inX, int inY) {
+    public Hill(XCGame theApp, int inX, int inY) {
 
         this(theApp, inX, inY, OR_X, 2, 1, (float) 0.5, FACE_CURVY);
     }

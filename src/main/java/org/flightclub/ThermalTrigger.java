@@ -11,7 +11,7 @@ package org.flightclub;
 import java.util.Vector;
 
 public class ThermalTrigger implements ClockObserver {
-    final ModelViewer app;
+    final XCGame app;
     Clock clock;
     final int x;
     final int y;
@@ -36,15 +36,15 @@ public class ThermalTrigger implements ClockObserver {
     static final int CLOUD_DURATION = 10;
     static final int MAX_WAIT = 7;
 
-    public ThermalTrigger(ModelViewer theApp, int inX, int inY) {
+    public ThermalTrigger(XCGame theApp, int inX, int inY) {
         this(theApp, inX, inY, 1, 1, 1);
     }
 
-    public ThermalTrigger(ModelViewer theApp, int inX, int inY, int inCloudStrenth) {
+    public ThermalTrigger(XCGame theApp, int inX, int inY, int inCloudStrenth) {
         this(theApp, inX, inY, inCloudStrenth, 1, 1);
     }
 
-    public ThermalTrigger(ModelViewer theApp, int inX, int inY, int inCloudStrenth, float inCycleLength, float inCloudDuration) {
+    public ThermalTrigger(XCGame theApp, int inX, int inY, int inCloudStrenth, float inCycleLength, float inCloudDuration) {
         app = theApp;
         app.clock.addObserver(this);
         x = inX;

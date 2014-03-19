@@ -19,7 +19,7 @@ import org.flightclub.compat.Color;
 */
 
 public class FlyingDot implements ClockObserver, CameraSubject {
-    final ModelViewer app;
+    final XCGame app;
     Vector3d v;
     Vector3d p = new Vector3d();
     float speed;
@@ -40,7 +40,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
     static final float ROLL_MAX_ANGLE = (float) (Math.PI / 4);
     static Vector3d[] axisZs;
 
-    public FlyingDot(ModelViewer theApp, float inSpeed, float inTurnRadius) {
+    public FlyingDot(XCGame theApp, float inSpeed, float inTurnRadius) {
         app = theApp;
         app.clock.addObserver(this);
 
@@ -50,7 +50,7 @@ public class FlyingDot implements ClockObserver, CameraSubject {
         my_turn_radius = inTurnRadius;
     }
 
-    public FlyingDot(ModelViewer theApp, float inSpeed, float inTurnRadius, boolean inIsUser) {
+    public FlyingDot(XCGame theApp, float inSpeed, float inTurnRadius, boolean inIsUser) {
         this(theApp, inSpeed, inTurnRadius);
         isUser = inIsUser;
     }

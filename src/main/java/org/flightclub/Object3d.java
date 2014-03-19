@@ -14,7 +14,7 @@ import org.flightclub.compat.Graphics;
 import java.util.Vector;
 
 public class Object3d {
-    protected ModelViewer app = null;
+    protected XCGame app = null;
 
     float xMin, yMin, xMax, yMax;
     final Vector<Vector3d> points = new Vector<>();
@@ -29,15 +29,15 @@ public class Object3d {
     // default layer 1
     int layer;
 
-    Object3d(ModelViewer theApp) {
+    Object3d(XCGame theApp) {
         this(theApp, true);
     }
 
-    Object3d(ModelViewer theApp, boolean register) {
+    Object3d(XCGame theApp, boolean register) {
         this(theApp, register, 1);
     }
 
-    Object3d(ModelViewer theApp, boolean register, int inLayer) {
+    Object3d(XCGame theApp, boolean register, int inLayer) {
         app = theApp;
         layer = inLayer;
         if (register)

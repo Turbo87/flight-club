@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
 public class GliderUser extends Glider implements EventInterface {
     final Variometer vario;
 
-    public GliderUser(ModelViewer app, Vector3d p) {
+    public GliderUser(XCGame app, Vector3d p) {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
         super(app, p, true);

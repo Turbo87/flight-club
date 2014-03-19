@@ -13,7 +13,7 @@ import org.flightclub.compat.Color;
 import java.util.Vector;
 
 public class Cloud implements CameraSubject, ClockObserver {
-    final ModelViewer app;
+    final XCGame app;
     final Object3dWithShadow object3d;
     Vector3d p = new Vector3d();
     float radius;
@@ -45,7 +45,7 @@ public class Cloud implements CameraSubject, ClockObserver {
     static final int CLOUD_COLOR = 230;
     static final int CLOUD_COLOR_STEP = 20;//how much darker are strong clouds
 
-    public Cloud(ModelViewer inApp, float x, float y, int inDuration, int inStrength) {
+    public Cloud(XCGame inApp, float x, float y, int inDuration, int inStrength) {
         app = inApp;
         object3d = new Object3dWithShadow(app);
 
@@ -88,7 +88,7 @@ public class Cloud implements CameraSubject, ClockObserver {
 
     }
 
-    public Cloud(ModelViewer inApp, float x, float y, int inDuration) {
+    public Cloud(XCGame inApp, float x, float y, int inDuration) {
         //no cloud strength specifed, so use default of 1 = give climbs equal to min sink
         this(inApp, x, y, inDuration, 1);
     }

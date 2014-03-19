@@ -16,7 +16,7 @@ public class GliderShape extends Object3dWithShadow {
     final Color color;
     final static float height = (float) 0.2;
 
-    public GliderShape(ModelViewer app, boolean register) {
+    public GliderShape(XCGame app, boolean register) {
         /*
 			default constructor - gray shape
 		*/
@@ -26,7 +26,7 @@ public class GliderShape extends Object3dWithShadow {
         init();
     }
 
-    public GliderShape(ModelViewer app, boolean register, Color inC) {
+    public GliderShape(XCGame app, boolean register, Color inC) {
 		/*
 			pass in a color (eg for user glider)
 		*/

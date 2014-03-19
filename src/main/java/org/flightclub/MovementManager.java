@@ -13,7 +13,7 @@ package org.flightclub;
 */
 
 public class MovementManager {
-    final ModelViewer app;
+    final XCGame app;
     FlyingDot flyingDot = null;
 
     // point to fly towards
@@ -44,7 +44,7 @@ public class MovementManager {
     static final float E_COS = (float) 0.05;
     static final float E_DIST = (float) 0.1;
 
-    public MovementManager(ModelViewer theApp, FlyingDot theFlyingDot) {
+    public MovementManager(XCGame theApp, FlyingDot theFlyingDot) {
         app = theApp;
         flyingDot = theFlyingDot;
     }

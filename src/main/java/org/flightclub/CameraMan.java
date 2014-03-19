@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
 */
 
 public class CameraMan implements EventInterface {
-    final ModelViewer app;
+    final XCGame app;
     public final Vector3d lightRay;
     public float zoom = 1;
 
@@ -60,7 +60,7 @@ public class CameraMan implements EventInterface {
     static final int PLAN_H = 20;
     static final int PLAN_Y_OFFSET = 4;
 
-    CameraMan(ModelViewer theApp) {
+    CameraMan(XCGame theApp) {
         app = theApp;
         app.eventManager.addNotification(this);
 

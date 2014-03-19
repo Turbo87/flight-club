@@ -46,7 +46,7 @@ public class ModelViewer extends Panel implements ClockObserver {
         createModelCanvas();
         obj3dManager = new Obj3dManager(this);
         eventManager = new EventManager();
-        cameraMan = new CameraMan(this);
+        cameraMan = new CameraMan((XCGame) this);
     }
 
     public void start() {

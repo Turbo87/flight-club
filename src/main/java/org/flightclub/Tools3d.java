@@ -129,7 +129,7 @@ public class Tools3d {
         return square(face, -dx, -dx, dx, dx, d);
     }
 
-    static Object3d unitCube(ModelViewer theApp, boolean isSolid) {
+    static Object3d unitCube(XCGame theApp, boolean isSolid) {
         Object3d cube = new Object3d(theApp);
         float d = (float) 0.5;
         Color c = Color.GREEN;

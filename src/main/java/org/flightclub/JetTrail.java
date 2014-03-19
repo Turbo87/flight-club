@@ -20,7 +20,7 @@ public class JetTrail extends FlyingDot {
     FlyingDot buzzThis;
     static final float RANGE = 40;
 
-    public JetTrail(ModelViewer app, float x, float y) {
+    public JetTrail(XCGame app, float x, float y) {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
         super(app, SPEED, TURN_RADIUS);
