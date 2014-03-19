@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-public class XCGameApplet extends ModelApplet implements ModelEnv {
+public class XCGameApplet extends ModelApplet {
     public XCGameApplet() {
         super(new XCGame());
     }
