@@ -8,11 +8,6 @@
 
 package org.flightclub;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.io.DataInputStream;
-
 public interface Interface {
     void play(String s);
-    Dimension getSize();
 }

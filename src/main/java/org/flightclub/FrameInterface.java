@@ -1,6 +1,5 @@
 package org.flightclub;
 
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.net.URL;
 
@@ -29,10 +28,5 @@ class FrameInterface implements Interface {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Dimension getSize() {
-        return frame.getSize();
     }
 }
