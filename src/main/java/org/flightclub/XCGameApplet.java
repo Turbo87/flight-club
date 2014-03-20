@@ -8,8 +8,42 @@
 
 package org.flightclub;
 
-public class XCGameApplet extends ModelApplet {
-    public XCGameApplet() {
-        super(new XCGame());
+import java.applet.Applet;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class XCGameApplet extends Applet {
+    private final XCGame app = new XCGame();
+
+    @Override
+    public void init() {
+        this.setBackground(Color.white);
+        app.setSize(getSize());
+        add(app);
+        app.init(new AppletInterface(this));
+
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+        });
+        this.requestFocus();
+    }
+
+    @Override
+    public void start() {
+        app.start();
+    }
+
+    @Override
+    public void stop() {
+        app.stop();
     }
 }
