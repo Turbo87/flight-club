@@ -22,6 +22,8 @@ public class XCGame extends ModelViewer implements EventInterface {
         USER,
     }
 
+    public static final int FRAME_RATE = 25;
+
     public static final float TIME_PER_FRAME_DEFAULT = (float) (1.0 / FRAME_RATE) / 2;
     public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
 
@@ -42,6 +44,8 @@ public class XCGame extends ModelViewer implements EventInterface {
     String textMessage = null;
     Obj3dManager obj3dManager = new Obj3dManager();
     Interface envInterface;
+
+    final Clock clock = new Clock(1000 / FRAME_RATE);
 
     @Override
     public void init(Interface envInterface) {

@@ -13,19 +13,15 @@ import java.awt.Panel;
 
 public class ModelViewer extends Panel implements ClockObserver {
 
-    protected static final int FRAME_RATE = 25;
-
     ModelCanvas modelCanvas = null;
-    final Clock clock = new Clock(1000 / FRAME_RATE);
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
 
     public ModelViewer() {
         setLayout(new BorderLayout());
-
-        clock.addObserver(this);
     }
 
     void init(Interface envInterface) {
+        ((XCGame) this).clock.addObserver(this);
         createModelCanvas();
     }
 
