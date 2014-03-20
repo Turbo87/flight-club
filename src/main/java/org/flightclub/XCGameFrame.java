@@ -8,8 +8,43 @@
 
 package org.flightclub;
 
-public class XCGameFrame {
+import java.awt.Frame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class XCGameFrame extends Frame {
+    final XCGame app = new XCGame();
+
+    public XCGameFrame(String title, int w, int h) {
+        super(title);
+        add(app, "Center");
+        setSize(w, h);
+        show();
+        app.init(new FrameInterface(this));
+        app.start();
+
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                app.eventManager.handleEvent(e);
+            }
+        });
+    }
+
     public static void main(String s[]) {
-        new ModelFrame(new XCGame(), "Flight Club", 640, 490);
+        new XCGameFrame("Flight Club", 640, 490);
     }
 }
