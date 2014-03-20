@@ -11,7 +11,7 @@ package org.flightclub;
 import java.awt.BorderLayout;
 import java.awt.Panel;
 
-public class ModelViewer extends Panel implements ClockObserver {
+public class ModelViewer extends Panel {
 
     ModelCanvas modelCanvas = null;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
@@ -21,14 +21,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     void init(Interface envInterface) {
-        ((XCGame) this).clock.addObserver(this);
         createModelCanvas();
-    }
-
-    @Override
-    public void tick(Clock c) {
-        modelCanvas.tick();
-        modelCanvas.repaint(); //TODO
     }
 
     protected void createModelCanvas() {

@@ -27,7 +27,7 @@ import java.awt.event.MouseMotionAdapter;
  * This class is based on the framework outlined in a book called
  * 'Java Games Programming' by Niel Bartlett
  */
-public class ModelCanvas extends Canvas {
+public class ModelCanvas extends Canvas implements ClockObserver {
     public final Color backColor = Color.white;
     private Image imgBuffer;
     int width, height;
@@ -37,6 +37,7 @@ public class ModelCanvas extends Canvas {
 
     public ModelCanvas(XCGame theApp) {
         app = theApp;
+        app.clock.addObserver(this);
     }
 
     void init() {
@@ -80,7 +81,8 @@ public class ModelCanvas extends Canvas {
         });
     }
 
-    void tick() {
+    @Override
+    public void tick(Clock c) {
         if (mouseTracker.isDragging()) {
             //float dtheta = (float) dx/width;
             float dtheta = 0;
@@ -94,6 +96,8 @@ public class ModelCanvas extends Canvas {
 
             app.rotateCamera(-dtheta, -mouseTracker.getDeltaY());
         }
+
+        repaint();
     }
 
     @Override
@@ -115,6 +119,5 @@ public class ModelCanvas extends Canvas {
 
         app.draw(new AwtGraphics(g), width, height);
     }
-
 }
 

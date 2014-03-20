@@ -15,7 +15,7 @@ import org.flightclub.compat.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-public class XCGame extends ModelViewer implements EventInterface {
+public class XCGame extends ModelViewer implements EventInterface, ClockObserver {
 
     public enum Mode {
         DEMO,
@@ -46,6 +46,10 @@ public class XCGame extends ModelViewer implements EventInterface {
     Interface envInterface;
 
     final Clock clock = new Clock(1000 / FRAME_RATE);
+
+    public XCGame() {
+        clock.addObserver(this);
+    }
 
     @Override
     public void init(Interface envInterface) {
@@ -164,8 +168,6 @@ public class XCGame extends ModelViewer implements EventInterface {
 
         //convert v from dist per frame  to dist per unit time
         if (slider != null) slider.setValue(gliderUser.v.z / timePerFrame);
-
-        super.tick(c);
     }
 
     /**
