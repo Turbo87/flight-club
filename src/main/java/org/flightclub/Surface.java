@@ -29,7 +29,7 @@ public class Surface extends PolyLine {
     public void draw(Graphics g) {
         Vector3d a;
         Vector3d b;
-        boolean ok = true;
+        boolean inFOV = true;
 
         if (numPoints <= 1) return;
 
@@ -37,12 +37,13 @@ public class Surface extends PolyLine {
 
         for (int i = 0; i < numPoints; i++) {
             a = object3d.points_.elementAt(points[i]);
-            Boolean inFOV = object3d.inFOVs.elementAt(points[i]);
-            ok = ok && inFOV;
+            inFOV = inFOV && object3d.inFOVs.elementAt(points[i]);
             xs[i] = (int) (a.y);
             ys[i] = (int) (a.z);
         }
-        if (ok) g.fillPolygon(xs, ys, xs.length);
+
+        if (inFOV)
+            g.fillPolygon(xs, ys, xs.length);
     }
 
 }
