@@ -19,8 +19,7 @@ public class ModelViewer extends Panel implements ClockObserver {
     public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
 
     ModelCanvas modelCanvas = null;
-    Clock clock = null;
-    boolean pendingStart = false;
+    final Clock clock = new Clock(1000 / FRAME_RATE);
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
     protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
 
@@ -33,18 +32,15 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     public void start() {
-        if (clock != null) clock.start();
-        else pendingStart = true;
+        clock.start();
     }
 
     public void stop() {
-        if (clock != null) clock.stop();
+        clock.stop();
     }
 
     protected void createClock() {
-        clock = new Clock(1000 / FRAME_RATE);
         clock.addObserver(this);
-        if (pendingStart) start();
     }
 
     @Override
