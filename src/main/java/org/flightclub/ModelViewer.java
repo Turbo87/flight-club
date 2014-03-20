@@ -48,7 +48,8 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     protected void createModelCanvas() {
-        add("Center", modelCanvas = new ModelCanvas((XCGame) this));
+        modelCanvas = new ModelCanvas((XCGame) this);
+        add(modelCanvas);
 
         doLayout();
         modelCanvas.init();
