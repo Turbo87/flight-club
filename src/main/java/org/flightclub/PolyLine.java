@@ -53,8 +53,8 @@ public class PolyLine {
     }
 
     void setNormal() {
-        if (numPoints < 3) return;
-        normal = new Vector3d();
+        if (numPoints < 3)
+            return;
 
         Vector3d[] ps = new Vector3d[3];
         for (int i = 0; i < 3; i++)
@@ -63,7 +63,7 @@ public class PolyLine {
         Vector3d e1 = ps[0].subtracted(ps[1]);
         Vector3d e2 = ps[2].subtracted(ps[1]);
 
-        normal.set(e1).cross(e2).makeUnit();
+        normal = new Vector3d(e1).cross(e2).makeUnit();
 
         calcLight();
     }
