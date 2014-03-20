@@ -23,7 +23,9 @@ public class ModelViewer extends Panel implements ClockObserver {
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
     protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
 
-    ModelViewer() {
+    public ModelViewer() {
+        setLayout(new BorderLayout());
+
         clock.addObserver(this);
     }
 
@@ -46,7 +48,6 @@ public class ModelViewer extends Panel implements ClockObserver {
     }
 
     protected void createModelCanvas() {
-        setLayout(new BorderLayout());
         add("Center", modelCanvas = new ModelCanvas((XCGame) this));
 
         doLayout();
