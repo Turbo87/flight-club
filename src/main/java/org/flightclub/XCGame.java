@@ -61,7 +61,7 @@ public class XCGame extends ModelViewer implements EventInterface, ClockObserver
 
         eventManager.subscribe(this);
 
-        sky = new Sky(this);
+        sky = new Sky();
         landscape = new Landscape(this);
 
         gliderUser = new GliderUser(this, new Vector3d(0, 0, 0));
@@ -150,10 +150,10 @@ public class XCGame extends ModelViewer implements EventInterface, ClockObserver
     }
 
     void createInstruments() {
-        if (compass == null) compass = new Compass(this, 25, modelCanvas.width - 30, modelCanvas.height - 15);
+        if (compass == null) compass = new Compass(25, modelCanvas.width - 30, modelCanvas.height - 15);
         if (slider == null) {
             float vmax = -2 * Glider.SINK_RATE;
-            slider = new DataSlider(this, -vmax, vmax, 30, modelCanvas.width - 60, modelCanvas.height - 15);
+            slider = new DataSlider(-vmax, vmax, 30, modelCanvas.width - 60, modelCanvas.height - 15);
             slider.label = "vario";
         }
     }
