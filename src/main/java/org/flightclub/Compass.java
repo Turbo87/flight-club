@@ -16,8 +16,6 @@ import org.flightclub.compat.Graphics;
  * a simple compass
  */
 public class Compass {
-    final ModelViewer app;
-
     // head of arrow
     final int[] hxs = {0, 2, -2};
     final int[] hys = {5, 2, 2};
@@ -53,16 +51,15 @@ public class Compass {
     // pixel space for label at bottom
     static final int dy = 10;
 
-    public Compass(ModelViewer theApp, int inSize, int inX0, int inY0) {
-        app = theApp;
+    public Compass(int inSize, int inX0, int inY0) {
         r = inSize / 2;
         x0 = inX0;
         y0 = inY0;
         init();
     }
 
-    public Compass(ModelViewer theApp) {
-        this(theApp, SIZE_DEFAULT, 30, 42);
+    public Compass() {
+        this(SIZE_DEFAULT, 30, 42);
     }
 
     void init() {

@@ -17,15 +17,13 @@ import java.util.Vector;
 public class Sky {
     // clouds in order from south to north
     private final Vector<Cloud> clouds;
-    final ModelViewer app;
     private static float cloudBase;
 
     final static float RANGE = 8;    //for next /prev - dist per unit height i.e. glide angle
     private final static float BASE_HIGH = 3;
     private final static float BASE_LOW = 2;
 
-    public Sky(ModelViewer theApp) {
-        app = theApp;
+    public Sky() {
         clouds = new Vector<>();
         setLow();
     }

@@ -17,8 +17,6 @@ import org.flightclub.compat.Graphics;
  * minimal design - cf toshiba scan of fred
  */
 public class DataSlider {
-    final ModelViewer app;
-
     /** length of slider in pixels */
     final int size;
 
@@ -47,8 +45,7 @@ public class DataSlider {
     static final int dx = 2;
     static final int dy = 10;
 
-    public DataSlider(ModelViewer theApp, float inV_min, float inV_max, int inSize, int inX0, int inY0) {
-        app = theApp;
+    public DataSlider(float inV_min, float inV_max, int inSize, int inX0, int inY0) {
         v_min = inV_min;
         v_max = inV_max;
         size = inSize;
@@ -57,8 +54,8 @@ public class DataSlider {
         init();
     }
 
-    public DataSlider(ModelViewer theApp) {
-        this(theApp, -1, 1, SIZE_DEFAULT, 50, 42);
+    public DataSlider() {
+        this(-1, 1, SIZE_DEFAULT, 50, 42);
     }
 
     void init() {
