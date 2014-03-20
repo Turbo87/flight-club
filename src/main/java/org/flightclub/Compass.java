@@ -88,7 +88,7 @@ public class Compass {
         vy = y;
 
         // normalize
-        float d = (float) Math.sqrt(x * x + y * y);
+        float d = (float) Math.hypot(x, y);
         vx = vx / d;
         vy = vy / d;
 
