@@ -65,6 +65,8 @@ public class ModelCanvas extends Canvas {
             }
         });
 
+        // Add key listeners for XCGameApplet implementation
+        // (XCGameFrame is listening by itself)
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
