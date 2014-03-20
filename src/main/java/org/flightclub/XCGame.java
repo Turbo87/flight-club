@@ -22,6 +22,11 @@ public class XCGame extends ModelViewer implements EventInterface {
         USER,
     }
 
+    public static final float TIME_PER_FRAME_DEFAULT = (float) (1.0 / FRAME_RATE) / 2;
+    public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
+
+    protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
+
     Vector<Glider> gaggle;
     GliderUser gliderUser;
     JetTrail jet1;
