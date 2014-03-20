@@ -33,14 +33,6 @@ public class ModelViewer extends Panel implements ClockObserver {
         createModelCanvas();
     }
 
-    public void start() {
-        clock.start();
-    }
-
-    public void stop() {
-        clock.stop();
-    }
-
     @Override
     public void tick(Clock c) {
         modelCanvas.tick();

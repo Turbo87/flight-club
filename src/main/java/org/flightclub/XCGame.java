@@ -104,6 +104,14 @@ public class XCGame extends ModelViewer implements EventInterface {
         clock.paused = !clock.paused;
     }
 
+    public void start() {
+        clock.start();
+    }
+
+    public void stop() {
+        clock.stop();
+    }
+
     void startPlay() {
         mode = Mode.USER;
         landscape.removeAll();
