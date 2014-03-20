@@ -24,10 +24,10 @@ public class ModelViewer extends Panel implements ClockObserver {
     protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
 
     ModelViewer() {
+        clock.addObserver(this);
     }
 
     void init(Interface envInterface) {
-        createClock();
         createModelCanvas();
     }
 
@@ -37,10 +37,6 @@ public class ModelViewer extends Panel implements ClockObserver {
 
     public void stop() {
         clock.stop();
-    }
-
-    protected void createClock() {
-        clock.addObserver(this);
     }
 
     @Override
