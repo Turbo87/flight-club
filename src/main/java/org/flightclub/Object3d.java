@@ -58,7 +58,7 @@ public class Object3d {
         for (int i = 0; i < wires.size(); i++) {
             PolyLine wire = wires.elementAt(i);
 
-            if (!wire.isBackFace())
+            if (!wire.isBackFace(app.cameraMan.getEye()))
                 wire.draw(g);
         }
     }

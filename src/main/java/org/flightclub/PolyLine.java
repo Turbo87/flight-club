@@ -41,13 +41,13 @@ public class PolyLine {
         nextIndex++;
     }
 
-    boolean isBackFace() {
+    boolean isBackFace(Vector3d eye) {
         if (normal == null) return false;
 
         setNormal();    //now ???
 
         Vector3d p = object3d.points.elementAt(points[0]);
-        Vector3d ray = p.subtracted(object3d.app.cameraMan.getEye());
+        Vector3d ray = p.subtracted(eye);
 
         return normal.dot(ray) >= 0;
     }
