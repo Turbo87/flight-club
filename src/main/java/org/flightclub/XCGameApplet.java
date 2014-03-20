@@ -10,8 +10,6 @@ package org.flightclub;
 
 import java.applet.Applet;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class XCGameApplet extends Applet {
     private final XCGame app = new XCGame();
@@ -23,17 +21,6 @@ public class XCGameApplet extends Applet {
         add(app);
         app.init(new AppletInterface(this));
 
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                app.eventManager.handleEvent(e);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                app.eventManager.handleEvent(e);
-            }
-        });
         this.requestFocus();
     }
 
