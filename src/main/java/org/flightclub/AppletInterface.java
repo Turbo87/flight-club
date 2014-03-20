@@ -11,6 +11,7 @@ class AppletInterface implements Interface {
 
     @Override
     public void play(String s) {
-        applet.play(applet.getCodeBase(), s);
+        // Deactivated for now, caused freezing
+        // applet.play(applet.getCodeBase(), s);
     }
 }
