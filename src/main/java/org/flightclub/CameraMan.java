@@ -230,8 +230,8 @@ public class CameraMan {
      * iterate the cut. nb. the point we are cutting to may be on the move
      */
     void cutStep() {
-        Vector3d deye_ = new Vector3d(deye.x, deye.y, deye.z);
-        Vector3d dfocus_ = new Vector3d(dfocus.x, dfocus.y, dfocus.z);
+        Vector3d deye_ = new Vector3d(deye);
+        Vector3d dfocus_ = new Vector3d(dfocus);
         float s;
 
         if (cutCount > CUT_LEN - CUT_RAMP) {
