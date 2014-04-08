@@ -22,7 +22,12 @@ public class Hill implements CameraSubject {
     final float x0;
     final float y0;
 
-    int orientation = 0;
+    public enum Orientation {
+        X,
+        Y,
+    }
+
+    Orientation orientation = Orientation.X;
     final int spineLength;
     final float phase;
     final float h0;
@@ -38,15 +43,12 @@ public class Hill implements CameraSubject {
     final boolean inForeGround;
     float maxH = 0;
 
-    static final int OR_X = 0;
-    static final int OR_Y = 1;
-
     // width 1 - spiky
     static final int FACE_SPIKEY = 0;
     // width 2 - curvy
     static final int FACE_CURVY = 1;
 
-    public Hill(XCGame theApp, int inX, int inY, int inOr, int inSpineLength, float inPhase, float inH0, int inFace) {
+    public Hill(XCGame theApp, int inX, int inY, Orientation inOr, int inSpineLength, float inPhase, float inH0, int inFace) {
         app = theApp;
         x0 = inX;
         y0 = inY;
@@ -77,7 +79,7 @@ public class Hill implements CameraSubject {
      */
     public Hill(XCGame theApp, int inX, int inY) {
 
-        this(theApp, inX, inY, OR_X, 2, 1, (float) 0.5, FACE_CURVY);
+        this(theApp, inX, inY, Orientation.X, 2, 1, (float) 0.5, FACE_CURVY);
     }
 
     /*
@@ -99,7 +101,7 @@ public class Hill implements CameraSubject {
             }
         }
 
-        if (orientation == OR_Y) object3d.reverse();
+        if (orientation == Orientation.Y) object3d.reverse();
     }
 
     /*
@@ -109,7 +111,7 @@ public class Hill implements CameraSubject {
         float x1, x2, y1, y2;
         Vector3d[] corners = new Vector3d[4];
 
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             x1 = x0 + i;
             x2 = x1 + tileWidth;
             y1 = y0 - j; //back face has j=-1 and y > y0
@@ -122,7 +124,7 @@ public class Hill implements CameraSubject {
         }
 
         //TODO make getZ transform to i/j coords
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             corners[0] = new Vector3d(x1, y1, getZ(i, j));
             corners[1] = new Vector3d(x1, y2, getZ(i, j - tileWidth));
             corners[2] = new Vector3d(x2, y2, getZ(i + tileWidth, j - tileWidth));
@@ -148,7 +150,7 @@ public class Hill implements CameraSubject {
         if (face == FACE_CURVY) frontFace = 2;
         else frontFace = 1;
 
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             circuit.add(new Vector3d(1, -frontFace, 0));
             circuit.add(new Vector3d(1 + spineLength, -frontFace, 0));
         } else {
@@ -162,7 +164,7 @@ public class Hill implements CameraSubject {
 
     @Override
     public Vector3d getEye() {
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             return new Vector3d(x0 + 2 + spineLength, y0 - 2 - spineLength, (float) 0.8);
         } else {
             return new Vector3d(x0 + 2 + spineLength, y0, (float) 0.8);
@@ -171,7 +173,7 @@ public class Hill implements CameraSubject {
 
     @Override
     public Vector3d getFocus() {
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             return new Vector3d(x0 + (2 + spineLength) / 2, y0, h0 / 2);
         } else {
             return new Vector3d(x0, y0 + (2 + spineLength) / 2, h0 / 2);
@@ -183,7 +185,7 @@ public class Hill implements CameraSubject {
         if (face == FACE_CURVY) frontFace = 2;
         else frontFace = 1;
 
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             return (inY >= y0 - frontFace && inY <= y0 + 1
                     && inX > x0 && inX < x0 + 2 + spineLength);
         } else {
@@ -226,7 +228,7 @@ public class Hill implements CameraSubject {
      */
     public float getHeight(float x, float y) {
         float i, j;
-        if (orientation == OR_X) {
+        if (orientation == Orientation.X) {
             i = x - x0;
             j = y0 - y;
         } else {

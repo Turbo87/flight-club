@@ -229,14 +229,14 @@ public class Landscape implements CameraSubject {
 
         addFrame(tile, 0);
 
-        hill = new Hill(app, 2, y0 + TILE_WIDTH / 4, Hill.OR_X, 2, (float) 0.3, (float) 0.5, Hill.FACE_CURVY);
+        hill = new Hill(app, 2, y0 + TILE_WIDTH / 4, Hill.Orientation.X, 2, (float) 0.3, (float) 0.5, Hill.FACE_CURVY);
         tiles[tile].hills.addElement(hill);
 
         //distant hills
-        hill = new Hill(app, -TILE_WIDTH / 2 - 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
+        hill = new Hill(app, -TILE_WIDTH / 2 - 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.Orientation.Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
-        hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
+        hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.Orientation.Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
         //triggers
@@ -256,14 +256,14 @@ public class Landscape implements CameraSubject {
         ThermalTrigger trigger;
         int x0 = 0;
 
-        hill = new Hill(app, -TILE_WIDTH / 4, y0 + TILE_WIDTH / 2, Hill.OR_X, 4, 2, (float) 1, Hill.FACE_CURVY);
+        hill = new Hill(app, -TILE_WIDTH / 4, y0 + TILE_WIDTH / 2, Hill.Orientation.X, 4, 2, (float) 1, Hill.FACE_CURVY);
         tiles[tile].hills.addElement(hill);
 
         //background
-        hill = new Hill(app, TILE_WIDTH / 2 + 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
+        hill = new Hill(app, TILE_WIDTH / 2 + 4, y0 + TILE_WIDTH * 3 / 4 + 3, Hill.Orientation.Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
-        hill = new Hill(app, -TILE_WIDTH / 2 - 6, y0 + TILE_WIDTH * 3 / 4 - 3, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
+        hill = new Hill(app, -TILE_WIDTH / 2 - 6, y0 + TILE_WIDTH * 3 / 4 - 3, Hill.Orientation.Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
         //triggers
@@ -307,14 +307,14 @@ public class Landscape implements CameraSubject {
         ThermalTrigger trigger;
         int x0 = 0;
 
-        hill = new Hill(app, 2, y0 + TILE_WIDTH / 2, Hill.OR_X, 3, 3, (float) 1.1, Hill.FACE_CURVY);
+        hill = new Hill(app, 2, y0 + TILE_WIDTH / 2, Hill.Orientation.X, 3, 3, (float) 1.1, Hill.FACE_CURVY);
         tiles[tile].hills.addElement(hill);
 
         //distant hills
-        hill = new Hill(app, -TILE_WIDTH / 2, y0, Hill.OR_Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
+        hill = new Hill(app, -TILE_WIDTH / 2, y0, Hill.Orientation.Y, 6, 1, (float) 1, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
-        hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
+        hill = new Hill(app, +TILE_WIDTH / 2 + 6, y0 + TILE_WIDTH * 3 / 4, Hill.Orientation.Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
         //triggers
@@ -335,14 +335,14 @@ public class Landscape implements CameraSubject {
         ThermalTrigger trigger;
         int x0 = 0;
 
-        hill = new Hill(app, -7, y0 + TILE_WIDTH / 2, Hill.OR_X, 4, 2, (float) 1.5, Hill.FACE_CURVY);
+        hill = new Hill(app, -7, y0 + TILE_WIDTH / 2, Hill.Orientation.X, 4, 2, (float) 1.5, Hill.FACE_CURVY);
         tiles[tile].hills.addElement(hill);
 
         //distant hills
-        hill = new Hill(app, -TILE_WIDTH / 2, y0 + TILE_WIDTH * 3 / 4, Hill.OR_Y, 4, 1, (float) 1, Hill.FACE_SPIKEY);
+        hill = new Hill(app, -TILE_WIDTH / 2, y0 + TILE_WIDTH * 3 / 4, Hill.Orientation.Y, 4, 1, (float) 1, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
-        hill = new Hill(app, +TILE_WIDTH / 2 + 2, y0, Hill.OR_Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
+        hill = new Hill(app, +TILE_WIDTH / 2 + 2, y0, Hill.Orientation.Y, 3, 0, (float) 0.5, Hill.FACE_SPIKEY);
         tiles[tile].hills.addElement(hill);
 
         //triggers
