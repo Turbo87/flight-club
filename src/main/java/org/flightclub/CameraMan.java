@@ -40,6 +40,8 @@ public class CameraMan implements EventManager.Interface {
     private static final float DEPTH_OF_VISION = Landscape.TILE_WIDTH * (float) 2.5;
     private static final float AMBIENT_LIGHT = (float) 0.3;
 
+    private static final float CAMERA_MOVEMENT_DELTA = (float) 0.1;
+
     CameraSubject cameraSubject; //populate using cutSetup
     CameraSubject subject1;
     CameraSubject subject2;
@@ -387,29 +389,22 @@ public class CameraMan implements EventManager.Interface {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-        //String c = e.getKeyChar();
-        int key = e.getKeyCode();
-
-        //move camera up and down x axis
-        float dx = (float) 0.1;
-
-        switch (key) {
+        switch (e.getKeyCode()) {
             case KeyEvent.VK_K:
-                eye.x -= dx;
-                focus.x -= dx;
+                eye.x -= CAMERA_MOVEMENT_DELTA;
+                focus.x -= CAMERA_MOVEMENT_DELTA;
                 return;
             case KeyEvent.VK_L:
-                eye.x += dx;
-                focus.x += dx;
+                eye.x += CAMERA_MOVEMENT_DELTA;
+                focus.x += CAMERA_MOVEMENT_DELTA;
                 return;
             case KeyEvent.VK_M:
-                eye.y += dx;
-                focus.y += dx;
+                eye.y += CAMERA_MOVEMENT_DELTA;
+                focus.y += CAMERA_MOVEMENT_DELTA;
                 return;
             case KeyEvent.VK_N:
-                eye.y -= dx;
-                focus.y -= dx;
+                eye.y -= CAMERA_MOVEMENT_DELTA;
+                focus.y -= CAMERA_MOVEMENT_DELTA;
                 return;
 
             case KeyEvent.VK_1:
@@ -424,6 +419,7 @@ public class CameraMan implements EventManager.Interface {
             case KeyEvent.VK_4:
                 setMode(Mode.TILE);
                 return;
+
             default:
         }
     }
@@ -431,7 +427,6 @@ public class CameraMan implements EventManager.Interface {
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
 }
 
 
