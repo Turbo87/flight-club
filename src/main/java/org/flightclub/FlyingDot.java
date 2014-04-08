@@ -38,7 +38,23 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
     int roll = 0;
     static final int ROLL_STEPS = 15;
     static final float ROLL_MAX_ANGLE = (float) (Math.PI / 4);
-    static Vector3d[] axisZs;
+    static final Vector3d[] AXIS_ZS = new Vector3d[ROLL_STEPS * 2 + 1];
+
+    /**
+     * generate an array of unit 'up' vectors for
+     * different angles of bank (v points along the y axis)
+     */
+    static {
+        for (int i = -ROLL_STEPS; i < ROLL_STEPS + 1; i++) {
+            double theta = ((double) i / (double) ROLL_STEPS) * ROLL_MAX_ANGLE;
+            Vector3d axisZ = new Vector3d();
+
+            axisZ.x = (float) Math.sin(theta);
+            axisZ.z = (float) Math.cos(theta);
+
+            AXIS_ZS[i + ROLL_STEPS] = axisZ;
+        }
+    }
 
     public FlyingDot(XCGame theApp, float inSpeed, float inTurnRadius) {
         app = theApp;
@@ -57,7 +73,6 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
 
     public void init(Vector3d inP) {
         p = new Vector3d(inP);
-        initRoll();
         setLocalFrame();
         createTail();
         createMoveManager();
@@ -120,7 +135,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
         if (roll == 0)
             return;
 
-        Vector3d up = axisZs[roll + ROLL_STEPS];
+        Vector3d up = AXIS_ZS[roll + ROLL_STEPS];
 
         Vector3d axisX0 = new Vector3d(axisX);
         Vector3d axisZ0 = new Vector3d(axisZ);
@@ -134,24 +149,6 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
         dz.set(axisZ0).scaleBy(-up.x);
 
         axisX.set(dx).add(dz);
-    }
-
-    /**
-     * generate an array of unit 'up' vectors for
-     * different angles of bank (v points along the y axis)
-     */
-    private void initRoll() {
-        axisZs = new Vector3d[ROLL_STEPS * 2 + 1];
-
-        for (int i = -ROLL_STEPS; i < ROLL_STEPS + 1; i++) {
-            double theta = ((double) i / (double) ROLL_STEPS) * ROLL_MAX_ANGLE;
-            Vector3d axisZ = new Vector3d();
-
-            axisZ.x = (float) Math.sin(theta);
-            axisZ.z = (float) Math.cos(theta);
-
-            axisZs[i + ROLL_STEPS] = axisZ;
-        }
     }
 
     void roll(float dir) {
