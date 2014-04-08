@@ -219,11 +219,10 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         cameraMan.setMatrix();
 
         obj3dManager.sortObjects();
-        for (int layer = 0; layer < obj3dManager.MAX_LAYERS; layer++) {
-            for (int i = 0; i < obj3dManager.layers.get(layer).size(); i++) {
-                Object3d o = obj3dManager.layers.get(layer).elementAt(i);
-                o.film(cameraMan);
-                o.draw(g);
+        for (ObjectLayer layer : obj3dManager.layers) {
+            for (Object3d object : layer) {
+                object.film(cameraMan);
+                object.draw(g);
             }
         }
 
