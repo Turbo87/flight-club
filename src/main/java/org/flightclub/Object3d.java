@@ -119,25 +119,25 @@ public class Object3d {
         }
     }
 
-    public int addWire(Vector wirePoints, Color c) {
+    public int addWire(Vector<Vector3d> wirePoints, Color c) {
         //default - solid and has normal (ie only one side of surface is visible)
         return addWire(wirePoints, c, true, true);
     }
 
-    public int addWire(Vector wirePoints, Color c, boolean isSolid) {
+    public int addWire(Vector<Vector3d> wirePoints, Color c, boolean isSolid) {
         //default has normal (ie only one side of surface is visible)
         return addWire(wirePoints, c, isSolid, true);
     }
 
-    public int addWire(Vector wirePoints, Color c, boolean isSolid, boolean hasNormal) {
+    public int addWire(Vector<Vector3d> wirePoints, Color c, boolean isSolid, boolean hasNormal) {
         PolyLine wire;
         if (isSolid) {
             wire = new Surface(this, wirePoints.size(), c);
         } else
             wire = new PolyLine(this, wirePoints.size(), c);
 
-        for (int i = 0; i < wirePoints.size(); i++) {
-            int pointIndex = this.addPoint((Vector3d) wirePoints.elementAt(i));
+        for (Vector3d wirePoint : wirePoints) {
+            int pointIndex = this.addPoint(wirePoint);
             wire.addPoint(pointIndex);
         }
 

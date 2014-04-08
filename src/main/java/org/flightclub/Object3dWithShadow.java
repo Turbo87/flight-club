@@ -41,7 +41,7 @@ public class Object3dWithShadow extends Object3d {
         initShadow();
     }
 
-    public int addWireWithShadow(Vector wirePoints, Color c, boolean isSolid, boolean hasNormal) {
+    public int addWireWithShadow(Vector<Vector3d> wirePoints, Color c, boolean isSolid, boolean hasNormal) {
     /*
       do super addWire, then add a shadow using
 	  the same points with z ~ 0 
