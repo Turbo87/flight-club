@@ -20,10 +20,7 @@ public class Clock implements Runnable {
     public long currentTick = 0;
     public long lastTick = 0;
     public long startTick = 0;
-    public long tickCount = 0;
 
-    long totalSleep = 0;    //for throttle
-    long totalSleepFrom = 0;
     boolean paused = false;
 
     Clock(int t) {
@@ -54,7 +51,6 @@ public class Clock implements Runnable {
     public void run() {
         while (ticker != null) {
             currentTick = System.currentTimeMillis();
-            tickCount++;
 
             for (int i = 0; i < observers.size(); i++) {
                 /*
@@ -69,8 +65,6 @@ public class Clock implements Runnable {
             lastTick = currentTick;
 
             long timeLeft = sleepTime + currentTick - System.currentTimeMillis();
-            totalSleep += timeLeft;
-
             if (timeLeft > 0) {
                 try {
                     Thread.sleep(timeLeft);
@@ -79,28 +73,5 @@ public class Clock implements Runnable {
             }
         }
         ticker = null;
-    }
-
-    long getTickCount() {
-        return tickCount;
-    }
-
-    long getSeconds() {
-        return tickCount * sleepTime / 1000;
-    }
-
-    public long getAvgSleep() {
-        int avg;
-        if (tickCount > totalSleepFrom) {
-            avg = (int) (totalSleep / (tickCount - totalSleepFrom));
-            if (tickCount > totalSleepFrom + 250) {
-                //reset avg every 10 seconds
-                totalSleep = 0;
-                totalSleepFrom = tickCount;
-            }
-        } else {
-            avg = -1;
-        }
-        return avg;
     }
 }
