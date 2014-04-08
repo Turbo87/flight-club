@@ -33,12 +33,12 @@ public class CameraMan implements EventManager.Interface {
     private Vector3d eye;
     private Vector3d focus;
 
-    private final int rBackground = 255;
-    private final int gBackground = 255;
-    private final int bBackground = 255;
+    private static final int BACKGROUND_R = 255;
+    private static final int BACKGROUND_G = 255;
+    private static final int BACKGROUND_B = 255;
 
-    private final float depthOfVision = Landscape.TILE_WIDTH * (float) 2.5; // //64; good for jet trails
-    static final float AMBIENT_LIGHT = (float) 0.3;
+    private static final float DEPTH_OF_VISION = Landscape.TILE_WIDTH * (float) 2.5;
+    private static final float AMBIENT_LIGHT = (float) 0.3;
 
     CameraSubject cameraSubject; //populate using cutSetup
     CameraSubject subject1;
@@ -357,15 +357,15 @@ public class CameraMan implements EventManager.Interface {
         g = c.getGreen();
         b = c.getBlue();
 
-        if (x > depthOfVision) {
-            r_ = rBackground;
-            g_ = gBackground;
-            b_ = bBackground;
+        if (x > DEPTH_OF_VISION) {
+            r_ = BACKGROUND_R;
+            g_ = BACKGROUND_G;
+            b_ = BACKGROUND_B;
         } else {
-            float f = x / depthOfVision;
-            r_ = (int) (r + f * (rBackground - r));
-            g_ = (int) (g + f * (gBackground - g));
-            b_ = (int) (b + f * (bBackground - b));
+            float f = x / DEPTH_OF_VISION;
+            r_ = (int) (r + f * (BACKGROUND_R - r));
+            g_ = (int) (g + f * (BACKGROUND_G - g));
+            b_ = (int) (b + f * (BACKGROUND_B - b));
         }
 
         return new Color(r_, g_, b_);
