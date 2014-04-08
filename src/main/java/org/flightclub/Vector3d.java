@@ -60,7 +60,7 @@ public final class Vector3d {
     }
 
     /** Returns a copy of this instance subtracted by the other instance. */
-    public Vector3d subtracted(Vector3d other) {
+    public Vector3d minus(Vector3d other) {
         return new Vector3d(this).subtract(other);
     }
 

@@ -47,7 +47,7 @@ public class PolyLine {
         setNormal();    //now ???
 
         Vector3d p = object3d.points.elementAt(points[0]);
-        Vector3d ray = p.subtracted(eye);
+        Vector3d ray = p.minus(eye);
 
         return normal.dot(ray) >= 0;
     }
@@ -60,8 +60,8 @@ public class PolyLine {
         for (int i = 0; i < 3; i++)
             ps[i] = object3d.points.elementAt(points[i]);
 
-        Vector3d e1 = ps[0].subtracted(ps[1]);
-        Vector3d e2 = ps[2].subtracted(ps[1]);
+        Vector3d e1 = ps[0].minus(ps[1]);
+        Vector3d e2 = ps[2].minus(ps[1]);
 
         normal = new Vector3d(e1).cross(e2).makeUnit();
 

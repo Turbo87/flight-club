@@ -10,8 +10,6 @@ package org.flightclub;
 
 import org.flightclub.compat.Color;
 
-import java.awt.event.KeyEvent;
-
 /*
   todo - seperate into two classes
   - generic 3d framework camera functionality
@@ -169,8 +167,8 @@ public class CameraMan {
             Vector3d eNew = cameraSubject.getEye();
             Vector3d fNew = cameraSubject.getFocus();
 
-            Vector3d de = eNew.subtracted(eyeGoto);
-            Vector3d df = fNew.subtracted(focusGoto);
+            Vector3d de = eNew.minus(eyeGoto);
+            Vector3d df = fNew.minus(focusGoto);
 
             eye.add(de);
             focus.add(df);
@@ -216,8 +214,8 @@ public class CameraMan {
         eyeGoto = cameraSubject.getEye();
         focusGoto = cameraSubject.getFocus();
 
-        deye = eyeGoto.subtracted(eye);
-        dfocus = focusGoto.subtracted(focus);
+        deye = eyeGoto.minus(eye);
+        dfocus = focusGoto.minus(focus);
 
         /*
          * eye accelerates from 0 upto velocity
@@ -291,7 +289,7 @@ public class CameraMan {
         //Vector3d ray = new Vector3d();
         //Tools3d.subtract(eye,focus,ray);
 
-        Vector3d ray = eye.subtracted(focus);
+        Vector3d ray = eye.minus(focus);
 
         //transform ray
         float[][] m = Tools3d.rotateX(new Vector3d(1, dtheta, 0));
@@ -309,7 +307,7 @@ public class CameraMan {
      * move focus, maintaining angle of view
      */
     void moveFocus(Vector3d f) {
-        Vector3d ray = eye.subtracted(focus);
+        Vector3d ray = eye.minus(focus);
         focus.set(f);
         eye.set(ray).add(focus);
     }
@@ -318,7 +316,7 @@ public class CameraMan {
      * rotation such that eye is looking down +x axis at origin
      */
     void setMatrix() {
-        Vector3d ray = eye.subtracted(focus);
+        Vector3d ray = eye.minus(focus);
         matrix = Tools3d.rotateX(ray);
         distance = ray.length();
     }
