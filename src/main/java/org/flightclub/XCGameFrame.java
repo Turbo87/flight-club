@@ -38,12 +38,12 @@ public class XCGameFrame extends Frame {
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                app.eventManager.handleEvent(e);
+                app.eventManager.addEvent(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                app.eventManager.handleEvent(e);
+                app.eventManager.addEvent(e);
             }
         });
     }

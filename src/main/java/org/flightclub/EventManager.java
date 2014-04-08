@@ -13,9 +13,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Vector;
 
-/**
- * default event handler
- */
 public class EventManager {
 
     /**
@@ -27,57 +24,47 @@ public class EventManager {
         public void keyReleased(KeyEvent e);
     }
 
-    protected final Vector<Interface> subscribers = new Vector<>();
-    final static int MAX_Q = 20;
-    Queue<KeyEvent> eventQueue = new LinkedList<KeyEvent>();
+    private final static int MAX_QUEUE_LENGTH = 20;
+
+    private final Vector<Interface> subscribers = new Vector<>();
+    private final Queue<KeyEvent> events = new LinkedList<>();
 
     /**
      * add an object to the list of objects to be
      * notified when an event happens
      */
-    public void subscribe(Interface ei) {
-        subscribers.add(ei);
+    public void subscribe(Interface i) {
+        subscribers.add(i);
     }
 
-    public void unsubscribe(Interface ei) {
-        subscribers.remove(ei);
+    public void unsubscribe(Interface i) {
+        subscribers.remove(i);
     }
 
     /**
      * add event to queue
      */
-    public boolean handleEvent(KeyEvent e) {
-        if (eventQueue.size() < MAX_Q) {
-            eventQueue.add(e);
-            return true;
-        } else {
+    public boolean addEvent(KeyEvent e) {
+        if (events.size() >= MAX_QUEUE_LENGTH)
             return false;
-        }
+
+        events.add(e);
+        return true;
     }
 
     /**
      * process event at head of the queue
      */
-    public void tick() {
-        KeyEvent e = eventQueue.poll();
+    public void processEvent() {
+        KeyEvent e = events.poll();
         if (e == null)
             return;
 
-        for (int i = 0; i < subscribers.size(); i++) {
-            Interface ei = subscribers.elementAt(i);
-            callEventHelper(ei, e);
-        }
-    }
-
-    void callEventHelper(Interface ei, KeyEvent e) {
-        switch (e.getID()) {
-            case KeyEvent.KEY_RELEASED:
-                ei.keyReleased(e);
-                break;
-            case KeyEvent.KEY_PRESSED:
-                ei.keyPressed(e);
-                break;
-            default:
+        for (Interface i : subscribers) {
+            if (e.getID() == KeyEvent.KEY_RELEASED)
+                i.keyReleased(e);
+            else if (e.getID() == KeyEvent.KEY_PRESSED)
+                i.keyPressed(e);
         }
     }
 }

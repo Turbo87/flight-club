@@ -157,7 +157,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
 
     @Override
     public void tick() {
-        eventManager.tick();
+        eventManager.processEvent();
         cameraMan.tick();
 
         if (compass != null) compass.setArrow(gliderUser.v.x, gliderUser.v.y);
