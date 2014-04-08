@@ -395,19 +395,19 @@ public class CameraMan implements EventManager.Interface {
         float dx = (float) 0.1;
 
         switch (key) {
-            case 107://K
+            case KeyEvent.VK_K:
                 eye.x -= dx;
                 focus.x -= dx;
                 return;
-            case 108://L
+            case KeyEvent.VK_L:
                 eye.x += dx;
                 focus.x += dx;
                 return;
-            case 109://m
+            case KeyEvent.VK_M:
                 eye.y += dx;
                 focus.y += dx;
                 return;
-            case 110://n
+            case KeyEvent.VK_N:
                 eye.y -= dx;
                 focus.y -= dx;
                 return;
