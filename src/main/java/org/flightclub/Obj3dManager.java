@@ -8,8 +8,6 @@
 
 package org.flightclub;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
 
 /**
@@ -21,26 +19,25 @@ public class Obj3dManager {
             0 - at the back
             1 - default layer (used if none specified when adding an object3d)
     */
-    final Vector<Vector<Object3d>> os;
+    final Vector<ObjectLayer> layers = new Vector<>(MAX_LAYERS);
     static final int MAX_LAYERS = 3;
 
     public Obj3dManager() {
-        os = new Vector<>(MAX_LAYERS);
         for (int i = 0; i < MAX_LAYERS; i++)
-            os.add(new Vector<Object3d>());
+            layers.add(new ObjectLayer());
     }
 
     public void addObj(Object3d o, int layer) {
-        os.get(layer).addElement(o);
+        layers.get(layer).add(o);
     }
 
     public void removeObj(Object3d o, int layer) {
-        os.get(layer).removeElement(o);
+        layers.get(layer).remove(o);
     }
 
     public void removeAll() {
-        for (Vector layer : os)
-            layer.removeAllElements();
+        for (ObjectLayer layer : layers)
+            layer.clear();
     }
 
     //public Object3d obj(int i){return (Object3d) os.elementAt(i);}
@@ -49,25 +46,7 @@ public class Obj3dManager {
 
     /** sort each layer so furthest away obj is first in list */
     public void sortObjects() {
-        for (Vector<Object3d> objects : os)
-            Collections.sort(objects, COMPARATOR);
+        for (ObjectLayer layer : layers)
+            layer.sort();
     }
-
-    public static final Comparator<Object3d> COMPARATOR = new Comparator<Object3d>() {
-        @Override
-        public int compare(Object3d o1, Object3d o2) {
-            if (o1.points_.size() == 0 || o2.points_.size() == 0)
-                return 0;
-
-            Vector3d p1 = o1.points_.get(0);
-            Vector3d p2 = o2.points_.get(0);
-
-            if (p1.x > p2.x)
-                return 1;
-            else if (p1.x < p2.x)
-                return -1;
-            else
-                return 0;
-        }
-    };
 }
