@@ -45,13 +45,6 @@ public class GliderUser extends Glider implements EventInterface {
         vario.tick();
     }
 
-    void toggleSpeed() {
-        if (polarIndex == 0)
-            setPolarIndex(1);
-        else
-            setPolarIndex(0);
-    }
-
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -74,10 +67,17 @@ public class GliderUser extends Glider implements EventInterface {
                 setPolarIndex(0);
                 moveManager.workLift();
                 break;
+
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
-                toggleSpeed();
+                setPolarIndex(1);
                 break;
+
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                setPolarIndex(0);
+                break;
+
             default:
         }
     }
