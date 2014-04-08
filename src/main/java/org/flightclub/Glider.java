@@ -54,15 +54,15 @@ public class Glider extends FlyingBody {
     public Glider(XCGame app, Vector3d p, boolean isUser) {
         super(app, SPEED, TURN_RADIUS, isUser);
 
-        GliderShape2 gliderShape;
+        GliderShape gliderShape;
         if (!isUser) {
-            gliderShape = new GliderShape2(app, false);
+            gliderShape = new GliderShape(app, false);
         } else {
-            gliderShape = new GliderShape2(app, false, Color.YELLOW);
+            gliderShape = new GliderShape(app, false, Color.YELLOW);
         }
 
         this.init(gliderShape, p);
-        bodyHeight = GliderShape2.height;
+        bodyHeight = GliderShape.height;
         gotoNextLiftSource();
     }
 
@@ -71,10 +71,10 @@ public class Glider extends FlyingBody {
         //sailplane/rigid
         super(app, SPEED * (float) 1.5, TURN_RADIUS * (float) 1.2, isUser);
 
-        GliderShape2 gliderShape2 = new GliderShape2(app, false, Color.PINK);
+        GliderShape gliderShape = new GliderShape(app, false, Color.PINK);
 
-        this.init(gliderShape2, p);
-        bodyHeight = GliderShape2.height;
+        this.init(gliderShape, p);
+        bodyHeight = GliderShape.height;
         gotoNextLiftSource();
     }
 

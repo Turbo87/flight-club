@@ -13,23 +13,20 @@ import org.flightclub.compat.Color;
 import java.util.Vector;
 
 public class GliderShape extends Object3dWithShadow {
+    public static final Color DEFAULT_COLOR = new Color(170, 170, 180);
+
     final Color color;
-    final static float height = (float) 0.2;
+    final static float height = (float) 0.2;//0.2 for shape 1
 
+    /** default constructor - gray shape */
     public GliderShape(XCGame app, boolean register) {
-        /*
-			default constructor - gray shape
-		*/
-
         super(app, register);
-        color = new Color(190, 190, 190); //180
+        color = DEFAULT_COLOR;
         init();
     }
 
+    /* pass in a color (eg for user glider) */
     public GliderShape(XCGame app, boolean register, Color inC) {
-		/*
-			pass in a color (eg for user glider)
-		*/
         super(app, register);
         color = inC;
         init();
@@ -37,36 +34,48 @@ public class GliderShape extends Object3dWithShadow {
 
     private void init() {
         Vector<Vector3d> wire;
-        float z = (float) 0.5;//1
-        float y = (float) 0.7;//1
+
+        // chord
+        float y = (float) 0.2;
+        // nose a bit up
+        float z = y * (float) 0.3;
+        // anhedral
+        float a = (float) 0.15;
+        // sweep
+        float s = (float) 0.4;
 
         wire = new Vector<>();
-        wire.addElement(new Vector3d(1, 0, 0));
-        wire.addElement(new Vector3d(0, 0, z));
-        wire.addElement(new Vector3d(0, y, 0));
-        wire.addElement(new Vector3d(1, 0, 0));
-        addWire(wire, color, true);
-
-        wire = new Vector<>();
-        wire.addElement(new Vector3d(0, y, 0));
-        wire.addElement(new Vector3d(0, 0, z));
-        wire.addElement(new Vector3d(-1, 0, 0));
-        wire.addElement(new Vector3d(0, y, 0));
-        addWire(wire, color, true);
-
-
-        wire = new Vector<>();
-        wire.addElement(new Vector3d(0, 0, z));
-        wire.addElement(new Vector3d(1, 0, 0));
-        wire.addElement(new Vector3d(-1, 0, 0));
-        wire.addElement(new Vector3d(0, 0, z));
+        wire.addElement(new Vector3d(0, y, z));
+        wire.addElement(new Vector3d(1, y - s, z + a));
+        wire.addElement(new Vector3d(1, -s, a));
+        wire.addElement(new Vector3d(0, 0, 0));
+        wire.addElement(new Vector3d(0, y, z));
         addWire(wire, color, true, true);
 
         wire = new Vector<>();
-        wire.addElement(new Vector3d(1, 0, 0));
-        wire.addElement(new Vector3d(0, y, 0));
-        wire.addElement(new Vector3d(-1, 0, 0));
-        wire.addElement(new Vector3d(1, 0, 0));
+        wire.addElement(new Vector3d(0, y, z));
+        wire.addElement(new Vector3d(0, 0, 0));
+        wire.addElement(new Vector3d(-1, -s, a));
+        wire.addElement(new Vector3d(-1, y - s, z + a));
+        wire.addElement(new Vector3d(0, y, z));
+        addWire(wire, color, true, true);
+
+        // crazy bug - shadow cocks up tips !
+        // same points but reverse order for underside
+        wire = new Vector<>();
+        wire.addElement(new Vector3d(0, y, z));
+        wire.addElement(new Vector3d(-1, y - s, z + a));
+        wire.addElement(new Vector3d(-1, -s, a));
+        wire.addElement(new Vector3d(0, 0, 0));
+        wire.addElement(new Vector3d(0, y, z));
+        addWireWithShadow(wire, color, true, true);
+
+        wire = new Vector<>();
+        wire.addElement(new Vector3d(0, y, z));
+        wire.addElement(new Vector3d(0, 0, 0));
+        wire.addElement(new Vector3d(1, -s, a));
+        wire.addElement(new Vector3d(1, y - s, z + a));
+        wire.addElement(new Vector3d(0, y, z));
         addWireWithShadow(wire, color, true, true);
 
         scaleBy(height);
