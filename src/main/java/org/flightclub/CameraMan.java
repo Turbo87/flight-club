@@ -57,8 +57,13 @@ public class CameraMan implements EventManager.Interface {
 
     int cutCount = 0;
     int cut2Count = 0;
-    static final int CUT_RAMP = 12; //number of steps we accelerate over
-    static final int CUT_LEN = 75; //steps to glide between POVs
+
+    /** number of steps we accelerate over */
+    static final int CUT_RAMP = 12;
+
+    /** steps to glide between POVs */
+    static final int CUT_LEN = 75;
+    
     Vector3d deye, dfocus;
     Vector3d eyeGoto, focusGoto;
 
@@ -132,12 +137,10 @@ public class CameraMan implements EventManager.Interface {
         }
     }
 
+    /**
+     * how much light falls on a surface with this normal - take dot product
+	 */
     float surfaceLight(Vector3d inNormal) {
-    /*
-	  how much light falls on a surface
-	  with this normal - take dot product
-	*/
-
         float dot = lightRay.dot(inNormal);
         dot = (-dot + 1) / 2;
 
@@ -145,14 +148,12 @@ public class CameraMan implements EventManager.Interface {
         if (inNormal.z < -0.99) dot += 0.3;
 
         return dot * (1 - AMBIENT_LIGHT) + AMBIENT_LIGHT;
-
-
     }
 
+    /**
+     * update camera position
+     */
     public void tick() {
-	/*
-	  update camera position
-	*/
         if (cameraSubject == null) return;
         if (cut2Count > 0) cut2Count--; //for watch mode 2
 
@@ -187,15 +188,13 @@ public class CameraMan implements EventManager.Interface {
         }
     }
 
+    /**
+     * glide eye and focus to new positions using N steps. here we set it up and
+     * it'll unwind over the next N ticks
+     *
+     * @param isUser true: call from user glider, false: one of the gagggle
+     */
     void cutSetup(CameraSubject subject, boolean isUser) {
-	/*
-	  glide eye and focus to new positions
-	  using N steps. here we set it up and
-	  it'll unwind over the next N ticks
-
-	  <isUser> 	t: call from user glider
-	  f: one of the gagggle
-	*/
         if (mode == Mode.PLAN) return;
 
         if (cutCount > 0 && mode == Mode.GAGGLE) {
@@ -221,21 +220,19 @@ public class CameraMan implements EventManager.Interface {
         deye = eyeGoto.subtracted(eye);
         dfocus = focusGoto.subtracted(focus);
 
-	/*
-	  eye accelerates from 0 upto velocity
-	  deye over cutRamp steps, tracks at deye then
-	  slows to zero over cutRamp steps. similarly 
-	  for focus.
-	*/
+        /*
+         * eye accelerates from 0 upto velocity
+         * deye over cutRamp steps, tracks at deye then
+         * slows to zero over cutRamp steps. similarly for focus.
+         */
         deye.scaleBy((float) 1.0 / (cutCount - CUT_RAMP));
         dfocus.scaleBy((float) 1.0 / (cutCount - CUT_RAMP));
     }
 
+    /**
+     * iterate the cut. nb. the point we are cutting to may be on the move
+     */
     void cutStep() {
-	/*
-	  iterate the cut. nb. the point we
-	  are cutting to may be on the move
-	*/
         Vector3d deye_ = new Vector3d(deye.x, deye.y, deye.z);
         Vector3d dfocus_ = new Vector3d(dfocus.x, dfocus.y, dfocus.z);
         float s;
@@ -286,7 +283,9 @@ public class CameraMan implements EventManager.Interface {
         return new Vector3d(eye.x, eye.y, eye.z);
     }
 
-    //rotate eye about z axis by xy radians and up/down by z
+    /**
+     * rotate eye about z axis by xy radians and up/down by z
+     */
     void rotateEyeAboutFocus(float dtheta, int dz) {
         //get ray focus -> eye
         //Vector3d ray = new Vector3d();
@@ -306,36 +305,34 @@ public class CameraMan implements EventManager.Interface {
         if (eye.z < 0) eye.z = 0;
     }
 
+    /**
+     * move focus, maintaining angle of view
+     */
     void moveFocus(Vector3d f) {
-	/*
-	  move focus, maintaining angle of view
-	*/
         Vector3d ray = eye.subtracted(focus);
         focus.set(f);
         eye.set(ray).add(focus);
     }
 
+    /**
+     * rotation such that eye is looking down +x axis at origin
+     */
     void setMatrix() {
-	/*
-	  rotation such that eye is looking
-	  down +x axis at origin
-	*/
         Vector3d ray = eye.subtracted(focus);
         matrix = Tools3d.rotateX(ray);
         distance = ray.length();
     }
 
+    /**
+     * scale the y and z co-ords so a 1 by 1 square
+     * fills the screen when viewed from a distance of ??
+     *
+     * origin appears center screen.
+     * nb flip z as screen coords have origin at top left !
+     *
+     * 1/10 try double scale (ie. half camera angle)
+     */
     public void scaleToScreen(Vector3d v_) {
-	/*
-	  scale the y and z co-ords so a 1 by 1 square
-	  fills the screen when viewed from a distance
-	  of ??
-			
-	  origin appears center screen. 
-	  nb flip z as screen coords have origin at top left !
-			
-	  1/10 try double scale (ie. half camera angle)
-	*/
         v_.y *= theScale;    //preserve aspect ratio ? screenWidth;
         v_.y += screenWidth / 2;
 
@@ -343,14 +340,15 @@ public class CameraMan implements EventManager.Interface {
         v_.z += screenHeight / 2;
     }
 
+    /**
+     * mute distant colors.
+     *
+     * x is ~ distance of surface from camera
+     * since we are using the transformed coords
+     */
     Color foggyColor(float x, Color c) {
-	/*
-	  mute distant colors
-	  x is ~ distance of surface from camera
-	  since we are using the transformed coords
-	*/
-
-        if (x >= 0) return c;
+        if (x >= 0)
+            return c;
         x *= -1;
 
         int r, g, b, r_, g_, b_;
@@ -373,11 +371,11 @@ public class CameraMan implements EventManager.Interface {
         return new Color(r_, g_, b_);
     }
 
+    /**
+     * toggle between watching glider user
+     * and watching the gaggle
+     */
     void toggleMode() {
-	/*
-	  toggle between watching glider user
-	  and watching the gaggle
-	*/
         if (mode == Mode.SELF) {
             mode = Mode.GAGGLE;
             if (subject2 != null) cutSetup(subject2, false);
