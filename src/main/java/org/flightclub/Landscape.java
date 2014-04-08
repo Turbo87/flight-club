@@ -461,10 +461,9 @@ public class Landscape implements CameraSubject {
         return null;
     }
 
-    float getHeight(float x, float y) {
+    public float getHeight(float x, float y) {
         Hill hill = getHillAt(new Vector3d(x, y, 0));
-        if (hill == null) return 0;
-        return hill.getHeight(x, y);
+        return (hill == null) ? 0 : hill.getHeight(x, y);
     }
 
     @Override
