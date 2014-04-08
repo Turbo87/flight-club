@@ -258,8 +258,17 @@ public class CameraMan {
         cutCount--;
     }
 
+
+    public Vector3d getEye() {
+        return eye;
+    }
+
     public void setEye(float x, float y, float z) {
         eye.set(x, y, z);
+    }
+
+    public Vector3d getFocus() {
+        return focus;
     }
 
     public void setFocus(float x, float y, float z) {
@@ -272,14 +281,6 @@ public class CameraMan {
 
     public float[][] getMatrix() {
         return matrix;
-    }
-
-    Vector3d getFocus() {
-        return new Vector3d(focus.x, focus.y, focus.z);
-    }
-
-    Vector3d getEye() {
-        return new Vector3d(eye.x, eye.y, eye.z);
     }
 
     /**
