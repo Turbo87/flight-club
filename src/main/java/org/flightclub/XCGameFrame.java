@@ -20,7 +20,7 @@ public class XCGameFrame extends Frame {
     public XCGameFrame(String title, int w, int h) {
         super(title);
 
-        ModelViewer panel = new ModelViewer(app);
+        ModelCanvas panel = new ModelCanvas(app);
         add(panel, "Center");
         setSize(w, h);
         show();

@@ -4,21 +4,21 @@ import java.applet.Applet;
 
 class AppletInterface implements Interface {
     private final Applet applet;
-    private final ModelViewer panel;
+    private final ModelCanvas panel;
 
-    public AppletInterface(Applet applet, ModelViewer panel) {
+    public AppletInterface(Applet applet, ModelCanvas panel) {
         this.applet = applet;
         this.panel = panel;
     }
 
     @Override
     public int getWidth() {
-        return panel.modelCanvas.width;
+        return panel.width;
     }
 
     @Override
     public int getHeight() {
-        return panel.modelCanvas.height;
+        return panel.height;
     }
 
     @Override

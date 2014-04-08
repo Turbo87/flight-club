@@ -18,7 +18,7 @@ public class XCGameApplet extends Applet {
     public void init() {
         this.setBackground(Color.white);
 
-        ModelViewer panel = new ModelViewer(app);
+        ModelCanvas panel = new ModelCanvas(app);
         panel.setSize(getSize());
         add(panel);
 
