@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
   - XCGame extension of above class
 */
 
-public class CameraMan implements EventInterface {
+public class CameraMan implements EventManager.Interface {
     final XCGame app;
     public final Vector3d lightRay;
     public float zoom = 1;

@@ -17,7 +17,17 @@ import java.util.Vector;
  * default event handler
  */
 public class EventManager {
-    protected final Vector<EventInterface> subscribers = new Vector<>();
+
+    /**
+     * interface to be implemented by objects (eg actors) that respond
+     *to user pressing keys
+     */
+    public static interface Interface {
+        public void keyPressed(KeyEvent e);
+        public void keyReleased(KeyEvent e);
+    }
+
+    protected final Vector<Interface> subscribers = new Vector<>();
     final static int MAX_Q = 20;
     Queue<KeyEvent> eventQueue = new LinkedList<KeyEvent>();
 
@@ -25,11 +35,11 @@ public class EventManager {
      * add an object to the list of objects to be
      * notified when an event happens
      */
-    public void subscribe(EventInterface ei) {
+    public void subscribe(Interface ei) {
         subscribers.add(ei);
     }
 
-    public void unsubscribe(EventInterface ei) {
+    public void unsubscribe(Interface ei) {
         subscribers.remove(ei);
     }
 
@@ -54,12 +64,12 @@ public class EventManager {
             return;
 
         for (int i = 0; i < subscribers.size(); i++) {
-            EventInterface ei = subscribers.elementAt(i);
+            Interface ei = subscribers.elementAt(i);
             callEventHelper(ei, e);
         }
     }
 
-    void callEventHelper(EventInterface ei, KeyEvent e) {
+    void callEventHelper(Interface ei, KeyEvent e) {
         switch (e.getID()) {
             case KeyEvent.KEY_RELEASED:
                 ei.keyReleased(e);

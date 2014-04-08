@@ -15,7 +15,7 @@ import java.awt.event.KeyEvent;
 /**
  * a glider that the user may control
  */
-public class GliderUser extends Glider implements EventInterface {
+public class GliderUser extends Glider implements EventManager.Interface {
     final Variometer vario;
 
     public GliderUser(XCGame app, Vector3d p) {
