@@ -360,9 +360,12 @@ public class Landscape implements CameraSubject {
      */
     public void loadTilesAround(Vector3d p) {
         currentTile = getTile(p);
-        if (currentTile < MAX_TILES) loadTile(currentTile);
-        if (currentTile + 1 < MAX_TILES) loadTile(currentTile + 1);
-        if (currentTile > 0) removeTile(currentTile - 1);
+        if (currentTile < MAX_TILES)
+            loadTile(currentTile);
+        if (currentTile + 1 < MAX_TILES)
+            loadTile(currentTile + 1);
+        if (currentTile > 0)
+            removeTile(currentTile - 1);
     }
 
     public boolean reachedGoal(Vector3d p) {
@@ -374,18 +377,14 @@ public class Landscape implements CameraSubject {
     }
 
     void removeTile(int tileNum, boolean really) {
+        if (!tiles[tileNum].loaded)
+            return;
 
-        if (!tiles[tileNum].loaded) return;
-
-        for (int i = 0; i < tiles[tileNum].hills.size(); i++) {
-            Hill hill = tiles[tileNum].hills.elementAt(i);
+        for (Hill hill : tiles[tileNum].hills)
             hill.destroyMe();
-        }
 
-        for (int i = 0; i < tiles[tileNum].triggers.size(); i++) {
-            ThermalTrigger trigger = tiles[tileNum].triggers.elementAt(i);
+        for (ThermalTrigger trigger : tiles[tileNum].triggers)
             trigger.destroyMe(really);
-        }
 
         tiles[tileNum].hills.clear();
         tiles[tileNum].triggers.clear();
@@ -414,25 +413,27 @@ public class Landscape implements CameraSubject {
      */
     Hill nextHill(Vector3d p) {
         int tile = getTile(p);
-        if (!tiles[tile].loaded) return null;
+        if (!tiles[tile].loaded)
+            return null;
+
         float RANGE = 8;
 
-        for (int i = 0; i < tiles[tile].hills.size(); i++) {
-            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
-            if (hill.y0 >= p.y &&
-                    hill.y0 - p.y < RANGE * p.z && hill.inForeGround) return hill;
-        }
+        for (Hill hill : tiles[tile].hills)
+            if (hill.y0 >= p.y && hill.y0 - p.y < RANGE * p.z && hill.inForeGround)
+                return hill;
 
         //try next tile
         tile++;
-        if (tile > MAX_TILES - 1) return null;
+        if (tile > MAX_TILES - 1)
+            return null;
 
-        if (!tiles[tile].loaded) return null;
-        for (int i = 0; i < tiles[tile].hills.size(); i++) {
-            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
-            if (hill.y0 >= p.y &&
-                    hill.y0 - p.y < RANGE * p.z && hill.inForeGround) return hill;
-        }
+        if (!tiles[tile].loaded)
+            return null;
+
+        for (Hill hill : tiles[tile].hills)
+            if (hill.y0 >= p.y && hill.y0 - p.y < RANGE * p.z && hill.inForeGround)
+                return hill;
+
         return null;
     }
 
