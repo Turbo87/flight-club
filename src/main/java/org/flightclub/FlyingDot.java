@@ -180,11 +180,8 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
 
     @Override
     public Vector3d getEye() {
-        if (p.x > 0) {
-            return new Vector3d(p.x + 2, p.y - 2, (float) 0.8);
-        } else {
-            return new Vector3d(p.x - 2, p.y - 2, (float) 0.8);
-        }
+        float x = (p.x > 0) ? (p.x + 2) : (p.x - 2);
+        return new Vector3d(x, p.y - 2, (float) 0.8);
     }
 
     /**
