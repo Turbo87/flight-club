@@ -91,11 +91,11 @@ public class Sky {
         return null;
     }
 
-    Cloud myCloud(Vector3d p) {
-        for (int i = 0; i < clouds.size(); i++) {
-            Cloud cd = clouds.elementAt(i);
-            if (cd.isUnder(p)) return cd;
-        }
+    public Cloud getCloudAt(Vector3d p) {
+        for (Cloud cloud : clouds)
+            if (cloud.isUnder(p))
+                return cloud;
+
         return null;
     }
 

@@ -180,7 +180,7 @@ public class Glider extends FlyingBody {
         }
 
         if (app.sky != null) {
-            Cloud cloud = app.sky.myCloud(p);
+            Cloud cloud = app.sky.getCloudAt(p);
             if (cloud != null) {
                 if (p.z < Sky.getCloudBase() - this.getBodyHeight()) {
                     lift += cloud.getLift(p);

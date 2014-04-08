@@ -290,7 +290,7 @@ public class MovementManager {
         }
 
         Cloud c = null;
-        if (app.sky != null) c = app.sky.myCloud(flyingDot.p);
+        if (app.sky != null) c = app.sky.getCloudAt(flyingDot.p);
 
         if (c != null) {
             setCloud(c);
@@ -326,7 +326,7 @@ public class MovementManager {
             return;
         }
 
-        Cloud c = app.sky.myCloud(flyingDot.p);
+        Cloud c = app.sky.getCloudAt(flyingDot.p);
         if (c != null) {
             //System.out.println("set cloud !");
             setCloud(c);
