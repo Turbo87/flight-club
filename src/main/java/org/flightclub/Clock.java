@@ -14,9 +14,14 @@ import java.util.Vector;
  * Clock has a thread and ticks
  */
 public class Clock implements Runnable {
+
+    public interface Observer {
+        public void tick();
+    }
+
     Thread ticker = null;
     final int sleepTime;
-    final Vector<ClockObserver> observers = new Vector<>();
+    final Vector<Observer> observers = new Vector<>();
     public long currentTick = 0;
     public long lastTick = 0;
 
@@ -26,11 +31,11 @@ public class Clock implements Runnable {
         sleepTime = t;
     }
 
-    void addObserver(ClockObserver observer) {
+    void addObserver(Observer observer) {
         observers.addElement(observer);
     }
 
-    void removeObserver(ClockObserver observer) {
+    void removeObserver(Observer observer) {
         observers.removeElement(observer);
     }
 
@@ -57,7 +62,7 @@ public class Clock implements Runnable {
 					we can change our POV and unpause
 				*/
                 if (i == 0 || !paused) {
-                    ClockObserver c = observers.elementAt(i);
+                    Observer c = observers.elementAt(i);
                     c.tick();
                 }
             }

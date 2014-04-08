@@ -15,7 +15,7 @@ import org.flightclub.compat.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-public class XCGame implements EventInterface, ClockObserver {
+public class XCGame implements EventInterface, Clock.Observer {
 
     public enum Mode {
         DEMO,

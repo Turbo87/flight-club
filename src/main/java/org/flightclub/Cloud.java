@@ -12,7 +12,7 @@ import org.flightclub.compat.Color;
 
 import java.util.Vector;
 
-public class Cloud implements CameraSubject, ClockObserver {
+public class Cloud implements CameraSubject, Clock.Observer {
     final XCGame app;
     final Object3dWithShadow object3d;
     Vector3d p = new Vector3d();

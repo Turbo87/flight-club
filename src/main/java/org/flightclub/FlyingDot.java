@@ -18,7 +18,7 @@ import org.flightclub.compat.Color;
   - ds (horizontal distance moved per tick)
 */
 
-public class FlyingDot implements ClockObserver, CameraSubject {
+public class FlyingDot implements Clock.Observer, CameraSubject {
     final XCGame app;
     Vector3d v;
     Vector3d p = new Vector3d();

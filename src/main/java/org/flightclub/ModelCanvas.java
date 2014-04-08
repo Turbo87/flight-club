@@ -27,7 +27,7 @@ import java.awt.event.MouseMotionAdapter;
  * This class is based on the framework outlined in a book called
  * 'Java Games Programming' by Niel Bartlett
  */
-public class ModelCanvas extends Canvas implements ClockObserver {
+public class ModelCanvas extends Canvas implements Clock.Observer {
     public final Color backColor = Color.white;
     private Image imgBuffer;
     protected XCGame app = null;
