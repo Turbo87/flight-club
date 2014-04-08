@@ -47,22 +47,20 @@ public class Obj3dManager {
 
     /** sort each layer so furthest away obj is first in list */
     public void sortObjects() {
-        for (int a = 0; a < MAX_LAYERS; a++) {
-            if (os.get(a).size() >= 2) {
-                for (int i = 0; i < os.get(a).size() - 1; i++) {
-                    for (int j = i + 1; j < os.get(a).size(); j++) {
-                        sortPair(a, i, j);
-                    }
+        for (Vector<Object3d> objects : os) {
+            for (int i = 0; i < objects.size() - 1; i++) {
+                for (int j = i + 1; j < objects.size(); j++) {
+                    sortPair(objects, i, j);
                 }
             }
         }
     }
 
-    public void sortPair(int layer, int i, int j) {
+    public void sortPair(Vector<Object3d> objects, int i, int j) {
         Vector3d p1, p2;
 
-        Object3d object3d1 = os.get(layer).elementAt(i);
-        Object3d object3d2 = os.get(layer).elementAt(j);
+        Object3d object3d1 = objects.elementAt(i);
+        Object3d object3d2 = objects.elementAt(j);
 
         if (object3d1.points_.size() == 0 || object3d2.points_.size() == 0) {
             //System.out.println("No points ! i: " + i + ", j: " + j + ", layer: " + layer);
@@ -76,8 +74,8 @@ public class Obj3dManager {
 
         if (p1.x > p2.x) {
             // first point closer than second
-            os.get(layer).setElementAt(object3d2, i);
-            os.get(layer).setElementAt(object3d1, j);
+            objects.setElementAt(object3d2, i);
+            objects.setElementAt(object3d1, j);
         }
     }
 }
