@@ -160,7 +160,7 @@ public class Glider extends FlyingBody {
         */
 
         if (app.landscape != null) {
-            Hill hill = app.landscape.myHill(p);
+            Hill hill = app.landscape.getHillAt(p);
             if (hill != null) {
                 if (p.z < hill.maxH + (float) 0.1) {
                     //lift += (float) 1.5 * - SINK_RATE;

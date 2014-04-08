@@ -449,19 +449,20 @@ public class Landscape implements CameraSubject {
     /**
      * find local hill to point, if any
      */
-    Hill myHill(Vector3d p) {
+    public Hill getHillAt(Vector3d p) {
         int tile = getTile(p);
-        if (!tiles[tile].loaded) return null;
+        if (!tiles[tile].loaded)
+            return null;
 
-        for (int i = 0; i < tiles[tile].hills.size(); i++) {
-            Hill hill = (Hill) tiles[tile].hills.elementAt(i);
-            if (hill.contains(p.x, p.y)) return hill;
-        }
+        for (Hill hill : tiles[tile].hills)
+            if (hill.contains(p.x, p.y))
+                return hill;
+
         return null;
     }
 
     float getHeight(float x, float y) {
-        Hill hill = myHill(new Vector3d(x, y, 0));
+        Hill hill = getHillAt(new Vector3d(x, y, 0));
         if (hill == null) return 0;
         return hill.getHeight(x, y);
     }

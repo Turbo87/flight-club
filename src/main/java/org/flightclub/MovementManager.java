@@ -292,7 +292,7 @@ public class MovementManager {
         if (cloud != null || circuit != null) return;
 
         Hill h = null;
-        if (app.landscape != null) h = app.landscape.myHill(flyingDot.p);
+        if (app.landscape != null) h = app.landscape.getHillAt(flyingDot.p);
 
         if (h != null) {
             setCircuit(h.getCircuit());
@@ -345,7 +345,7 @@ public class MovementManager {
             return;
         }
 
-        Hill h = app.landscape.myHill(flyingDot.p);
+        Hill h = app.landscape.getHillAt(flyingDot.p);
         if (h != null) {
             //System.out.println("set hill !");
             setCircuit(h.getCircuit());
