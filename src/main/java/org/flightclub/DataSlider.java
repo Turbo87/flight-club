@@ -87,6 +87,6 @@ public class DataSlider {
         }
 
         g.setColor(color2);
-        g.fillOval(x0 - 1, y0 - v_ - dy - 1, 3, 3);
+        g.fillCircle(x0 - 1, y0 - v_ - dy - 1, 3);
     }
 }

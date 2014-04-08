@@ -34,7 +34,7 @@ public class AwtGraphics implements Graphics {
     }
 
     @Override
-    public void fillOval(int x, int y, int width, int height) {
-        g.fillOval(x, y, width, height);
+    public void fillCircle(int x, int y, int diameter) {
+        g.fillOval(x, y, diameter, diameter);
     }
 }
