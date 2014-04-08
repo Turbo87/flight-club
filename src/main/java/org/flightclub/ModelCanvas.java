@@ -30,7 +30,6 @@ import java.awt.event.MouseMotionAdapter;
 public class ModelCanvas extends Canvas implements ClockObserver {
     public final Color backColor = Color.white;
     private Image imgBuffer;
-    int width, height;
     protected XCGame app = null;
     private Graphics graphicsBuffer;
     private MouseTracker mouseTracker = new MouseTracker();
@@ -41,10 +40,7 @@ public class ModelCanvas extends Canvas implements ClockObserver {
     }
 
     void init() {
-        width = getWidth();
-        height = getHeight();
-
-        imgBuffer = createImage(width, height);
+        imgBuffer = createImage(getWidth(), getHeight());
         graphicsBuffer = imgBuffer.getGraphics();
 
         //event handlers
@@ -115,9 +111,9 @@ public class ModelCanvas extends Canvas implements ClockObserver {
 
     public void updateImgBuffer(Graphics g) {
         g.setColor(backColor);
-        g.fillRect(0, 0, width, height);
+        g.fillRect(0, 0, getWidth(), getHeight());
 
-        app.draw(new AwtGraphics(g), width, height);
+        app.draw(new AwtGraphics(g), getWidth(), getHeight());
     }
 }
 

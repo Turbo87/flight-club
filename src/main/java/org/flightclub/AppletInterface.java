@@ -13,12 +13,12 @@ class AppletInterface implements Interface {
 
     @Override
     public int getWidth() {
-        return panel.width;
+        return panel.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return panel.height;
+        return panel.getHeight();
     }
 
     @Override
