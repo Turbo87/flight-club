@@ -86,6 +86,7 @@ public class CameraMan {
         lightRay.makeUnit();
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     void setMode(Mode mode) {
         this.mode = mode;
 
@@ -230,6 +231,7 @@ public class CameraMan {
     /**
      * iterate the cut. nb. the point we are cutting to may be on the move
      */
+    @SuppressWarnings("StatementWithEmptyBody")
     void cutStep() {
         Vector3d deye_ = new Vector3d(deye);
         Vector3d dfocus_ = new Vector3d(dfocus);
