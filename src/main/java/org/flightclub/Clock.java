@@ -19,7 +19,6 @@ public class Clock implements Runnable {
     final Vector<ClockObserver> observers = new Vector<>();
     public long currentTick = 0;
     public long lastTick = 0;
-    public long startTick = 0;
 
     boolean paused = false;
 
@@ -39,7 +38,7 @@ public class Clock implements Runnable {
         if (ticker == null)
             ticker = new Thread(this);
         ticker.start();
-        startTick = lastTick = currentTick = System.currentTimeMillis();
+        lastTick = currentTick = System.currentTimeMillis();
     }
 
     public void stop() {
