@@ -202,9 +202,35 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
                 sky.setHigh();
                 break;
 
-            case KeyEvent.VK_L:
+            case KeyEvent.VK_G:
                 sky.setLow();
                 break;
+
+            case KeyEvent.VK_K:
+                cameraMan.move(-CameraMan.CAMERA_MOVEMENT_DELTA, 0);
+                return;
+            case KeyEvent.VK_L:
+                cameraMan.move(CameraMan.CAMERA_MOVEMENT_DELTA, 0);
+                return;
+            case KeyEvent.VK_M:
+                cameraMan.move(0, CameraMan.CAMERA_MOVEMENT_DELTA);
+                return;
+            case KeyEvent.VK_N:
+                cameraMan.move(0, -CameraMan.CAMERA_MOVEMENT_DELTA);
+                return;
+
+            case KeyEvent.VK_1:
+                cameraMan.setMode(CameraMan.Mode.SELF);
+                return;
+            case KeyEvent.VK_2:
+                cameraMan.setMode(CameraMan.Mode.GAGGLE);
+                return;
+            case KeyEvent.VK_3:
+                cameraMan.setMode(CameraMan.Mode.PLAN);
+                return;
+            case KeyEvent.VK_4:
+                cameraMan.setMode(CameraMan.Mode.TILE);
+                return;
 
             default:
         }

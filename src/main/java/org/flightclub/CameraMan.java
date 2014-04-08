@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
   - XCGame extension of above class
 */
 
-public class CameraMan implements EventManager.Interface {
+public class CameraMan {
     final XCGame app;
     public final Vector3d lightRay;
     public float zoom = 1;
@@ -40,7 +40,7 @@ public class CameraMan implements EventManager.Interface {
     private static final float DEPTH_OF_VISION = Landscape.TILE_WIDTH * (float) 2.5;
     private static final float AMBIENT_LIGHT = (float) 0.3;
 
-    private static final float CAMERA_MOVEMENT_DELTA = (float) 0.1;
+    public static final float CAMERA_MOVEMENT_DELTA = (float) 0.1;
 
     CameraSubject cameraSubject; //populate using cutSetup
     CameraSubject subject1;
@@ -72,7 +72,6 @@ public class CameraMan implements EventManager.Interface {
 
     CameraMan(XCGame theApp) {
         app = theApp;
-        app.eventManager.subscribe(this);
 
         //get the canvas size
         screenWidth = app.envInterface.getWidth();
@@ -376,43 +375,6 @@ public class CameraMan implements EventManager.Interface {
         eye.y += dy;
         focus.x += dx;
         focus.y += dy;
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_K:
-                move(-CAMERA_MOVEMENT_DELTA, 0);
-                return;
-            case KeyEvent.VK_L:
-                move(CAMERA_MOVEMENT_DELTA, 0);
-                return;
-            case KeyEvent.VK_M:
-                move(0, CAMERA_MOVEMENT_DELTA);
-                return;
-            case KeyEvent.VK_N:
-                move(0, -CAMERA_MOVEMENT_DELTA);
-                return;
-
-            case KeyEvent.VK_1:
-                setMode(Mode.SELF);
-                return;
-            case KeyEvent.VK_2:
-                setMode(Mode.GAGGLE);
-                return;
-            case KeyEvent.VK_3:
-                setMode(Mode.PLAN);
-                return;
-            case KeyEvent.VK_4:
-                setMode(Mode.TILE);
-                return;
-
-            default:
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
     }
 }
 
