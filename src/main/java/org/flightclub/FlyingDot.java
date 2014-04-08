@@ -209,7 +209,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
         if (moveManager.joinedCircuit()) return;
         if (app.landscape == null) return;
 
-        Vector3d p_ = new Vector3d(p).add(v);
+        Vector3d p_ = p.plus(v);
 
         float h = p.z - app.landscape.getHeight(p.x, p.y);
         float h_ = p.z - app.landscape.getHeight(p_.x, p_.y);
@@ -223,7 +223,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
 
             // turn left or right ? see if moving right a bit gives a greater h than straight on
             Vector3d w = v.crossed(new Vector3d(0, 0, 1)).scaleBy(ds / my_turn_radius);
-            Vector3d p__ = new Vector3d(p_).add(w);
+            Vector3d p__ = p_.plus(w);
             float h__ = p.z - app.landscape.getHeight(p__.x, p__.y);
             if (h__ >= h_) {
                 makeTurn(1); //turn right

@@ -52,6 +52,11 @@ public final class Vector3d {
         return this;
     }
 
+    /** Returns a copy of this instance plus by the other instance. */
+    public Vector3d plus(Vector3d other) {
+        return new Vector3d(this).add(other);
+    }
+
     public Vector3d subtract(Vector3d other) {
         x -= other.x;
         y -= other.y;
