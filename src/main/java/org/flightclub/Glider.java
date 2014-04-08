@@ -59,13 +59,13 @@ public class Glider extends FlyingBody {
 
         GliderShape gliderShape;
         if (!isUser) {
-            gliderShape = new GliderShape(app, false);
+            gliderShape = new GliderShape(app);
         } else {
-            gliderShape = new GliderShape(app, false, Color.YELLOW);
+            gliderShape = new GliderShape(app, Color.YELLOW);
         }
 
         this.init(gliderShape, p);
-        bodyHeight = GliderShape.height;
+        bodyHeight = GliderShape.HEIGHT;
         gotoNextLiftSource();
     }
 
@@ -74,10 +74,10 @@ public class Glider extends FlyingBody {
         //sailplane/rigid
         super(app, SPEED * (float) 1.5, TURN_RADIUS * (float) 1.2, isUser);
 
-        GliderShape gliderShape = new GliderShape(app, false, Color.PINK);
+        GliderShape gliderShape = new GliderShape(app, Color.PINK);
 
         this.init(gliderShape, p);
-        bodyHeight = GliderShape.height;
+        bodyHeight = GliderShape.HEIGHT;
         gotoNextLiftSource();
     }
 

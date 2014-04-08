@@ -14,19 +14,19 @@ import java.util.Vector;
 
 public class GliderShape extends Object3dWithShadow {
     public static final Color DEFAULT_COLOR = new Color(170, 170, 180);
+    public static final float HEIGHT = (float) 0.2;
 
     final Color color;
-    final static float height = (float) 0.2;//0.2 for shape 1
 
     /** default constructor - gray shape */
-    public GliderShape(XCGame app, boolean register) {
-        this(app, register, DEFAULT_COLOR);
+    public GliderShape(XCGame app) {
+        this(app, DEFAULT_COLOR);
     }
 
     /* pass in a color (eg for user glider) */
-    public GliderShape(XCGame app, boolean register, Color inC) {
-        super(app, register);
-        color = inC;
+    public GliderShape(XCGame app, Color color) {
+        super(app, false);
+        this.color = color;
         init();
     }
 
@@ -76,7 +76,7 @@ public class GliderShape extends Object3dWithShadow {
         wire.addElement(new Vector3d(0, y, z));
         addWireWithShadow(wire, color, true, true);
 
-        scaleBy(height);
+        scaleBy(HEIGHT);
     }
 }
 
