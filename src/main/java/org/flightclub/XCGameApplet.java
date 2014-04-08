@@ -17,9 +17,13 @@ public class XCGameApplet extends Applet {
     @Override
     public void init() {
         this.setBackground(Color.white);
-        app.setSize(getSize());
-        add(app);
-        app.init(new AppletInterface(this));
+
+        ModelViewer panel = new ModelViewer(app);
+        panel.setSize(getSize());
+        add(panel);
+
+        panel.init();
+        app.init(new AppletInterface(this, panel));
 
         this.requestFocus();
     }

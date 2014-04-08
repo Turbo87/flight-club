@@ -9,9 +9,21 @@ import javax.sound.sampled.Clip;
 
 class FrameInterface implements Interface {
     private final Frame frame;
+    private final ModelViewer panel;
 
-    public FrameInterface(Frame frame) {
+    public FrameInterface(Frame frame, ModelViewer panel) {
         this.frame = frame;
+        this.panel = panel;
+    }
+
+    @Override
+    public int getWidth() {
+        return panel.modelCanvas.width;
+    }
+
+    @Override
+    public int getHeight() {
+        return panel.modelCanvas.height;
     }
 
     @Override

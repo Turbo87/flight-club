@@ -9,5 +9,8 @@
 package org.flightclub;
 
 public interface Interface {
+    int getWidth();
+    int getHeight();
+
     void play(String s);
 }

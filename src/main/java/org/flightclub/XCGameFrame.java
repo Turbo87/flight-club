@@ -19,10 +19,14 @@ public class XCGameFrame extends Frame {
 
     public XCGameFrame(String title, int w, int h) {
         super(title);
-        add(app, "Center");
+
+        ModelViewer panel = new ModelViewer(app);
+        add(panel, "Center");
         setSize(w, h);
         show();
-        app.init(new FrameInterface(this));
+
+        panel.init();
+        app.init(new FrameInterface(this, panel));
         app.start();
 
         this.addWindowListener(new WindowAdapter() {

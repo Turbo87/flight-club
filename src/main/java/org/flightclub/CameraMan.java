@@ -68,8 +68,8 @@ public class CameraMan implements EventInterface {
         app.eventManager.subscribe(this);
 
         //get the canvas size
-        screenWidth = app.modelCanvas.getSize().width;
-        screenHeight = app.modelCanvas.getSize().height;
+        screenWidth = app.envInterface.getWidth();
+        screenHeight = app.envInterface.getHeight();
         theScale = screenHeight * (float) 1.1; //defines lens angle - smaller num -> wider angle
 
         //starting position and light

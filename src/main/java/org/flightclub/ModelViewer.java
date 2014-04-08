@@ -13,15 +13,18 @@ import java.awt.Panel;
 
 public class ModelViewer extends Panel {
 
+    private final XCGame game;
+
     ModelCanvas modelCanvas = null;
     //how much model time elapses during each tick, say 1/25 of a model time unit (a minute)
 
-    public ModelViewer() {
+    public ModelViewer(XCGame game) {
+        this.game = game;
         setLayout(new BorderLayout());
     }
 
-    void init(Interface envInterface) {
-        modelCanvas = new ModelCanvas((XCGame) this);
+    void init() {
+        modelCanvas = new ModelCanvas(game);
         add(modelCanvas);
 
         doLayout();

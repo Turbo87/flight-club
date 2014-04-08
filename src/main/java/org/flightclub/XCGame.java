@@ -15,7 +15,7 @@ import org.flightclub.compat.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Vector;
 
-public class XCGame extends ModelViewer implements EventInterface, ClockObserver {
+public class XCGame implements EventInterface, ClockObserver {
 
     public enum Mode {
         DEMO,
@@ -51,10 +51,7 @@ public class XCGame extends ModelViewer implements EventInterface, ClockObserver
         clock.addObserver(this);
     }
 
-    @Override
     public void init(Interface envInterface) {
-        super.init(envInterface);
-
         this.envInterface = envInterface;
 
         cameraMan = new CameraMan(this);
@@ -150,10 +147,10 @@ public class XCGame extends ModelViewer implements EventInterface, ClockObserver
     }
 
     void createInstruments() {
-        if (compass == null) compass = new Compass(25, modelCanvas.width - 30, modelCanvas.height - 15);
+        if (compass == null) compass = new Compass(25, envInterface.getWidth() - 30, envInterface.getHeight() - 15);
         if (slider == null) {
             float vmax = -2 * Glider.SINK_RATE;
-            slider = new DataSlider(-vmax, vmax, 30, modelCanvas.width - 60, modelCanvas.height - 15);
+            slider = new DataSlider(-vmax, vmax, 30, envInterface.getWidth() - 60, envInterface.getHeight() - 15);
             slider.label = "vario";
         }
     }
