@@ -112,8 +112,8 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
      * Set i, j and k vectors so v is along the y axis - ie do pitch and yaw
      */
     private void setLocalFrame() {
-        axisX.set(v).cross(new Vector3d(0, 0, 1)).scaleBy(1 / axisX.length());
-        axisY.set(v).scaleBy(1 / axisY.length());
+        axisX.set(v).cross(new Vector3d(0, 0, 1)).makeUnit();
+        axisY.set(v).makeUnit();
         axisZ.set(axisX).cross(axisY);
 
         //now apply roll, if any
