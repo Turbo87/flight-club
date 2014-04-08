@@ -24,6 +24,7 @@ public class GliderUser extends Glider implements EventManager.Interface {
         app.eventManager.subscribe(this);
     }
 
+    @Override
     protected void createTail() {
         int tailLength = 60;    //80
         tail = new Tail(app, tailLength, new Color(120, 120, 120));
