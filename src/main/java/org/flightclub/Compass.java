@@ -39,8 +39,6 @@ public class Compass {
     private float vy = 1;
 
     final float[][] m = new float[2][2];
-    final Color color = Color.LIGHT_GRAY;
-    final Color color2 = Color.GRAY;
 
     // default radius of 10
     static final int SIZE_DEFAULT = 20;
@@ -98,16 +96,16 @@ public class Compass {
 
     public void draw(Graphics g) {
 
-        g.setColor(color);
+        g.setColor(Color.LIGHT_GRAY);
         g.drawLine(txs_[0], tys_[0], txs_[1], tys_[1]);
 
         Font font = new Font("SansSerif", Font.PLAIN, 10);
         g.setFont(font);
-        g.setColor(color);
+        g.setColor(Color.LIGHT_GRAY);
         g.drawString("N", x0 - 3, y0 - r * 2 - dy);
         g.drawString("S", x0 - 3, y0);
 
-        g.setColor(color2);
+        g.setColor(Color.GRAY);
         g.fillPolygon(hxs_, hys_, hxs_.length);
     }
 
