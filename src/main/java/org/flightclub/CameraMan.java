@@ -63,7 +63,7 @@ public class CameraMan implements EventManager.Interface {
 
     /** steps to glide between POVs */
     static final int CUT_LEN = 75;
-    
+
     Vector3d deye, dfocus;
     Vector3d eyeGoto, focusGoto;
 
@@ -385,24 +385,27 @@ public class CameraMan implements EventManager.Interface {
         }
     }
 
+    public void move(float dx, float dy) {
+        eye.x += dx;
+        eye.y += dy;
+        focus.x += dx;
+        focus.y += dy;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_K:
-                eye.x -= CAMERA_MOVEMENT_DELTA;
-                focus.x -= CAMERA_MOVEMENT_DELTA;
+                move(-CAMERA_MOVEMENT_DELTA, 0);
                 return;
             case KeyEvent.VK_L:
-                eye.x += CAMERA_MOVEMENT_DELTA;
-                focus.x += CAMERA_MOVEMENT_DELTA;
+                move(CAMERA_MOVEMENT_DELTA, 0);
                 return;
             case KeyEvent.VK_M:
-                eye.y += CAMERA_MOVEMENT_DELTA;
-                focus.y += CAMERA_MOVEMENT_DELTA;
+                move(0, CAMERA_MOVEMENT_DELTA);
                 return;
             case KeyEvent.VK_N:
-                eye.y -= CAMERA_MOVEMENT_DELTA;
-                focus.y -= CAMERA_MOVEMENT_DELTA;
+                move(0, -CAMERA_MOVEMENT_DELTA);
                 return;
 
             case KeyEvent.VK_1:
