@@ -16,7 +16,6 @@ import java.util.Vector;
 public class Object3d {
     protected XCGame app = null;
 
-    float xMin, yMin, xMax, yMax;
     final Vector<Vector3d> points = new Vector<>();
     final Vector<Vector3d> points_ = new Vector<>();
     final Vector<PolyLine> wires = new Vector<>();
@@ -84,48 +83,6 @@ public class Object3d {
             camera.scaleToScreen(v_);
         }
 
-    }
-
-    public void translateBy(Vector3d v) {
-        for (int i = 0; i < points.size(); i++) {
-            Vector3d q = points.elementAt(i);
-            q.add(v);
-        }
-    }
-
-    /** rotate 90 */
-    public void flipYZ() {
-        for (Vector3d q : points) {
-            float tmp = q.y;
-            q.y = q.z;
-            q.z = tmp;
-        }
-    }
-
-    /** turn upside down */
-    public void flipZ() {
-        for (Vector3d q : points)
-            q.z = -q.z;
-    }
-
-    /** swap left and right */
-    public void flipY() {
-        for (Vector3d q : points)
-            q.y = -q.y;
-    }
-
-    /** swap front and back */
-    public void flipX() {
-        for (Vector3d q : points)
-            q.x = -q.x;
-    }
-
-    public void scaleBy(Vector3d v) {
-        for (Vector3d q : points) {
-            q.x = q.x * v.x;
-            q.y = q.y * v.y;
-            q.z = q.z * v.z;
-        }
     }
 
     public void scaleBy(float s) {
@@ -249,71 +206,6 @@ public class Object3d {
             to.addWire(toWire, fromWire.c, fromWire.isSolid, hasNorm);
         }
     }
-
-    public void project_(Vector3d f, float[][] m, float distance) {
-        Vector3d v;
-        Vector3d v_;
-
-        for (int i = 0; i < points.size(); i++) {
-            v = points.elementAt(i);
-            v_ = points_.elementAt(i);
-
-            // translate, rotate and project (only if visible)
-            v_.set(v).subtract(f);
-            Tools3d.applyTo(m, v_, v_);
-            Tools3d.projectYZ(v_, v_, distance);
-        }
-    }
-
-    public void timeStep() {
-        //abstract method for flapping wings etc.
-    }
-
-/*
-	public void sort(Vector3d p)
-	{
-		for (int i = 1;i < wires.size() - 1;i++)
-		{
-			for (int j = i + 1;j < wires.size();j++)
-			{
-				sortPair(i,j,p);
-			}
-		}
-	}
-					 
-	private void sortPair(int i,int j,Vector3d p)
-	{
-		Vector3d p1,p1_;
-		Vector3d p2,p2_;
-		float d1,d2;
-		
-		
-		PolyLine wire1 = (PolyLine) wires.elementAt(i);
-		PolyLine wire2 = (PolyLine) wires.elementAt(j);
-		
-		if (wire1.numPoints <= 1 || wire2.numPoints <= 1) return;
-		
-		p1_ = new Vector3d();
-		p2_ = new Vector3d();
-		p1 = (Vector3d) points_.elementAt(wire1.points[0]);
-		p2 = (Vector3d) points_.elementAt(wire2.points[0]);
-		
-		Tools3d.subtract(p1,p,p1_);
-		Tools3d.subtract(p2,p,p2_);
-		
-		d1 = Tools3d.length(p1_);
-		d2 = Tools3d.length(p2_);
-		
-		//we want furthest surface first
-		if (p1.x <= p2.x)
-			return;
-		else
-		{
-			wires.setElementAt(wire2,i);
-			wires.setElementAt(wire1,j);
-		}
-	}
-	*/
 
     void reverse() {
         for (int i = 0; i < wires.size() / 2 - 1; i++) {
