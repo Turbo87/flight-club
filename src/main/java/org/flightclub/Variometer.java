@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-public class Variometer {
+public class Variometer implements Clock.Observer {
     public static final float LIFT_MAX = -2 * Glider.SINK_RATE;
 
     //how many different sounds
@@ -32,8 +32,10 @@ public class Variometer {
     public Variometer(XCGame app, FlyingDot flyingDot) {
         this.flyingDot = flyingDot;
         this.app = app;
+        app.clock.addObserver(this);
     }
 
+    @Override
     public void tick() {
         frame_count++;
         if (frame_count == FRAMES_PER_BEEP) {

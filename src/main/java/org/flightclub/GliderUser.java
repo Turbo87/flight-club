@@ -42,7 +42,6 @@ public class GliderUser extends Glider implements EventManager.Interface {
     public void tick() {
         super.tick();
         checkBounds();
-        vario.tick();
     }
 
     @Override
