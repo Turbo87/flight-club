@@ -21,10 +21,6 @@ public class ModelViewer extends Panel {
     }
 
     void init(Interface envInterface) {
-        createModelCanvas();
-    }
-
-    protected void createModelCanvas() {
         modelCanvas = new ModelCanvas((XCGame) this);
         add(modelCanvas);
 
