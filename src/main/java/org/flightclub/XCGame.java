@@ -168,6 +168,8 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
 
         //convert v from dist per frame  to dist per unit time
         if (slider != null) slider.setValue(gliderUser.v.z / timePerFrame);
+
+        vario.tick();
     }
 
     /**
