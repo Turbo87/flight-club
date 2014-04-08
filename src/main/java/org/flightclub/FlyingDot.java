@@ -56,7 +56,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
     }
 
     public void init(Vector3d inP) {
-        p = new Vector3d(inP.x, inP.y, inP.z);
+        p = new Vector3d(inP);
         initRoll();
         setLocalFrame();
         createTail();
