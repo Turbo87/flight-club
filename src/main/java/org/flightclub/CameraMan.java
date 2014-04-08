@@ -371,20 +371,6 @@ public class CameraMan implements EventManager.Interface {
         return new Color(r_, g_, b_);
     }
 
-    /**
-     * toggle between watching glider user
-     * and watching the gaggle
-     */
-    void toggleMode() {
-        if (mode == Mode.SELF) {
-            mode = Mode.GAGGLE;
-            if (subject2 != null) cutSetup(subject2, false);
-        } else {
-            mode = Mode.SELF;
-            if (subject1 != null) cutSetup(subject1, true);
-        }
-    }
-
     public void move(float dx, float dy) {
         eye.x += dx;
         eye.y += dy;
