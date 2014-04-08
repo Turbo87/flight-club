@@ -16,14 +16,12 @@ import java.awt.event.KeyEvent;
  * a glider that the user may control
  */
 public class GliderUser extends Glider implements EventManager.Interface {
-    final Variometer vario;
 
     public GliderUser(XCGame app, Vector3d p) {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
         super(app, p, true);
         app.eventManager.subscribe(this);
-        vario = new Variometer(app, this);
     }
 
     protected void createTail() {

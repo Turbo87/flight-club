@@ -44,6 +44,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
     String textMessage = null;
     Obj3dManager obj3dManager = new Obj3dManager();
     Interface envInterface;
+    private Variometer vario;
 
     final Clock clock = new Clock(1000 / FRAME_RATE);
 
@@ -64,6 +65,8 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         gliderUser = new GliderUser(this, new Vector3d(0, 0, 0));
         gliderUser.landed();
         cameraMan.subject1 = gliderUser;
+
+        vario = new Variometer(this, gliderUser);
 
         jet1 = new JetTrail(this, -JetTrail.TURN_RADIUS, -JetTrail.TURN_RADIUS);
         jet2 = new JetTrail(this, 0, JetTrail.TURN_RADIUS);
