@@ -44,6 +44,9 @@ public class Glider extends FlyingBody {
     // polar curve
     final static float[][] POLAR = {{1, 1}, {(float) 1.5, (float) 2.1}};
 
+    public static final int TAIL_LENGTH = 40;
+    public static final Color TAIL_COLOR = Color.LIGHT_GRAY;
+
     /**
      * default constructor - this glider is not being piloted by the user
      */
@@ -138,8 +141,7 @@ public class Glider extends FlyingBody {
 
     @Override
     protected void createTail() {
-        int tailLength = 40;
-        tail = new Tail(app, tailLength, Color.LIGHT_GRAY);
+        tail = new Tail(app, TAIL_LENGTH, TAIL_COLOR);
         tail.init(p);
     }
 

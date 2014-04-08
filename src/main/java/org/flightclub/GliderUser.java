@@ -17,6 +17,9 @@ import java.awt.event.KeyEvent;
  */
 public class GliderUser extends Glider implements EventManager.Interface {
 
+    public static final int TAIL_LENGTH = 60;
+    public static final Color TAIL_COLOR = new Color(120, 120, 120);
+
     public GliderUser(XCGame app, Vector3d p) {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
@@ -26,8 +29,7 @@ public class GliderUser extends Glider implements EventManager.Interface {
 
     @Override
     protected void createTail() {
-        int tailLength = 60;    //80
-        tail = new Tail(app, tailLength, new Color(120, 120, 120));
+        tail = new Tail(app, TAIL_LENGTH, TAIL_COLOR);
         tail.init(p);
     }
 

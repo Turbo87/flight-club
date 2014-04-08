@@ -35,6 +35,9 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
     Tail tail = null;
     MovementManager moveManager = null;
 
+    public static final int TAIL_LENGTH = 25;
+    public static final Color TAIL_COLOR = Color.LIGHT_GRAY;
+
     int roll = 0;
     static final int ROLL_STEPS = 15;
     static final float ROLL_MAX_ANGLE = (float) (Math.PI / 4);
@@ -79,8 +82,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
     }
 
     protected void createTail() {
-        int tailLength = 25;
-        tail = new Tail(app, tailLength, Color.LIGHT_GRAY);
+        tail = new Tail(app, TAIL_LENGTH, TAIL_COLOR);
         tail.init(p);
     }
 

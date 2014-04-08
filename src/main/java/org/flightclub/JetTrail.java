@@ -20,6 +20,9 @@ public class JetTrail extends FlyingDot {
     FlyingDot buzzThis;
     static final float RANGE = 40;
 
+    public static final int TAIL_LENGTH = 80;
+    public static final Color TAIL_COLOR = new Color(200, 200, 200);
+
     public JetTrail(XCGame app, float x, float y) {
         //set flag so camera will follow my cuts when in mode 1
         //(see glider.gotoNextLiftSource)
@@ -36,8 +39,7 @@ public class JetTrail extends FlyingDot {
 
     @Override
     protected void createTail() {
-        int tailLength = 80;
-        tail = new Tail(app, tailLength, new Color(200, 200, 200), 0);    //add to layer zero
+        tail = new Tail(app, TAIL_LENGTH, TAIL_COLOR, 0);    //add to layer zero
         tail.wireEvery = 1;
         tail.updateEvery = 3;
         tail.init(p);
