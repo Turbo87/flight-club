@@ -34,6 +34,7 @@ public class CameraMan {
     private static final int BACKGROUND_R = 255;
     private static final int BACKGROUND_G = 255;
     private static final int BACKGROUND_B = 255;
+    private static final Color BACKGROUND = new Color(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B);
 
     private static final float DEPTH_OF_VISION = Landscape.TILE_WIDTH * (float) 2.5;
     private static final float AMBIENT_LIGHT = (float) 0.3;
@@ -347,7 +348,11 @@ public class CameraMan {
     Color foggyColor(float x, Color c) {
         if (x >= 0)
             return c;
+
         x *= -1;
+
+        if (x > DEPTH_OF_VISION)
+            return BACKGROUND;
 
         int r, g, b, r_, g_, b_;
 
@@ -355,16 +360,10 @@ public class CameraMan {
         g = c.getGreen();
         b = c.getBlue();
 
-        if (x > DEPTH_OF_VISION) {
-            r_ = BACKGROUND_R;
-            g_ = BACKGROUND_G;
-            b_ = BACKGROUND_B;
-        } else {
-            float f = x / DEPTH_OF_VISION;
-            r_ = (int) (r + f * (BACKGROUND_R - r));
-            g_ = (int) (g + f * (BACKGROUND_G - g));
-            b_ = (int) (b + f * (BACKGROUND_B - b));
-        }
+        float f = x / DEPTH_OF_VISION;
+        r_ = (int) (r + f * (BACKGROUND_R - r));
+        g_ = (int) (g + f * (BACKGROUND_G - g));
+        b_ = (int) (b + f * (BACKGROUND_B - b));
 
         return new Color(r_, g_, b_);
     }
