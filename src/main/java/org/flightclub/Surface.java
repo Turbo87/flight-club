@@ -16,8 +16,8 @@ public class Surface extends PolyLine {
     final int[] xs;
     final int[] ys;
 
-    public Surface(Object3d o, int inNumPoints, Color inC) {
-        super(o, inNumPoints, inC);
+    public Surface(Object3d object, int numPoints, Color color) {
+        super(object, numPoints, color);
 
         isSolid = true;
 
@@ -33,7 +33,7 @@ public class Surface extends PolyLine {
 
         if (numPoints <= 1) return;
 
-        g.setColor(super.getColor());
+        g.setColor(getColor());
 
         for (int i = 0; i < numPoints; i++) {
             a = object3d.points_.elementAt(points[i]);
