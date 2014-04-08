@@ -15,18 +15,14 @@ import java.util.Vector;
  * NB Thermal triggers create clouds
  */
 public class Sky {
-    // clouds in order from south to north
-    private final Vector<Cloud> clouds;
-    private static float cloudBase;
-
-    final static float RANGE = 8;    //for next /prev - dist per unit height i.e. glide angle
     private final static float BASE_HIGH = 3;
     private final static float BASE_LOW = 2;
 
-    public Sky() {
-        clouds = new Vector<>();
-        setLow();
-    }
+    // clouds in order from south to north
+    private final Vector<Cloud> clouds = new Vector<>();
+    private static float cloudBase = BASE_LOW;
+
+    final static float RANGE = 8;    //for next /prev - dist per unit height i.e. glide angle
 
     void addCloud(Cloud cloud) {
         // TODO keep sorted list of clouds
