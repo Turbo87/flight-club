@@ -158,8 +158,10 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
         if (dir != 0) {
             //turning
             roll += dir;
-            if (roll > ROLL_STEPS) roll = ROLL_STEPS;
-            if (roll < -ROLL_STEPS) roll = -ROLL_STEPS;
+            if (roll > ROLL_STEPS)
+                roll = ROLL_STEPS;
+            if (roll < -ROLL_STEPS)
+                roll = -ROLL_STEPS;
         } else {
             //roll level
             if (roll > 1) {
