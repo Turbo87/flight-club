@@ -32,9 +32,9 @@ public class FlyingBody extends FlyingDot {
     }
 
     @Override
-    public void tick(Clock c) {
+    public void tick() {
         //update position and velocity
-        super.tick(c);
+        super.tick();
 
         //flap wings etc
         //body0.timeStep();

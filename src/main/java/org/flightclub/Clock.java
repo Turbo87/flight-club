@@ -63,7 +63,7 @@ public class Clock implements Runnable {
 				*/
                 if (i == 0 || !paused) {
                     ClockObserver c = observers.elementAt(i);
-                    c.tick(this);
+                    c.tick();
                 }
             }
             lastTick = currentTick;

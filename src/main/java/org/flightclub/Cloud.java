@@ -174,7 +174,7 @@ public class Cloud implements CameraSubject, ClockObserver {
     }
 
     @Override
-    public void tick(Clock c) {
+    public void tick() {
         age += app.timePerFrame;
         if (age > t_mature + t_nose + t_tail * 0.5) decaying = true;
 

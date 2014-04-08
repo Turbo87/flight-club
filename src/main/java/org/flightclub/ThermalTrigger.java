@@ -74,7 +74,7 @@ public class ThermalTrigger implements ClockObserver {
     }
 
     @Override
-    public void tick(Clock c) {
+    public void tick() {
 
         if (t == 0) makeCloud();
         //if (bubbles > 1) if (t == 7) makeCloud();

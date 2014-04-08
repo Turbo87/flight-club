@@ -9,5 +9,5 @@
 package org.flightclub;
 
 public interface ClockObserver {
-    public void tick(Clock c);
+    public void tick();
 }

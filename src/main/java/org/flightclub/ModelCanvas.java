@@ -82,7 +82,7 @@ public class ModelCanvas extends Canvas implements ClockObserver {
     }
 
     @Override
-    public void tick(Clock c) {
+    public void tick() {
         if (mouseTracker.isDragging()) {
             //float dtheta = (float) dx/width;
             float dtheta = 0;

@@ -159,7 +159,7 @@ public class XCGame extends ModelViewer implements EventInterface, ClockObserver
     }
 
     @Override
-    public void tick(Clock c) {
+    public void tick() {
         eventManager.tick();
         cameraMan.tick();
 

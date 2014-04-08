@@ -39,8 +39,8 @@ public class GliderUser extends Glider implements EventInterface {
     }
 
     @Override
-    public void tick(Clock c) {
-        super.tick(c);
+    public void tick() {
+        super.tick();
         checkBounds();
         vario.tick();
     }
