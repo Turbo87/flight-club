@@ -48,16 +48,11 @@ public class DataSlider {
         size = inSize;
         x0 = inX0;
         y0 = inY0;
-        init();
+        setValue((v_min + v_max) / 2);
     }
 
     public DataSlider() {
         this(-1, 1, SIZE_DEFAULT, 50, 42);
-    }
-
-    void init() {
-        // need this ?
-        setValue((v_min + v_max) / 2);
     }
 
     void setValue(float inV) {
