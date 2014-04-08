@@ -18,19 +18,18 @@ public class MovementManager {
 
     // point to fly towards
     private Vector3d targetPoint = null;
+
     // point to circle around
     private Vector3d circlePoint = null;
+
     // cloud to thermal
     Cloud cloud = null;
-    // direction to fly
-    private Vector3d targetDirection = null;
+
     // list of points to fly round
     private Circuit circuit = null;
     private Vector3d circuitPoint = null;
 
-    private float speedOverHypot;
     int nextMoveUser = 0;
-    float lastDistance = 0;
     boolean joinedCircuit = false;
 
     int wiggleCount = 0;
@@ -39,10 +38,6 @@ public class MovementManager {
     static final int LEFT = -1;
     static final int STRAIGHT = 0;
     static final int RIGHT = 1;
-
-    static final int CIRCLE_DIR = LEFT;
-    static final float E_COS = (float) 0.05;
-    static final float E_DIST = (float) 0.1;
 
     public MovementManager(XCGame theApp, FlyingDot theFlyingDot) {
         app = theApp;
@@ -120,11 +115,6 @@ public class MovementManager {
         cloud = c;
     }
 
-    void setTargetDirection(Vector3d d) {
-        clearControllers();
-        targetDirection = d;
-    }
-
     void setNextMove(int dir) {
         // user pressed key to turn
         // clear all controllers
@@ -134,7 +124,6 @@ public class MovementManager {
     }
 
     void clearControllers() {
-        targetDirection = null;
         circlePoint = null;
         targetPoint = null;
         cloud = null;
