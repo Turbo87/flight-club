@@ -199,11 +199,8 @@ public class FlyingDot implements ClockObserver, CameraSubject {
      * 2 - halve that etc.
      */
     void makeTurn(float dir) {
-        Vector3d w = new Vector3d();
-        Vector3d x = new Vector3d();
-
         v.z = 0;    //work in xy plane
-        w = new Vector3d(0, 0, 1).cross(v).scaleBy(-dir * ds / my_turn_radius);
+        Vector3d w = new Vector3d(0, 0, 1).cross(v).scaleBy(-dir * ds / my_turn_radius);
         v.add(w).scaleToLength(ds); //ds is in xy only
         roll(dir);
     }
