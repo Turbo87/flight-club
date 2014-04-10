@@ -27,8 +27,6 @@ public class Surface extends PolyLine {
 
     @Override
     public void draw(Graphics g) {
-        Vector3d a;
-        Vector3d b;
         boolean inFOV = true;
 
         if (numPoints <= 1) return;
@@ -36,10 +34,11 @@ public class Surface extends PolyLine {
         g.setColor(getColor());
 
         for (int i = 0; i < numPoints; i++) {
-            a = object3d.points_.elementAt(points[i]);
-            inFOV = inFOV && object3d.inFOVs.elementAt(points[i]);
+            Vector3d a = object3d.points_.elementAt(points[i]);
             xs[i] = (int) (a.y);
             ys[i] = (int) (a.z);
+
+            inFOV = inFOV && object3d.inFOVs.elementAt(points[i]);
         }
 
         if (inFOV)
