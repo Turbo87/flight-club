@@ -10,6 +10,7 @@ package org.flightclub;
 
 import org.flightclub.compat.Color;
 import org.flightclub.compat.Font;
+import org.flightclub.compat.FontFactory;
 import org.flightclub.compat.Graphics;
 
 /**
@@ -73,7 +74,7 @@ public class DataSlider {
         g.drawLine(x0, y0 - dy, x0, y0 - size - dy);
 
         if (label != null) {
-            Font font = new Font("SansSerif", Font.PLAIN, 10);
+            Font font = FontFactory.create("SansSerif", FontFactory.Style.PLAIN, 10);
             g.setFont(font);
             g.drawString(label, x0 - 10, y0);
         }

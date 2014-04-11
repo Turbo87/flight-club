@@ -20,7 +20,7 @@ public class AwtGraphics implements Graphics {
 
     @Override
     public void setFont(Font font) {
-        g.setFont(font.getFont());
+        g.setFont(((AwtFont) font).getRaw());
     }
 
     @Override
