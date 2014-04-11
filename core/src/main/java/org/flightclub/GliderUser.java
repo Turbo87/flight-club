@@ -8,8 +8,8 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
-import org.flightclub.compat.ColorFactory;
+import org.flightclub.graphics.Color;
+import org.flightclub.graphics.ColorFactory;
 
 import java.awt.event.KeyEvent;
 

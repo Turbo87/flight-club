@@ -1,4 +1,4 @@
-package org.flightclub.compat;
+package org.flightclub.graphics;
 
 public interface Graphics {
     void setColor(Color color);

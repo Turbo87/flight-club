@@ -1,4 +1,4 @@
-package org.flightclub.compat;
+package org.flightclub.graphics;
 
 public interface Color {
     int getRed();

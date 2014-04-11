@@ -1,4 +1,6 @@
-package org.flightclub.compat;
+package org.flightclub.graphics.awt;
+
+import org.flightclub.graphics.Font;
 
 public class AwtFont implements Font {
     private final java.awt.Font f;

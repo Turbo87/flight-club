@@ -1,4 +1,8 @@
-package org.flightclub.compat;
+package org.flightclub.graphics.awt;
+
+import org.flightclub.graphics.Color;
+import org.flightclub.graphics.Font;
+import org.flightclub.graphics.Graphics;
 
 public class AwtGraphics implements Graphics {
 

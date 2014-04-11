@@ -1,6 +1,8 @@
-package org.flightclub.compat;
+package org.flightclub.graphics;
 
 import org.flightclub.Platform;
+import org.flightclub.graphics.android.AndroidFont;
+import org.flightclub.graphics.awt.AwtFont;
 
 public class FontFactory {
 

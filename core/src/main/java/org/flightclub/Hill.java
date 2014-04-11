@@ -8,8 +8,8 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
-import org.flightclub.compat.ColorFactory;
+import org.flightclub.graphics.Color;
+import org.flightclub.graphics.ColorFactory;
 
 /**
  * a spine running parallel to x axis or y axis (orientation 0 or 1)

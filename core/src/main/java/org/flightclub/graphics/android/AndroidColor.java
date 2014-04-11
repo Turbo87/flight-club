@@ -1,4 +1,6 @@
-package org.flightclub.compat;
+package org.flightclub.graphics.android;
+
+import org.flightclub.graphics.Color;
 
 public class AndroidColor implements Color {
     private final int r;

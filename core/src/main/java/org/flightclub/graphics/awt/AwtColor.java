@@ -1,4 +1,6 @@
-package org.flightclub.compat;
+package org.flightclub.graphics.awt;
+
+import org.flightclub.graphics.Color;
 
 public class AwtColor implements Color {
     private final java.awt.Color c;

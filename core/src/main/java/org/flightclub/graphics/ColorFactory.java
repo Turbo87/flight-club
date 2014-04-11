@@ -1,6 +1,8 @@
-package org.flightclub.compat;
+package org.flightclub.graphics;
 
 import org.flightclub.Platform;
+import org.flightclub.graphics.android.AndroidColor;
+import org.flightclub.graphics.awt.AwtColor;
 
 public class ColorFactory {
     public final static Color WHITE = create(255, 255, 255);

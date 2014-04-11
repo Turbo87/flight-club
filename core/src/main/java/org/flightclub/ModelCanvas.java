@@ -9,7 +9,7 @@
 package org.flightclub;
 
 
-import org.flightclub.compat.AwtGraphics;
+import org.flightclub.graphics.awt.AwtGraphics;
 
 import java.awt.Canvas;
 import java.awt.Color;

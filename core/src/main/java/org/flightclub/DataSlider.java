@@ -8,10 +8,10 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.ColorFactory;
-import org.flightclub.compat.Font;
-import org.flightclub.compat.FontFactory;
-import org.flightclub.compat.Graphics;
+import org.flightclub.graphics.ColorFactory;
+import org.flightclub.graphics.Font;
+import org.flightclub.graphics.FontFactory;
+import org.flightclub.graphics.Graphics;
 
 /**
  * a dot on a line - use for eg vario

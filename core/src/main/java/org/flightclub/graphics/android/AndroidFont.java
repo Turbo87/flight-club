@@ -1,4 +1,7 @@
-package org.flightclub.compat;
+package org.flightclub.graphics.android;
+
+import org.flightclub.graphics.Font;
+import org.flightclub.graphics.FontFactory;
 
 public class AndroidFont implements Font {
     private final String name;
