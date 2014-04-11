@@ -56,6 +56,9 @@ public class EventManager {
      * process event at head of the queue
      */
     public void processEvent() {
+        if (Platform.isAndroid())
+            return;
+
         KeyEvent e = events.poll();
         if (e == null)
             return;
