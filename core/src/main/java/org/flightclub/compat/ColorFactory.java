@@ -1,5 +1,7 @@
 package org.flightclub.compat;
 
+import org.flightclub.Platform;
+
 public class ColorFactory {
     public final static Color WHITE = create(255, 255, 255);
     public final static Color LIGHT_GRAY = create(192, 192, 192);
@@ -16,7 +18,10 @@ public class ColorFactory {
     public final static Color BLUE = create(0, 0, 255);
 
     public static Color create(int red, int green, int blue) {
-        return new AwtColor(red, green, blue);
+        if (Platform.isAndroid())
+            return new AndroidColor(red, green, blue);
+        else
+            return new AwtColor(red, green, blue);
     }
 
     private ColorFactory() {}
