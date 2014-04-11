@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 import java.util.Vector;
 
@@ -70,10 +71,10 @@ public class Cloud implements CameraSubject, Clock.Observer {
         liftMax = -(1 + inStrength) * Glider.SINK_RATE;
         int c = CLOUD_COLOR - (inStrength - 1) * CLOUD_COLOR_STEP;
         if (inStrength == 1)
-            color = new Color(c, c, c);
+            color = ColorFactory.create(c, c, c);
         else
             //darker, but keep some blue
-            color = new Color(c, c, c);
+            color = ColorFactory.create(c, c, c);
 
         maxRadius = inStrength;  //(float) Math.sqrt(inStrength); was 1
 

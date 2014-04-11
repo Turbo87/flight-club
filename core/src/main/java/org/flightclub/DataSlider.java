@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 import org.flightclub.compat.Font;
 import org.flightclub.compat.FontFactory;
 import org.flightclub.compat.Graphics;
@@ -68,7 +68,7 @@ public class DataSlider {
 
     public void draw(Graphics g) {
 
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(ColorFactory.LIGHT_GRAY);
         g.drawLine(x0 - dx, y0 - size - dy, x0 + dx, y0 - size - dy);
         g.drawLine(x0 - dx, y0 - dy, x0 + dx, y0 - dy);
         g.drawLine(x0, y0 - dy, x0, y0 - size - dy);
@@ -79,7 +79,7 @@ public class DataSlider {
             g.drawString(label, x0 - 10, y0);
         }
 
-        g.setColor(Color.GRAY);
+        g.setColor(ColorFactory.GRAY);
         g.fillCircle(x0 - 1, y0 - v_ - dy - 1, 3);
     }
 }

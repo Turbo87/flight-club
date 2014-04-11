@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 import java.util.Vector;
 
@@ -132,22 +133,22 @@ public class Tools3d {
     static Object3d unitCube(XCGame theApp, boolean isSolid) {
         Object3d cube = new Object3d(theApp);
         float d = (float) 0.5;
-        Color c = Color.GREEN;
+        Color c = ColorFactory.GREEN;
 
         cube.addWire(unitSquare(XYF, d), c, isSolid);
-        c = Color.RED;
+        c = ColorFactory.RED;
         cube.addWire(unitSquare(XYB, -d), c, isSolid);
-        c = Color.BLUE;
+        c = ColorFactory.BLUE;
 
         cube.addWire(unitSquare(YZF, d), c, isSolid);
-        c = Color.MAGENTA;
+        c = ColorFactory.MAGENTA;
         cube.addWire(unitSquare(YZB, -d), c, isSolid);
-        c = Color.ORANGE;
+        c = ColorFactory.ORANGE;
 
         cube.addWire(unitSquare(ZXF, d), c, isSolid);
-        c = Color.PINK;
+        c = ColorFactory.PINK;
         cube.addWire(unitSquare(ZXB, -d), c, isSolid);
-        c = Color.YELLOW;
+        c = ColorFactory.YELLOW;
 
         return cube;
     }

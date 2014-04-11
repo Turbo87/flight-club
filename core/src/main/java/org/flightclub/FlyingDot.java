@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 /*
   a dot with a position and velocity. also...
@@ -36,7 +37,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
     MovementManager moveManager = null;
 
     public static final int TAIL_LENGTH = 25;
-    public static final Color TAIL_COLOR = Color.LIGHT_GRAY;
+    public static final Color TAIL_COLOR = ColorFactory.LIGHT_GRAY;
 
     int roll = 0;
     static final int ROLL_STEPS = 15;

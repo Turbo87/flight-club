@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 /*
   todo - seperate into two classes
@@ -34,7 +35,8 @@ public class CameraMan {
     private static final int BACKGROUND_R = 255;
     private static final int BACKGROUND_G = 255;
     private static final int BACKGROUND_B = 255;
-    private static final Color BACKGROUND = new Color(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B);
+    private static final Color BACKGROUND = ColorFactory.create(
+            BACKGROUND_R, BACKGROUND_G, BACKGROUND_B);
 
     private static final float DEPTH_OF_VISION = Landscape.TILE_WIDTH * (float) 2.5;
     private static final float AMBIENT_LIGHT = (float) 0.3;
@@ -367,7 +369,7 @@ public class CameraMan {
         g_ = (int) (g + f * (BACKGROUND_G - g));
         b_ = (int) (b + f * (BACKGROUND_B - b));
 
-        return new Color(r_, g_, b_);
+        return ColorFactory.create(r_, g_, b_);
     }
 
     public void move(float dx, float dy) {

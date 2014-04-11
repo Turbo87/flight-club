@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 import org.flightclub.compat.Graphics;
 
 import java.util.Vector;
@@ -59,7 +60,7 @@ public class Object3dWithShadow extends Object3d {
             shadowPoints.addElement(q);
         }
 
-        Color color = new Color(SHADOW_COLOR, SHADOW_COLOR, SHADOW_COLOR);
+        Color color = ColorFactory.create(SHADOW_COLOR, SHADOW_COLOR, SHADOW_COLOR);
         shadows[numShadows] = new Surface(this, shadowPoints.size(), color);
 
         for (int i = 0; i < shadowPoints.size(); i++) {

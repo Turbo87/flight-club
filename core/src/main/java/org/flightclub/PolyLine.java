@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 import org.flightclub.compat.Graphics;
 
 public class PolyLine {
@@ -78,7 +79,7 @@ public class PolyLine {
         g *= light;
         b *= light;
 
-        c_ = new Color(r, g, b);
+        c_ = ColorFactory.create(r, g, b);
     }
 
     public void draw(Graphics g) {

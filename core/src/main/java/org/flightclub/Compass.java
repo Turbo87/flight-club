@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 import org.flightclub.compat.Font;
 import org.flightclub.compat.FontFactory;
 import org.flightclub.compat.Graphics;
@@ -97,16 +97,16 @@ public class Compass {
 
     public void draw(Graphics g) {
 
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(ColorFactory.LIGHT_GRAY);
         g.drawLine(txs_[0], tys_[0], txs_[1], tys_[1]);
 
         Font font = FontFactory.create("SansSerif", FontFactory.Style.PLAIN, 10);
         g.setFont(font);
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(ColorFactory.LIGHT_GRAY);
         g.drawString("N", x0 - 3, y0 - r * 2 - dy);
         g.drawString("S", x0 - 3, y0);
 
-        g.setColor(Color.GRAY);
+        g.setColor(ColorFactory.GRAY);
         g.fillPolygon(hxs_, hys_, hxs_.length);
     }
 

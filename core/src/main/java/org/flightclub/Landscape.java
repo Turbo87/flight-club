@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 import java.util.Vector;
 
@@ -104,12 +104,12 @@ public class Landscape implements CameraSubject {
         wire = new Vector<>();
         wire.addElement(new Vector3d(x, y - HAIR, 0));
         wire.addElement(new Vector3d(x, y + HAIR, 0));
-        o.addWire(wire, new Color(230, 230, 230), false, false);
+        o.addWire(wire, ColorFactory.create(230, 230, 230), false, false);
 
         wire = new Vector<>();
         wire.addElement(new Vector3d(x - HAIR, y, 0));
         wire.addElement(new Vector3d(x + HAIR, y, 0));
-        o.addWire(wire, new Color(230, 230, 230), false, false);
+        o.addWire(wire, ColorFactory.create(230, 230, 230), false, false);
 
     }
 
@@ -129,7 +129,7 @@ public class Landscape implements CameraSubject {
             float x2 = (float) Math.sin((double) (i + ATOM) * Math.PI / TILE_WIDTH);
             wire.addElement(new Vector3d(x1 * 1, i, 0));
             wire.addElement(new Vector3d(x2 * 1, i + ATOM, 0));
-            o.addWire(wire, new Color(220, 220, 220), false, false);
+            o.addWire(wire, ColorFactory.create(220, 220, 220), false, false);
         }
     }
 
@@ -147,12 +147,12 @@ public class Landscape implements CameraSubject {
         wire = new Vector<>();
         wire.addElement(new Vector3d(x1, y0, 0));
         wire.addElement(new Vector3d(x2, y0, 0));
-        o.addWire(wire, new Color(220, 220, 100), false, false);
+        o.addWire(wire, ColorFactory.create(220, 220, 100), false, false);
 
         wire = new Vector<>();
         wire.addElement(new Vector3d(x1, 0, 0));
         wire.addElement(new Vector3d(x2, 0, 0));
-        o.addWire(wire, new Color(220, 220, 100), false, false);
+        o.addWire(wire, ColorFactory.create(220, 220, 100), false, false);
     }
 
     /**

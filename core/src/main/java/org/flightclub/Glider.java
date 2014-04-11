@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 /**
  * a glider that sniffs out lift
@@ -45,7 +46,7 @@ public class Glider extends FlyingBody {
     final static float[][] POLAR = {{1, 1}, {(float) 1.5, (float) 2.1}};
 
     public static final int TAIL_LENGTH = 40;
-    public static final Color TAIL_COLOR = Color.LIGHT_GRAY;
+    public static final Color TAIL_COLOR = ColorFactory.LIGHT_GRAY;
 
     /**
      * default constructor - this glider is not being piloted by the user
@@ -61,7 +62,7 @@ public class Glider extends FlyingBody {
         if (!isUser) {
             gliderShape = new GliderShape(app);
         } else {
-            gliderShape = new GliderShape(app, Color.YELLOW);
+            gliderShape = new GliderShape(app, ColorFactory.YELLOW);
         }
 
         this.init(gliderShape, p);
@@ -74,7 +75,7 @@ public class Glider extends FlyingBody {
         //sailplane/rigid
         super(app, SPEED * (float) 1.5, TURN_RADIUS * (float) 1.2, isUser);
 
-        GliderShape gliderShape = new GliderShape(app, Color.PINK);
+        GliderShape gliderShape = new GliderShape(app, ColorFactory.PINK);
 
         this.init(gliderShape, p);
         bodyHeight = GliderShape.HEIGHT;

@@ -16,7 +16,7 @@ public class XCGameApplet extends Applet {
 
     @Override
     public void init() {
-        this.setBackground(Color.white);
+        this.setBackground(Color.WHITE);
 
         ModelCanvas panel = new ModelCanvas(app);
         panel.setSize(getSize());

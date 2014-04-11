@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 /**
  * a spine running parallel to x axis or y axis (orientation 0 or 1)
@@ -58,7 +59,7 @@ public class Hill implements CameraSubject {
         h0 = inH0;
         face = inFace;
         object3d = new Object3d(app);
-        color = new Color(255, 255, 255);
+        color = ColorFactory.create(255, 255, 255);
 
         // higher resolution/sample rate if
         // on central tile

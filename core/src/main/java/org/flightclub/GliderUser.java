@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 import java.awt.event.KeyEvent;
 
@@ -18,7 +19,7 @@ import java.awt.event.KeyEvent;
 public class GliderUser extends Glider implements EventManager.Interface {
 
     public static final int TAIL_LENGTH = 60;
-    public static final Color TAIL_COLOR = new Color(120, 120, 120);
+    public static final Color TAIL_COLOR = ColorFactory.create(120, 120, 120);
 
     public GliderUser(XCGame app, Vector3d p) {
         //set flag so camera will follow my cuts when in mode 1

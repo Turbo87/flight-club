@@ -9,6 +9,7 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 /**
  * a jet in the upper atmosphere - leaves a long trail
@@ -21,7 +22,7 @@ public class JetTrail extends FlyingDot {
     static final float RANGE = 40;
 
     public static final int TAIL_LENGTH = 80;
-    public static final Color TAIL_COLOR = new Color(200, 200, 200);
+    public static final Color TAIL_COLOR = ColorFactory.create(200, 200, 200);
 
     public JetTrail(XCGame app, float x, float y) {
         //set flag so camera will follow my cuts when in mode 1

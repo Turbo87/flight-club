@@ -9,11 +9,12 @@
 package org.flightclub;
 
 import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 
 import java.util.Vector;
 
 public class GliderShape extends Object3dWithShadow {
-    public static final Color DEFAULT_COLOR = new Color(170, 170, 180);
+    public static final Color DEFAULT_COLOR = ColorFactory.create(170, 170, 180);
     public static final float HEIGHT = (float) 0.2;
 
     final Color color;

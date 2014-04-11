@@ -10,7 +10,7 @@ public class AwtGraphics implements Graphics {
 
     @Override
     public void setColor(Color color) {
-        g.setColor(color.getColor());
+        g.setColor(((AwtColor) color).getRaw());
     }
 
     @Override

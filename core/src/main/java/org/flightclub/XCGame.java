@@ -8,7 +8,7 @@
 
 package org.flightclub;
 
-import org.flightclub.compat.Color;
+import org.flightclub.compat.ColorFactory;
 import org.flightclub.compat.Font;
 import org.flightclub.compat.FontFactory;
 import org.flightclub.compat.Graphics;
@@ -262,7 +262,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         if (textMessage != null) {
             Font font = FontFactory.create("SansSerif", FontFactory.Style.PLAIN, 10);
             g.setFont(font);
-            g.setColor(Color.LIGHT_GRAY);
+            g.setColor(ColorFactory.LIGHT_GRAY);
 
             String s;
             if (!clock.paused) {
