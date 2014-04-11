@@ -14,6 +14,7 @@ import org.flightclub.graphics.FontFactory;
 import org.flightclub.graphics.Graphics;
 
 import java.awt.event.KeyEvent;
+import java.util.ConcurrentModificationException;
 import java.util.Vector;
 
 public class XCGame implements EventManager.Interface, Clock.Observer {
@@ -251,11 +252,15 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         cameraMan.setMatrix();
 
         obj3dManager.sortObjects();
-        for (ObjectLayer layer : obj3dManager.layers) {
-            for (Object3d object : layer) {
-                object.film(cameraMan);
-                object.draw(g);
+        // TODO this is a hack to get it running at all and should be addressed soon!
+        try {
+            for (ObjectLayer layer : obj3dManager.layers) {
+                for (Object3d object : layer) {
+                    object.film(cameraMan);
+                    object.draw(g);
+                }
             }
+        } catch (ConcurrentModificationException ignored) {
         }
 
         //Text
