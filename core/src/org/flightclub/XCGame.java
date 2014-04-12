@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 
 import static com.badlogic.gdx.graphics.VertexAttributes.Usage;
@@ -22,6 +23,8 @@ public class XCGame extends ApplicationAdapter {
     public ModelBatch modelBatch;
     public Model model;
     public ModelInstance instance;
+
+    public CameraInputController camController;
 
     @Override
 	public void create () {
@@ -50,10 +53,16 @@ public class XCGame extends ApplicationAdapter {
                 new Material(ColorAttribute.createDiffuse(Color.GREEN)),
                 Usage.Position | Usage.Normal);
         instance = new ModelInstance(model);
+
+        // Initialize camera controller
+        camController = new CameraInputController(cam);
+        Gdx.input.setInputProcessor(camController);
 	}
 
     @Override
     public void render() {
+        camController.update();
+
         // Update viewport
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
