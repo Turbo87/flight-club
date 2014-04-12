@@ -51,8 +51,9 @@ public class XCGame extends ApplicationAdapter {
 
         // Create camera
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(10f, 10f, 10f);
-        cam.lookAt(0,0,0);
+        cam.up.set(0, 0, 1);
+        cam.position.set(0, -10, 0);
+        cam.lookAt(0, 0, 0);
         cam.near = 1f;
         cam.far = 300f;
         cam.update();
