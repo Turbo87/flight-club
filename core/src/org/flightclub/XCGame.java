@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.Environment;
@@ -14,7 +15,14 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.utils.FirstPersonCameraController;
+import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
+import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import java.util.Vector;
 
 import static com.badlogic.gdx.graphics.VertexAttributes.Usage;
 
@@ -60,12 +68,43 @@ public class XCGame extends ApplicationAdapter {
     private Model createBoxModel() {
         ModelBuilder modelBuilder = new ModelBuilder();
         Material material = new Material(ColorAttribute.createDiffuse(Color.GREEN));
-        return modelBuilder.createBox(5f, 5f, 5f, material, Usage.Position | Usage.Normal);
+        int attributes = Usage.Position | Usage.Normal;
+
+        modelBuilder.begin();
+        MeshBuilder partBuilder = (MeshBuilder) modelBuilder.part("box", GL20.GL_TRIANGLES, attributes, material);
+
+        // chord
+        float y = (float) 0.2;
+        // nose a bit up
+        float z = y * (float) 0.3;
+        // anhedral
+        float a = (float) 0.15;
+        // sweep
+        float s = (float) 0.4;
+
+        Vector3 corner00 = new Vector3(0, y, z);
+        Vector3 corner01 = new Vector3(1, y - s, z + a);
+        Vector3 corner10 = new Vector3(0, 0, 0);
+        Vector3 corner11 = new Vector3(1, -s, a);
+        Vector3 normal = new Vector3(corner00).lerp(corner01, 0.5f).crs(new Vector3(corner00).lerp(corner10, 0.5f)).nor();
+        partBuilder.rect(corner00, corner10, corner11, corner01, normal);
+        partBuilder.rect(corner00, corner01, corner11, corner10, normal.scl(-1));
+
+        corner01 = new Vector3(-1, y - s, z + a);
+        corner11 = new Vector3(-1, -s, a);
+        normal = new Vector3(corner00).lerp(corner01, 0.5f).crs(new Vector3(corner00).lerp(corner10, 0.5f)).nor();
+        partBuilder.rect(corner00, corner10, corner11, corner01, normal);
+        partBuilder.rect(corner00, corner01, corner11, corner10, normal.scl(-1));
+
+        return modelBuilder.end();
     }
 
     @Override
     public void render() {
         camController.update();
+
+        instance.transform.rotate(1, 0, 0, Gdx.graphics.getDeltaTime() * 60);
+        instance.calculateTransforms();
 
         // Update viewport
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
