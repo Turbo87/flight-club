@@ -2,6 +2,7 @@ package org.flightclub;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
@@ -28,7 +29,7 @@ import static com.badlogic.gdx.graphics.VertexAttributes.Usage;
 
 public class XCGame extends ApplicationAdapter {
     public Environment environment;
-    public PerspectiveCamera cam;
+    public Camera cam;
     public ModelBatch modelBatch;
     public Model model;
     public ModelInstance instance;
@@ -50,15 +51,15 @@ public class XCGame extends ApplicationAdapter {
         modelBatch = new ModelBatch();
 
         // Create camera
-        createCamera();
-        createCameraController();
+        cam = createCamera();
+        camController = createCameraController(cam);
 
         model = createBoxModel();
         instance = new ModelInstance(model);
 	}
 
-    private void createCamera() {
-        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    private static Camera createCamera() {
+        Camera cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         // Adjust up vector
         // +z = up, +y = front, +x = right
@@ -69,11 +70,14 @@ public class XCGame extends ApplicationAdapter {
         cam.near = 1f;
         cam.far = 300f;
         cam.update();
+
+        return cam;
     }
 
-    private void createCameraController() {
-        camController = new FirstPersonCameraController(cam);
-        Gdx.input.setInputProcessor(camController);
+    private static FirstPersonCameraController createCameraController(Camera cam) {
+        FirstPersonCameraController controller = new FirstPersonCameraController(cam);
+        Gdx.input.setInputProcessor(controller);
+        return controller;
     }
 
     private Model createBoxModel() {
