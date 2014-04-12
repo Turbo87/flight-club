@@ -106,15 +106,15 @@ public class XCGame extends ApplicationAdapter {
         Vector3 corner01 = new Vector3(1, y - s, z + a);
         Vector3 corner10 = new Vector3(0, 0, 0);
         Vector3 corner11 = new Vector3(1, -s, a);
-        Vector3 normal = new Vector3(corner00).lerp(corner01, 0.5f).crs(new Vector3(corner00).lerp(corner10, 0.5f)).nor();
-        partBuilder.rect(corner00, corner10, corner11, corner01, normal);
-        partBuilder.rect(corner00, corner01, corner11, corner10, normal.scl(-1));
+        Vector3 normal = new Vector3(corner00).sub(corner01).crs(new Vector3(corner00).sub(corner10)).nor();
+        partBuilder.rect(corner00, corner01, corner11, corner10, normal);
+        partBuilder.rect(corner00, corner10, corner11, corner01, normal.scl(-1));
 
         corner01 = new Vector3(-1, y - s, z + a);
         corner11 = new Vector3(-1, -s, a);
-        normal = new Vector3(corner00).lerp(corner01, 0.5f).crs(new Vector3(corner00).lerp(corner10, 0.5f)).nor();
-        partBuilder.rect(corner00, corner10, corner11, corner01, normal);
-        partBuilder.rect(corner00, corner01, corner11, corner10, normal.scl(-1));
+        normal = new Vector3(corner00).sub(corner01).crs(new Vector3(corner00).sub(corner10)).nor();
+        partBuilder.rect(corner00, corner01, corner11, corner10, normal);
+        partBuilder.rect(corner00, corner10, corner11, corner01, normal.scl(-1));
 
         return modelBuilder.end();
     }
@@ -123,7 +123,7 @@ public class XCGame extends ApplicationAdapter {
     public void render() {
         camController.update();
 
-        instance.transform.rotate(0, 0, 1, Gdx.graphics.getDeltaTime() * 30);
+        instance.transform.rotate(0, 1, 0, Gdx.graphics.getDeltaTime() * 30);
         instance.calculateTransforms();
 
         // Update viewport
