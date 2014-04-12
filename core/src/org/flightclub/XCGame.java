@@ -28,12 +28,15 @@ public class XCGame extends ApplicationAdapter {
         // Set background color to white
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 
+        // Create lighting environment
         environment = new Environment();
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
+        // Create batch renderer
         modelBatch = new ModelBatch();
 
+        // Create camera
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.position.set(10f, 10f, 10f);
         cam.lookAt(0,0,0);
@@ -50,9 +53,13 @@ public class XCGame extends ApplicationAdapter {
 
     @Override
     public void render() {
+        // Update viewport
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        // Clear screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
+        // Render the scene
         modelBatch.begin(cam);
         modelBatch.render(instance, environment);
         modelBatch.end();
