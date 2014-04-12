@@ -50,13 +50,7 @@ public class XCGame extends ApplicationAdapter {
         modelBatch = new ModelBatch();
 
         // Create camera
-        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.up.set(0, 0, 1);
-        cam.position.set(0, -10, 0);
-        cam.lookAt(0, 0, 0);
-        cam.near = 1f;
-        cam.far = 300f;
-        cam.update();
+        createCamera();
 
         model = createBoxModel();
         instance = new ModelInstance(model);
@@ -65,6 +59,20 @@ public class XCGame extends ApplicationAdapter {
         camController = new FirstPersonCameraController(cam);
         Gdx.input.setInputProcessor(camController);
 	}
+
+    private void createCamera() {
+        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        // Adjust up vector
+        // +z = up, +y = front, +x = right
+        cam.up.set(0, 0, 1);
+
+        cam.position.set(0, -10, 0);
+        cam.lookAt(0, 0, 0);
+        cam.near = 1f;
+        cam.far = 300f;
+        cam.update();
+    }
 
     private Model createBoxModel() {
         ModelBuilder modelBuilder = new ModelBuilder();
