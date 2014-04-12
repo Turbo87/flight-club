@@ -51,13 +51,10 @@ public class XCGame extends ApplicationAdapter {
 
         // Create camera
         createCamera();
+        createCameraController();
 
         model = createBoxModel();
         instance = new ModelInstance(model);
-
-        // Initialize camera controller
-        camController = new FirstPersonCameraController(cam);
-        Gdx.input.setInputProcessor(camController);
 	}
 
     private void createCamera() {
@@ -72,6 +69,11 @@ public class XCGame extends ApplicationAdapter {
         cam.near = 1f;
         cam.far = 300f;
         cam.update();
+    }
+
+    private void createCameraController() {
+        camController = new FirstPersonCameraController(cam);
+        Gdx.input.setInputProcessor(camController);
     }
 
     private Model createBoxModel() {
