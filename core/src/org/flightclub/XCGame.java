@@ -57,9 +57,9 @@ public class XCGame extends ApplicationAdapter {
 
     private static Environment createEnvironment() {
         Environment env = new Environment();
-        env.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
-        env.set(new ColorAttribute(ColorAttribute.Fog, 1f, 1f, 1f, 1f));
-        env.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        env.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1.0f));
+        env.set(new ColorAttribute(ColorAttribute.Fog, 1.0f, 1.0f, 1.0f, 1.0f));
+        env.add(new DirectionalLight().set(0.6f, 0.6f, 0.6f, 1.0f, 1.0f, -3.0f));
         return env;
     }
 
