@@ -42,10 +42,7 @@ public class XCGame extends ApplicationAdapter {
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 
         // Create lighting environment
-        environment = new Environment();
-        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
-        environment.set(new ColorAttribute(ColorAttribute.Fog, 1f, 1f, 1f, 1f));
-        environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        environment = createEnvironment();
 
         // Create batch renderer
         modelBatch = new ModelBatch();
@@ -57,6 +54,14 @@ public class XCGame extends ApplicationAdapter {
         model = createBoxModel();
         instance = new ModelInstance(model);
 	}
+
+    private static Environment createEnvironment() {
+        Environment env = new Environment();
+        env.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
+        env.set(new ColorAttribute(ColorAttribute.Fog, 1f, 1f, 1f, 1f));
+        env.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        return env;
+    }
 
     private static Camera createCamera() {
         Camera cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
