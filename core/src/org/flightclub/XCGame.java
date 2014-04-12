@@ -59,9 +59,8 @@ public class XCGame extends ApplicationAdapter {
 
     private Model createBoxModel() {
         ModelBuilder modelBuilder = new ModelBuilder();
-        return modelBuilder.createBox(5f, 5f, 5f,
-                new Material(ColorAttribute.createDiffuse(Color.GREEN)),
-                Usage.Position | Usage.Normal);
+        Material material = new Material(ColorAttribute.createDiffuse(Color.GREEN));
+        return modelBuilder.createBox(5f, 5f, 5f, material, Usage.Position | Usage.Normal);
     }
 
     @Override
