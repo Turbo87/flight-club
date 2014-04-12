@@ -25,6 +25,9 @@ public class XCGame extends ApplicationAdapter {
 
     @Override
 	public void create () {
+        // Set background color to white
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+
         environment = new Environment();
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
