@@ -118,7 +118,7 @@ public class XCGame extends ApplicationAdapter {
     public void render() {
         camController.update();
 
-        instance.transform.rotate(1, 0, 0, Gdx.graphics.getDeltaTime() * 60);
+        instance.transform.rotate(0, 0, 1, Gdx.graphics.getDeltaTime() * 30);
         instance.calculateTransforms();
 
         // Update viewport
