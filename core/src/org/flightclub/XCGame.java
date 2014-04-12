@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
@@ -48,16 +49,20 @@ public class XCGame extends ApplicationAdapter {
         cam.far = 300f;
         cam.update();
 
-        ModelBuilder modelBuilder = new ModelBuilder();
-        model = modelBuilder.createBox(5f, 5f, 5f,
-                new Material(ColorAttribute.createDiffuse(Color.GREEN)),
-                Usage.Position | Usage.Normal);
+        model = createBoxModel();
         instance = new ModelInstance(model);
 
         // Initialize camera controller
         camController = new FirstPersonCameraController(cam);
         Gdx.input.setInputProcessor(camController);
 	}
+
+    private Model createBoxModel() {
+        ModelBuilder modelBuilder = new ModelBuilder();
+        return modelBuilder.createBox(5f, 5f, 5f,
+                new Material(ColorAttribute.createDiffuse(Color.GREEN)),
+                Usage.Position | Usage.Normal);
+    }
 
     @Override
     public void render() {
