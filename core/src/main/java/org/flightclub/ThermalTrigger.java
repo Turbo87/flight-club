@@ -80,7 +80,7 @@ public class ThermalTrigger implements Clock.Observer {
         //if (bubbles > 1) if (t == 7) makeCloud();
         //if (bubbles > 2) if (t == 14) makeCloud();
 
-        t += app.timePerFrame;
+        t += delta * app.timeMultiplier / 2.0f;
         if (t > cycleLength) t = 0;
 
         //System.out.println("avg secs: " + c.getAvgSleep());
