@@ -100,7 +100,7 @@ public class FlyingDot implements Clock.Observer, CameraSubject {
      * update position, velocity and local frame
      */
     @Override
-    public void tick() {
+    public void tick(float delta) {
         p.add(v);
         p.y += Sky.getWind() * app.timePerFrame;
 

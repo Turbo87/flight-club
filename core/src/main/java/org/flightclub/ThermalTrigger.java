@@ -74,7 +74,7 @@ public class ThermalTrigger implements Clock.Observer {
     }
 
     @Override
-    public void tick() {
+    public void tick(float delta) {
 
         if (t == 0) makeCloud();
         //if (bubbles > 1) if (t == 7) makeCloud();

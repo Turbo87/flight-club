@@ -174,7 +174,7 @@ public class Cloud implements CameraSubject, Clock.Observer {
     }
 
     @Override
-    public void tick() {
+    public void tick(float delta) {
         age += app.timePerFrame;
         if (age > t_mature + t_nose + t_tail * 0.5) decaying = true;
 

@@ -40,8 +40,8 @@ public class GliderUser extends Glider implements EventManager.Interface {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void tick(float delta) {
+        super.tick(delta);
         checkBounds();
     }
 

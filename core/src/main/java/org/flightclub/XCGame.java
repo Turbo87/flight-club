@@ -159,7 +159,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
     }
 
     @Override
-    public void tick() {
+    public void tick(float delta) {
         eventManager.processEvent();
         cameraMan.tick();
 

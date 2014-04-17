@@ -227,7 +227,7 @@ public class Glider extends FlyingBody {
     }
 
     @Override
-    public void tick() {
+    public void tick(float delta) {
 
         if (isUser && demoMode) return;
 
@@ -246,7 +246,7 @@ public class Glider extends FlyingBody {
         }
         if (reachedGoal) return;
 
-        super.tick();
+        super.tick(delta);
         time += app.timePerFrame;
 
         //delayed cut hack 5/10

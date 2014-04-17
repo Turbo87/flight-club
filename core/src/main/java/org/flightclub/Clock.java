@@ -16,7 +16,7 @@ import java.util.Vector;
 public class Clock implements Runnable {
 
     public interface Observer {
-        public void tick();
+        public void tick(float delta);
     }
 
     Thread ticker = null;
@@ -54,6 +54,8 @@ public class Clock implements Runnable {
     public void run() {
         while (ticker != null) {
             long now = System.currentTimeMillis();
+            float delta = (now - last) / 1000.0f;
+            last = now;
 
             for (int i = 0; i < observers.size(); i++) {
                 /*
@@ -62,10 +64,9 @@ public class Clock implements Runnable {
 				*/
                 if (i == 0 || !paused) {
                     Observer c = observers.elementAt(i);
-                    c.tick();
+                    c.tick(delta);
                 }
             }
-            last = now;
 
             long timeLeft = sleepTime + now - System.currentTimeMillis();
             if (timeLeft > 0) {

@@ -60,8 +60,8 @@ public class JetTrail extends FlyingDot {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void tick(float delta) {
+        super.tick(delta);
         checkBounds();
     }
 }
