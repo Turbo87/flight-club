@@ -175,7 +175,7 @@ public class Cloud implements CameraSubject, Clock.Observer {
 
     @Override
     public void tick(float delta) {
-        age += app.timePerFrame;
+        age += delta * app.timeMultiplier / 2.0f;
         if (age > t_mature + t_nose + t_tail * 0.5) decaying = true;
 
         if (age > t_mature + t_nose + t_tail) {
@@ -183,7 +183,7 @@ public class Cloud implements CameraSubject, Clock.Observer {
             return;
         }
 
-        p.y += Sky.getWind() * app.timePerFrame;
+        p.y += Sky.getWind() * delta * app.timeMultiplier / 2.0f;
         p.z = Sky.getCloudBase();
         setCorners();
         object3d.updateShadow();
