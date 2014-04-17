@@ -13,7 +13,7 @@ public class Variometer {
 
     //how many different sounds
     private static final int NUM_BEEPS = 4;
-    private static final int FRAMES_PER_BEEP = 5;
+    private static final float SECONDS_PER_BEEP = 0.2f;
 
     //different beeps as we go up the steps
     private static final float[] STEPS = new float[NUM_BEEPS];
@@ -27,17 +27,17 @@ public class Variometer {
     final XCGame app;
     private final FlyingDot flyingDot;
 
-    private int frame_count = 0;
+    private float time = 0;
 
     public Variometer(XCGame app, FlyingDot flyingDot) {
         this.flyingDot = flyingDot;
         this.app = app;
     }
 
-    public void tick() {
-        frame_count++;
-        if (frame_count == FRAMES_PER_BEEP) {
-            frame_count = 0;
+    public void tick(float delta) {
+        time += delta;
+        if (time >= SECONDS_PER_BEEP) {
+            time = 0.0f;
             this.beep();
         }
     }
@@ -48,7 +48,7 @@ public class Variometer {
      * dist per frame to dist per unit time.
      */
     private void beep() {
-        float lift = flyingDot.v.z / app.timePerFrame;
+        float lift = flyingDot.v.z / (app.timeMultiplier * XCGame.TIME_PER_FRAME);
 
         String filename = filenameForLift(lift);
         if (filename != null)
