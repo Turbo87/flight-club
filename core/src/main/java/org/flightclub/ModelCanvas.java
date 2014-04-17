@@ -90,7 +90,8 @@ public class ModelCanvas extends Canvas implements Clock.Observer {
             if (mouseTracker.getDeltaX() < -20)
                 dtheta = unitStep;
 
-            app.rotateCamera(-dtheta, -mouseTracker.getDeltaY());
+            app.cameraMan.rotateEyeAboutFocus(-dtheta);
+            app.cameraMan.translateZ(-mouseTracker.getDeltaY());
         }
 
         repaint();

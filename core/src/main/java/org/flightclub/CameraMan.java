@@ -287,23 +287,29 @@ public class CameraMan {
     /**
      * rotate eye about z axis by xy radians and up/down by z
      */
-    void rotateEyeAboutFocus(float dtheta, int dz) {
-        //get ray focus -> eye
-        //Vector3d ray = new Vector3d();
-        //Tools3d.subtract(eye,focus,ray);
-
+    void rotateEyeAboutFocus(float dtheta) {
         Vector3d ray = eye.minus(focus);
 
         //transform ray
         float[][] m = Tools3d.rotateX(new Vector3d(1, dtheta, 0));
         Tools3d.applyTo(m, ray, ray);
 
-        if (dz > 20) ray.z += distance / (XCGame.FRAME_RATE * 4);
-        if (dz < -20) ray.z -= distance / (XCGame.FRAME_RATE * 4);
-
         //reposition eye
-        eye.set(ray).add(focus);
-        if (eye.z < 0) eye.z = 0;
+        eye.set(focus).add(ray);
+    }
+
+    void translateZ(int dz) {
+        Vector3d ray = eye.minus(focus);
+
+        if (dz > 20)
+            ray.z += distance / (XCGame.FRAME_RATE * 4);
+        if (dz < -20)
+            ray.z -= distance / (XCGame.FRAME_RATE * 4);
+
+        eye.set(focus).add(ray);
+
+        if (eye.z < 0)
+            eye.z = 0;
     }
 
     /**

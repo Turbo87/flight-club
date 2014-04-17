@@ -280,9 +280,5 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         if (slider != null)
             slider.draw(g);
     }
-
-    public void rotateCamera(float dtheta, int dz) {
-        cameraMan.rotateEyeAboutFocus(dtheta, dz);
-    }
 }
 
