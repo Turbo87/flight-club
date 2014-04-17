@@ -22,7 +22,6 @@ public class Clock implements Runnable {
     Thread ticker = null;
     final int sleepTime;
     final Vector<Observer> observers = new Vector<>();
-    public long now = 0;
     public long last = 0;
 
     boolean paused = false;
@@ -43,7 +42,7 @@ public class Clock implements Runnable {
         if (ticker == null)
             ticker = new Thread(this);
         ticker.start();
-        last = now = System.currentTimeMillis();
+        last = System.currentTimeMillis();
     }
 
     public void stop() {
@@ -54,7 +53,7 @@ public class Clock implements Runnable {
     @Override
     public void run() {
         while (ticker != null) {
-            now = System.currentTimeMillis();
+            long now = System.currentTimeMillis();
 
             for (int i = 0; i < observers.size(); i++) {
                 /*
