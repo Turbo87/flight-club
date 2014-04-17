@@ -82,6 +82,7 @@ public class ModelCanvas extends Canvas implements Clock.Observer {
         if (mouseTracker.isDragging()) {
             //float dtheta = (float) dx/width;
             float dtheta = 0;
+            float dz = 0;
             float unitStep = (float) Math.PI * delta / 8;//4 seconds to 90 - sloow!
 
             if (mouseTracker.getDeltaX() > 20)
@@ -90,8 +91,14 @@ public class ModelCanvas extends Canvas implements Clock.Observer {
             if (mouseTracker.getDeltaX() < -20)
                 dtheta = unitStep;
 
+            if (mouseTracker.getDeltaY() > 20)
+                dz = delta / 4;
+
+            if (mouseTracker.getDeltaY() < -20)
+                dz = -delta / 4;
+
             app.cameraMan.rotateEyeAboutFocus(-dtheta);
-            app.cameraMan.translateZ(-mouseTracker.getDeltaY());
+            app.cameraMan.translateZ(-dz);
         }
 
         repaint();

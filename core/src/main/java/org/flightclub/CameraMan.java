@@ -298,13 +298,10 @@ public class CameraMan {
         eye.set(focus).add(ray);
     }
 
-    void translateZ(int dz) {
+    void translateZ(float dz) {
         Vector3d ray = eye.minus(focus);
 
-        if (dz > 20)
-            ray.z += distance / (XCGame.FRAME_RATE * 4);
-        if (dz < -20)
-            ray.z -= distance / (XCGame.FRAME_RATE * 4);
+        ray.z += distance * dz;
 
         eye.set(focus).add(ray);
 
