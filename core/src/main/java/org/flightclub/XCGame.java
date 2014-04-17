@@ -24,10 +24,10 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
 
     public static final int FRAME_RATE = 25;
 
-    public static final float TIME_PER_FRAME_DEFAULT = (float) (1.0 / FRAME_RATE) / 2;
-    public static final float TIME_PER_FRAME_FAST = TIME_PER_FRAME_DEFAULT * 5;
+    public static final float TIME_PER_FRAME = (float) (1.0 / FRAME_RATE) / 2;
 
-    protected float timePerFrame = TIME_PER_FRAME_DEFAULT;
+    protected float timePerFrame = TIME_PER_FRAME;
+    public float timeMultiplier = 1.0f;
 
     Vector<Glider> gaggle;
     GliderUser gliderUser;
@@ -179,10 +179,12 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
         fastForward = !fastForward;
         if (fastForward)
             //2.5 minutes per second
-            timePerFrame = TIME_PER_FRAME_FAST;
+            timeMultiplier = 5.0f;
         else
             //0.5 minutes per second
-            timePerFrame = TIME_PER_FRAME_DEFAULT;
+            timeMultiplier = 1.0f;
+
+        timePerFrame = TIME_PER_FRAME * timeMultiplier;
     }
 
     @Override
