@@ -17,30 +17,30 @@ import java.util.Vector;
  */
 public class Tail extends Object3d {
     final int tailLength;
-    final Color c;
+    final Color color;
     private Vector3d[] tail;
     int wireEvery = 4;    //default add a wire for every 5 points
     int updateEvery = 1;
     int moveCount = 0;
 
-    public Tail(XCGame theApp, int inTailLength, Color inC) {
+    public Tail(XCGame theApp, int inTailLength, Color color) {
         // only register top level objects with the manager
         // a tail has a parent who IS registered with the manager
         //  and is responsible for drawing and ticking its tail
         // ...er no
         super(theApp, true);
         tailLength = inTailLength;
-        c = inC;
+        this.color = color;
     }
 
-    public Tail(XCGame theApp, int inTailLength, Color inC, int layer) {
+    public Tail(XCGame theApp, int inTailLength, Color color, int layer) {
 		/*
 			as aboove but add to a specific layer
 			eg zero for long jet tails, roads...
 		*/
         super(theApp, true, layer);
         tailLength = inTailLength;
-        c = inC;
+        this.color = color;
     }
 
     public void init(Vector3d p) {
@@ -57,7 +57,7 @@ public class Tail extends Object3d {
             j++;
 
             if (j == wireEvery + 1) {
-                super.addWire(tailWire, c, false);
+                super.addWire(tailWire, color, false);
                 tailWire = new Vector<>();
                 tailWire.addElement(tail[i]);
                 j = 1;
