@@ -16,43 +16,43 @@ import java.util.Vector;
  * a tail of length n may be attached to a flying dot
  */
 public class Tail extends Object3d {
-    final int tailLength;
+    final int length;
     final Color color;
     private Vector3d[] tail;
     int wireEvery = 4;    //default add a wire for every 5 points
     int updateEvery = 1;
     int moveCount = 0;
 
-    public Tail(XCGame theApp, int inTailLength, Color color) {
+    public Tail(XCGame theApp, int length, Color color) {
         // only register top level objects with the manager
         // a tail has a parent who IS registered with the manager
         //  and is responsible for drawing and ticking its tail
         // ...er no
         super(theApp, true);
-        tailLength = inTailLength;
+        this.length = length;
         this.color = color;
     }
 
-    public Tail(XCGame theApp, int inTailLength, Color color, int layer) {
+    public Tail(XCGame theApp, int length, Color color, int layer) {
 		/*
 			as aboove but add to a specific layer
 			eg zero for long jet tails, roads...
 		*/
         super(theApp, true, layer);
-        tailLength = inTailLength;
+        this.length = length;
         this.color = color;
     }
 
     public void init(Vector3d p) {
-        tail = new Vector3d[tailLength];
+        tail = new Vector3d[length];
 
-        for (int i = 0; i < tailLength; i++) {
+        for (int i = 0; i < length; i++) {
             tail[i] = new Vector3d(p.x, p.y - (float) i / 1000, p.z);
         }
 
         Vector<Vector3d> tailWire = new Vector<>();
         int j = 0;
-        for (int i = wireEvery; i < tailLength; i++) {
+        for (int i = wireEvery; i < length; i++) {
             if (j < 2) tailWire.addElement(tail[i]);
             j++;
 
@@ -71,8 +71,8 @@ public class Tail extends Object3d {
         if (moveCount == updateEvery) {
             moveCount = 0;
             //newP is the current position
-            for (int i = 0; i < tailLength - 1; i++) {
-                int j = tailLength - 1 - i;
+            for (int i = 0; i < length - 1; i++) {
+                int j = length - 1 - i;
                 tail[j].set(tail[j - 1]);
             }
             tail[0].set(newP);
@@ -85,7 +85,7 @@ public class Tail extends Object3d {
      * to resume play
      */
     public void reset(Vector3d newP) {
-        for (int i = 0; i < tailLength - 1; i++) {
+        for (int i = 0; i < length - 1; i++) {
             tail[i].set(newP);
         }
     }
