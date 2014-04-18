@@ -20,8 +20,6 @@ public class Tail extends Object3d {
     final Color color;
     private Vector3d[] tail;
     int wireEvery = 4;    //default add a wire for every 5 points
-    int updateEvery = 1;
-    int moveCount = 0;
 
     public Tail(XCGame theApp, int length, Color color) {
         // only register top level objects with the manager
@@ -66,17 +64,12 @@ public class Tail extends Object3d {
     }
 
     public void moveTo(Vector3d newP) {
-        moveCount++;
-
-        if (moveCount == updateEvery) {
-            moveCount = 0;
-            //newP is the current position
-            for (int i = 0; i < length - 1; i++) {
-                int j = length - 1 - i;
-                tail[j].set(tail[j - 1]);
-            }
-            tail[0].set(newP);
+        //newP is the current position
+        for (int i = 0; i < length - 1; i++) {
+            int j = length - 1 - i;
+            tail[j].set(tail[j - 1]);
         }
+        tail[0].set(newP);
     }
 
     /*

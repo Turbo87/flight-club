@@ -20,7 +20,7 @@ public class JetTrail extends FlyingDot {
     FlyingDot buzzThis;
     static final float RANGE = 40;
 
-    public static final int TAIL_LENGTH = 80;
+    public static final int TAIL_LENGTH = 240;
     public static final Color TAIL_COLOR = new Color(200, 200, 200);
 
     public JetTrail(XCGame app, float x, float y) {
@@ -41,7 +41,6 @@ public class JetTrail extends FlyingDot {
     protected void createTail() {
         tail = new Tail(app, TAIL_LENGTH, TAIL_COLOR, 0);    //add to layer zero
         tail.wireEvery = 1;
-        tail.updateEvery = 3;
         tail.init(p);
     }
 
