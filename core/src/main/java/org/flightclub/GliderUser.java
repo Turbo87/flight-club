@@ -52,13 +52,11 @@ public class GliderUser extends Glider implements EventManager.Interface {
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
                 //hack
-                tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.LEFT);
                 break;
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                tryLater = 0;
                 demoMode = false;
                 moveManager.setNextMove(MovementManager.RIGHT);
                 break;
