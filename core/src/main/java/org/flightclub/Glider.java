@@ -227,34 +227,35 @@ public class Glider extends FlyingBody {
 
     @Override
     public void tick(float delta) {
+        if (isUser) {
+            if (demoMode)
+                return;
 
-        if (isUser && demoMode) return;
-
-        if (isUser && !landed)
-            app.textMessage = "D: " + (int) (p.y / 2) + "km  T: " + (int) app.time / 2 + "mins  H: " + (int) ((p.z / 2) * 1500) + "m ";
-
-        //landed ?
-        if (landed && isUser) {
-            app.textMessage = "You have landed - you flew " + (int) (p.y / 2) + "km. Press <y> to fly again.";
+            if (reachedGoal)
+                app.textMessage = "Well done ! You have reached goal. You flew " + (int) (p.y / 2) + "km in " + (int) app.time / 2 + " mins. Press <y> to fly again.";
+            else if (landed)
+                app.textMessage = "You have landed - you flew " + (int) (p.y / 2) + "km. Press <y> to fly again.";
+            else
+                app.textMessage = "D: " + (int) (p.y / 2) + "km  T: " + (int) app.time / 2 + "mins  H: " + (int) ((p.z / 2) * 1500) + "m ";
         }
-        if (landed) return;
 
-        //reached goal ?
-        if (reachedGoal && isUser) {
-            app.textMessage = "Well done ! You have reached goal. You flew " + (int) (p.y / 2) + "km in " + (int) app.time / 2 + " mins. Press <y> to fly again.";
-        }
-        if (reachedGoal) return;
+        if (landed || reachedGoal)
+            return;
 
         super.tick(delta);
 
         //delayed cut hack 5/10
         if (cutPending) {
             cutCount++;
-            if (cutCount >= cutWhen) cutNow();
+            if (cutCount >= cutWhen)
+                cutNow();
         }
 
-        if (app.landscape != null && triggerLoading) app.landscape.loadTilesAround(p);
-        if (!reachedGoal) reachedGoal = app.landscape.reachedGoal(p);
+        if (app.landscape != null && triggerLoading)
+            app.landscape.loadTilesAround(p);
+
+        if (!reachedGoal)
+            reachedGoal = app.landscape.reachedGoal(p);
     }
 
     /**
