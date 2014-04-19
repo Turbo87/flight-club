@@ -86,6 +86,9 @@ public class Glider extends FlyingBody {
      * NB inform the cameraman of this event ??
 	 */
     void gotoNextLiftSource() {
+        if (!demoMode)
+            return;
+        
         Hill hill = null;
         Cloud cloud = null;
 
@@ -97,7 +100,6 @@ public class Glider extends FlyingBody {
             cloud = app.sky.nextCloud(new Vector3d(p.x, p.y + 2, p.z));
         }
 
-        if (!demoMode) return;
         cutPending = false;
 
         if (hill != null) {
