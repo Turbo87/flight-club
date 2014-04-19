@@ -20,7 +20,6 @@ public class Glider extends FlyingBody {
     // hack - only glider user should know about this
     boolean demoMode = true;
 
-    float time = 0;
     boolean reachedGoal;
 
     // where on the polar are we
@@ -232,7 +231,7 @@ public class Glider extends FlyingBody {
         if (isUser && demoMode) return;
 
         if (isUser && !landed)
-            app.textMessage = "D: " + (int) (p.y / 2) + "km  T: " + (int) time / 2 + "mins  H: " + (int) ((p.z / 2) * 1500) + "m ";
+            app.textMessage = "D: " + (int) (p.y / 2) + "km  T: " + (int) app.time / 2 + "mins  H: " + (int) ((p.z / 2) * 1500) + "m ";
 
         //landed ?
         if (landed && isUser) {
@@ -242,12 +241,11 @@ public class Glider extends FlyingBody {
 
         //reached goal ?
         if (reachedGoal && isUser) {
-            app.textMessage = "Well done ! You have reached goal. You flew " + (int) (p.y / 2) + "km in " + (int) time / 2 + " mins. Press <y> to fly again.";
+            app.textMessage = "Well done ! You have reached goal. You flew " + (int) (p.y / 2) + "km in " + (int) app.time / 2 + " mins. Press <y> to fly again.";
         }
         if (reachedGoal) return;
 
         super.tick(delta);
-        time += app.timePerFrame;
 
         //delayed cut hack 5/10
         if (cutPending) {
@@ -318,7 +316,6 @@ public class Glider extends FlyingBody {
 
         if (isUser) {
             app.cameraMan.setMode(CameraMan.Mode.SELF);
-            time = 0;
             demoMode = false;
         }
     }

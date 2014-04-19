@@ -29,6 +29,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
     protected float timePerFrame = TIME_PER_FRAME;
     public float timeMultiplier = 1.0f;
 
+    public float time = 0.0f;
     Vector<Glider> gaggle;
     GliderUser gliderUser;
     JetTrail jet1;
@@ -111,6 +112,7 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
 
     void launchUser() {
         gliderUser.takeOff(new Vector3d(4 - 4 - 1, 4 - 6, (float) 1.8));
+        time = 0;
     }
 
     void togglePause() {
@@ -160,6 +162,8 @@ public class XCGame implements EventManager.Interface, Clock.Observer {
 
     @Override
     public void tick(float delta) {
+        time += timePerFrame;
+
         eventManager.processEvent();
         cameraMan.tick();
 
